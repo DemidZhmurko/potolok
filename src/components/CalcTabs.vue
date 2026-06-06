@@ -256,6 +256,7 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
               Точная цена определяется после бесплатного замера специалистом.
             </div>
           </div>
+          <ModalCalc :total-area="totalArea" :total-price="totalPrice" btn-name="Оставить заявку" />
         </div>
 
         <!-- RIGHT -->
