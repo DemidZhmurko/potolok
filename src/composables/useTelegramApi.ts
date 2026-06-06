@@ -1,5 +1,5 @@
 export function useTelegram() {
-  const token = '8772955463:AAGuE2ssbwtStsF77oe6d-JPwjWVSDoW93o'
+  const token = import.meta.env.VITE_TELEGRAM_BOT_TOKEN
   const chatId = '5733320191'
 
   const sendMessage = async (message: string) => {

@@ -13,6 +13,7 @@ declare module 'vue' {
     Contacs: typeof import('./src/components/Contacs.vue')['default']
     Floor: typeof import('./src/components/TabsVariants/Floor.vue')['default']
     KeramzitCalc: typeof import('./src/components/TabsVariants/KeramzitCalc.vue')['default']
+    ModalCalc: typeof import('./src/components/ModalCalc.vue')['default']
     NavbarComponent: typeof import('./src/components/NavbarComponent.vue')['default']
     OrderComponent: typeof import('./src/components/OrderComponent.vue')['default']
     PhoneComponent: typeof import('./src/components/PhoneComponent.vue')['default']

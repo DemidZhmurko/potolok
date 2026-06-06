@@ -257,6 +257,7 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
             </div>
           </div>
         </div>
+        <ModalCalc :total-area="totalArea" :total-price="totalPrice" btn-name="Оставить заявку" />
 
         <!-- RIGHT -->
         <div class="px-2 flex flex-col w-full items-center md:px-0">
