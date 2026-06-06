@@ -128,10 +128,10 @@ useSchemaOrg([
       <div class="md:items-left text-white py-12 flex flex-col min-h-[70vh] items-start justify-center md:text-left md:w1/2">
         <div class="text-center w-full space-y-6 md:text-left">
           <h1 class="text-2xl leading-tight font-bold md:text-6xl sm:text-5xl">
-            Купить бетон с доставкой в Алматы по самым выгодным ценам
+            Натяжные потолки с гарантией качества от 5 лет
           </h1>
           <p class="text-base sm:text-lg">
-            Компания «TAUBETON» занимается производством и доставкой бетона и строительных растворов по всей территории Казахстана, гарантируя высокое качество продукции и соблюдение сроков
+            Компания «ДЯДЯ Вова» занимается установкой натяжных потолков в Алматы, гарантируя высокое качество и соблюдение сроков!
           </p>
           <div class="mt-6">
             <RequestModal />
