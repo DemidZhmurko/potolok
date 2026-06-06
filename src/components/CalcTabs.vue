@@ -49,10 +49,10 @@ function clamp(val: number | null, min: number, max: number) {
   return Math.min(Math.max(val, min), max)
 }
 
-watch(length, v => (length.value = clamp(v, 1, 15)))
-watch(width, v => (width.value = clamp(v, 1, 15)))
-watch(extraLength, v => (extraLength.value = clamp(v, 0, 10)))
-watch(extraWidth, v => (extraWidth.value = clamp(v, 0, 10)))
+watch(length, (v: number | null) => (length.value = clamp(v, 1, 15)))
+watch(width, (v: number | null) => (width.value = clamp(v, 1, 15)))
+watch(extraLength, (v: number | null) => (extraLength.value = clamp(v, 0, 10)))
+watch(extraWidth, (v: number | null) => (extraWidth.value = clamp(v, 0, 10)))
 
 /**
  * AREA
@@ -78,7 +78,7 @@ const totalArea = computed(() => {
 })
 
 /**
- * MATERIAL MULTIPLIER
+ * MATERIAL
  */
 const materialMultiplier = computed(() => {
   if (material.value === 'basic')
@@ -89,16 +89,16 @@ const materialMultiplier = computed(() => {
 })
 
 /**
- * LIGHTS PRICE
+ * LIGHTS
  */
 const lightsPrice = computed(() => {
-  return (lights.value || 0) * 3500
+  return (lights.value || 0) * 2500
 })
 
 /**
  * BASE PRICE
  */
-const baseRate = 3000
+const baseRate = 2500
 
 /**
  * TOTAL PRICE
@@ -113,7 +113,7 @@ const totalPrice = computed(() => {
 })
 
 /**
- * SMART SCALE
+ * SCALE
  */
 const scale = computed(() => {
   const maxSide = Math.max(length.value || 0, width.value || 0)
@@ -181,7 +181,7 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
             </select>
 
             <p class="text-xs text-gray-400 mt-1">
-              Расчёт производится на базе стандартного материала
+              Расчёт выполнен по базовой стоимости 2500 ₸/м²
             </p>
           </div>
 
@@ -198,7 +198,7 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
             >
 
             <p class="text-xs text-gray-400 mt-1">
-              1 точка = 3500 ₸
+              1 точка = 2500 ₸
             </p>
           </div>
 
@@ -245,13 +245,16 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
             </p>
 
             <p class="text-xs text-gray-400 mt-1">
-              3000 ₸/м² + свет + материал
+              2500 ₸/м² + свет + материал
             </p>
 
-            <p class="text-xs text-gray-500 mt-3">
-              * Расчёт предварительный. Итоговая стоимость зависит от замера,
-              сложности монтажа и особенностей помещения.
-            </p>
+            <!-- DISCLAIMER -->
+            <div class="text-xs text-gray-500 mt-3 p-3 rounded bg-gray-50">
+              * Расчёт является предварительным и носит ориентировочный характер.
+              Итоговая стоимость может отличаться как в меньшую, так и в большую сторону
+              в зависимости от особенностей помещения, сложности монтажа и выбранных материалов.
+              Точная цена определяется после бесплатного замера специалистом.
+            </div>
           </div>
         </div>
 
