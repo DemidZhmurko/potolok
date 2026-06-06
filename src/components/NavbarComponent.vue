@@ -7,7 +7,7 @@ interface NavItem {
 }
 
 const navItems = ref<NavItem[]>([
-  { name: 'Бетон', href: '#assortiment' },
+  { name: 'Потолки', href: '#assortiment' },
   { name: 'О нас', href: '#about' },
   { name: 'Услуги', href: '#pumps' },
   { name: 'Контакты', href: '#contacts' },

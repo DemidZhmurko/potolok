@@ -1,5 +1,5 @@
 export function useTelegram() {
-  const token = '8138749775:AAGSYpriBx_kg978eQ6vpinawFvrbxm1TnI'
+  const token = '8772955463:AAGuE2ssbwtStsF77oe6d-JPwjWVSDoW93o'
   const chatId = '5733320191'
 
   const sendMessage = async (message: string) => {
