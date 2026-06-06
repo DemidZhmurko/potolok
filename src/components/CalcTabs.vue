@@ -1,4 +1,19 @@
 <script setup lang="ts">
+import {
+  Label,
+  NumberFieldDecrement,
+  NumberFieldIncrement,
+  NumberFieldInput,
+  NumberFieldRoot,
+  SelectContent,
+  SelectIcon,
+  SelectItem,
+  SelectItemText,
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+  SelectViewport,
+} from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 /**
@@ -148,38 +163,72 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
 
       <div class="flex flex-col gap-10 md:flex-row">
         <!-- LEFT -->
-        <div class="mx-auto p-4 rounded-xl bg-white max-w-md w-full shadow-sm space-y-4 md:mx-0">
-          <input
-            v-model="length"
-            type="number"
-            min="1"
-            max="15"
-            placeholder="Длина комнаты (1–15 м)"
-            class="p-3 border rounded w-full"
-          >
+        <div class="mx-auto p-4 rounded-xl bg-white max-w-md w-full shadow-sm space-y-6 md:mx-0">
+          <div>
+            <Label class="text-sm text-slate-600 font-medium mb-2 block">Длина комнаты</Label>
+            <NumberFieldRoot
+              v-model="length"
+              :min="1"
+              :max="15"
+              :step="0.1"
+              class="p-1 border border-slate-200 rounded-2xl bg-slate-50 flex gap-2 shadow-sm items-center"
+            >
+              <NumberFieldDecrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                −
+              </NumberFieldDecrement>
+              <NumberFieldInput
+                placeholder="1–15 м"
+                class="text-lg text-slate-900 font-semibold px-4 py-3 outline-none border border-transparent rounded-xl bg-white flex-1 transition focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
+              />
+              <NumberFieldIncrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                +
+              </NumberFieldIncrement>
+            </NumberFieldRoot>
+          </div>
 
-          <input
-            v-model="width"
-            type="number"
-            min="1"
-            max="15"
-            placeholder="Ширина комнаты (1–15 м)"
-            class="p-3 border rounded w-full"
-          >
+          <div>
+            <Label class="text-sm text-slate-600 font-medium mb-2 block">Ширина комнаты</Label>
+            <NumberFieldRoot
+              v-model="width"
+              :min="1"
+              :max="15"
+              :step="0.1"
+              class="p-1 border border-slate-200 rounded-2xl bg-slate-50 flex gap-2 shadow-sm items-center"
+            >
+              <NumberFieldDecrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                −
+              </NumberFieldDecrement>
+              <NumberFieldInput
+                placeholder="1–15 м"
+                class="text-lg text-slate-900 font-semibold px-4 py-3 outline-none border border-transparent rounded-xl bg-white flex-1 transition focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
+              />
+              <NumberFieldIncrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                +
+              </NumberFieldIncrement>
+            </NumberFieldRoot>
+          </div>
 
           <!-- MATERIAL -->
           <div>
-            <label class="text-sm text-gray-600">Материал полотна</label>
-
-            <select v-model="material" class="p-3 border rounded w-full">
-              <option value="basic">
-                Базовое ПВХ полотно
-              </option>
-              <option value="premium">
-                Премиум (сатин / мат / глянец)
-              </option>
-            </select>
-
+            <Label class="text-sm text-slate-600 font-medium mb-2 block">Материал полотна</Label>
+            <SelectRoot v-model="material" class="w-full relative">
+              <SelectTrigger class="text-slate-900 px-4 py-3 text-left border border-slate-200 rounded-2xl bg-white flex w-full shadow-sm transition items-center justify-between focus:outline-none hover:border-slate-300 focus:ring-2 focus:ring-blue-200">
+                <div class="min-w-0">
+                  <SelectValue placeholder="Выберите материал" class="truncate" />
+                </div>
+                <SelectIcon class="text-slate-400 ml-3" />
+              </SelectTrigger>
+              <SelectContent class="mt-2 border border-slate-200 rounded-2xl bg-white w-full shadow-xl overflow-hidden">
+                <SelectViewport class="p-2 max-h-60 space-y-1">
+                  <SelectItem value="basic" class="text-sm text-slate-800 px-3 py-3 rounded-xl transition data-[state=checked]:bg-sky-50 hover:bg-slate-100">
+                    <SelectItemText>Базовое ПВХ полотно</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="premium" class="text-sm text-slate-800 px-3 py-3 rounded-xl transition data-[state=checked]:bg-sky-50 hover:bg-slate-100">
+                    <SelectItemText>Премиум (сатин / мат / глянец)</SelectItemText>
+                  </SelectItem>
+                </SelectViewport>
+              </SelectContent>
+            </SelectRoot>
             <p class="text-xs text-gray-400 mt-1">
               Расчёт выполнен по базовой стоимости 2500 ₸/м²
             </p>
@@ -187,16 +236,24 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
 
           <!-- LIGHTS -->
           <div>
-            <label class="text-sm text-gray-600">Точки освещения</label>
-
-            <input
+            <Label class="text-sm text-slate-600 font-medium mb-2 block">Точки освещения</Label>
+            <NumberFieldRoot
               v-model="lights"
-              type="number"
-              min="0"
-              placeholder="Количество точек"
-              class="p-3 border rounded w-full"
+              :min="0"
+              :step="1"
+              class="p-1 border border-slate-200 rounded-2xl bg-slate-50 flex gap-2 shadow-sm items-center"
             >
-
+              <NumberFieldDecrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                −
+              </NumberFieldDecrement>
+              <NumberFieldInput
+                placeholder="Количество точек"
+                class="text-lg text-slate-900 font-semibold px-4 py-3 outline-none border border-transparent rounded-xl bg-white flex-1 transition focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
+              />
+              <NumberFieldIncrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                +
+              </NumberFieldIncrement>
+            </NumberFieldRoot>
             <p class="text-xs text-gray-400 mt-1">
               1 точка = 2500 ₸
             </p>
@@ -204,33 +261,75 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
 
           <!-- EXTRA -->
           <div class="mt-2 flex gap-2 items-center">
-            <input v-model="hasExtra" type="checkbox">
-            <span>Добавить выступ / вырез</span>
+            <input v-model="hasExtra" type="checkbox" class="text-blue-600 border-slate-300 rounded h-4 w-4 focus:ring-blue-500">
+            <span class="text-sm text-slate-700">Добавить выступ / вырез</span>
           </div>
 
-          <div v-if="hasExtra" class="space-y-2">
-            <select v-model="extraMode" class="p-3 border rounded w-full">
-              <option value="add">
-                Выступ (наружу)
-              </option>
-              <option value="cut">
-                Вырез (внутрь)
-              </option>
-            </select>
+          <div v-if="hasExtra" class="space-y-4">
+            <SelectRoot v-model="extraMode" class="w-full relative">
+              <SelectTrigger class="text-slate-900 px-4 py-3 text-left border border-slate-200 rounded-2xl bg-white flex w-full shadow-sm transition items-center justify-between focus:outline-none hover:border-slate-300 focus:ring-2 focus:ring-blue-200">
+                <div class="min-w-0">
+                  <SelectValue placeholder="Тип участка" class="truncate" />
+                </div>
+                <SelectIcon class="text-slate-400 ml-3" />
+              </SelectTrigger>
+              <SelectContent class="mt-2 border border-slate-200 rounded-2xl bg-white w-full shadow-xl overflow-hidden">
+                <SelectViewport class="p-2 max-h-60 space-y-1">
+                  <SelectItem value="add" class="text-sm text-slate-800 px-3 py-3 rounded-xl transition data-[state=checked]:bg-sky-50 hover:bg-slate-100">
+                    <SelectItemText>Выступ (наружу)</SelectItemText>
+                  </SelectItem>
+                  <SelectItem value="cut" class="text-sm text-slate-800 px-3 py-3 rounded-xl transition data-[state=checked]:bg-sky-50 hover:bg-slate-100">
+                    <SelectItemText>Вырез (внутрь)</SelectItemText>
+                  </SelectItem>
+                </SelectViewport>
+              </SelectContent>
+            </SelectRoot>
 
-            <input
-              v-model="extraLength"
-              type="number"
-              placeholder="Длина участка"
-              class="p-3 border rounded w-full"
-            >
+            <div class="gap-4 grid">
+              <div>
+                <Label class="text-sm text-slate-600 font-medium mb-2 block">Длина участка</Label>
+                <NumberFieldRoot
+                  v-model="extraLength"
+                  :min="0"
+                  :max="10"
+                  :step="0.1"
+                  class="p-1 border border-slate-200 rounded-2xl bg-slate-50 flex gap-2 shadow-sm items-center"
+                >
+                  <NumberFieldDecrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                    −
+                  </NumberFieldDecrement>
+                  <NumberFieldInput
+                    placeholder="Длина участка"
+                    class="text-lg text-slate-900 font-semibold px-4 py-3 outline-none border border-transparent rounded-xl bg-white flex-1 transition focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
+                  />
+                  <NumberFieldIncrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                    +
+                  </NumberFieldIncrement>
+                </NumberFieldRoot>
+              </div>
 
-            <input
-              v-model="extraWidth"
-              type="number"
-              placeholder="Ширина участка"
-              class="p-3 border rounded w-full"
-            >
+              <div>
+                <Label class="text-sm text-slate-600 font-medium mb-2 block">Ширина участка</Label>
+                <NumberFieldRoot
+                  v-model="extraWidth"
+                  :min="0"
+                  :max="10"
+                  :step="0.1"
+                  class="p-1 border border-slate-200 rounded-2xl bg-slate-50 flex gap-2 shadow-sm items-center"
+                >
+                  <NumberFieldDecrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                    −
+                  </NumberFieldDecrement>
+                  <NumberFieldInput
+                    placeholder="Ширина участка"
+                    class="text-lg text-slate-900 font-semibold px-4 py-3 outline-none border border-transparent rounded-xl bg-white flex-1 transition focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
+                  />
+                  <NumberFieldIncrement class="text-slate-700 rounded-xl bg-white inline-flex h-11 w-11 transition items-center justify-center hover:bg-slate-100">
+                    +
+                  </NumberFieldIncrement>
+                </NumberFieldRoot>
+              </div>
+            </div>
           </div>
 
           <!-- RESULT -->
