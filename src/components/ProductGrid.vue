@@ -11,6 +11,7 @@ import {
 import { computed, ref } from 'vue'
 import PhoneInput from '~/components/Inputs/PhoneInput.vue'
 import UsernameInput from '~/components/Inputs/UsernameInput.vue'
+import { useAppToast } from '~/composables/useAppToast'
 import { useTelegram } from '~/composables/useTelegramApi'
 
 interface CeilingItem {
@@ -117,6 +118,7 @@ const ceilings: CeilingItem[] = [
 ]
 
 const { sendMessage } = useTelegram()
+const { showErrorToast, showSuccessToast } = useAppToast()
 
 const isDialogOpen = ref(false)
 const selectedIndex = ref(0)
@@ -124,7 +126,6 @@ const leadName = ref('')
 const leadPhone = ref('')
 const leadComment = ref('')
 const isSending = ref(false)
-const sendStatus = ref<'idle' | 'success' | 'error'>('idle')
 
 const selectedCeiling = computed(() => ceilings[selectedIndex.value])
 const canGoPrev = computed(() => selectedIndex.value > 0)
@@ -133,21 +134,18 @@ const canSend = computed(() => Boolean(leadName.value.trim() && leadPhone.value.
 
 function openCeiling(index: number) {
   selectedIndex.value = index
-  sendStatus.value = 'idle'
   isDialogOpen.value = true
 }
 
 function goPrev() {
   if (canGoPrev.value) {
     selectedIndex.value -= 1
-    sendStatus.value = 'idle'
   }
 }
 
 function goNext() {
   if (canGoNext.value) {
     selectedIndex.value += 1
-    sendStatus.value = 'idle'
   }
 }
 
@@ -179,7 +177,6 @@ async function sendCeilingRequest() {
 
   const item = selectedCeiling.value
   isSending.value = true
-  sendStatus.value = 'idle'
 
   const requestedAt = new Date().toLocaleString('ru-RU')
   const comment = leadComment.value.trim() || 'Без комментария'
@@ -199,10 +196,14 @@ async function sendCeilingRequest() {
   const ok = await sendMessage(message)
 
   isSending.value = false
-  sendStatus.value = ok ? 'success' : 'error'
 
-  if (ok)
+  if (ok) {
     resetLeadForm()
+    showSuccessToast()
+  }
+  else {
+    showErrorToast()
+  }
 }
 </script>
 
@@ -370,13 +371,6 @@ async function sendCeilingRequest() {
                   >
                     {{ isSending ? 'Отправляем...' : 'Оставить заявку' }}
                   </button>
-
-                  <p v-if="sendStatus === 'success'" class="text-sm text-green-700">
-                    Заявка отправлена. Мы скоро свяжемся с вами.
-                  </p>
-                  <p v-if="sendStatus === 'error'" class="text-sm text-red-700">
-                    Не удалось отправить заявку. Проверьте подключение или попробуйте ещё раз.
-                  </p>
                 </form>
               </div>
             </div>

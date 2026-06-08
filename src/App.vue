@@ -5,5 +5,6 @@
     <TheFooter />
     <PhoneComponent />
     <WhatsAppComponent />
+    <ToastHost />
   </main>
 </template>

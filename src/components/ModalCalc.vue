@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { useAppToast } from '~/composables/useAppToast'
 import { useTelegram } from '~/composables/useTelegramApi'
 
 const props = defineProps<{
@@ -8,10 +10,12 @@ const props = defineProps<{
 }>()
 
 const { sendMessage } = useTelegram()
+const { showErrorToast, showSuccessToast } = useAppToast()
 
 const name = ref('')
 const phone = ref('')
 const isOpen = ref(false)
+const isSending = ref(false)
 
 const roundedPrice = computed(() => Math.round(props.totalPrice))
 const formattedArea = computed(() => props.totalArea.toLocaleString('ru-RU', {
@@ -41,17 +45,33 @@ onUnmounted(() => {
   window.removeEventListener('keydown', onEsc)
 })
 
-function handleSend() {
-  if (!canSend.value)
+async function handleSend() {
+  if (!canSend.value || isSending.value)
     return
 
-  const message = `📝 Заявка\n👤 Имя: ${name.value}\n📞 Телефон: ${phone.value}\n 💵 Расчет: ${formattedArea.value} м²\n 🥳 Ориентировочная цена: ${formattedPrice.value} ₸`
-  sendMessage(message)
+  isSending.value = true
 
-  name.value = ''
-  phone.value = ''
+  const message = [
+    '<b>Заявка с сайта натяжных потолков</b>',
+    '',
+    `<b>Имя клиента:</b> ${name.value.trim()}`,
+    `<b>Телефон:</b> ${phone.value.trim()}`,
+    `<b>Расчёт:</b> ${formattedArea.value} м²`,
+    `<b>Ориентировочная цена:</b> ${formattedPrice.value} ₸`,
+  ].join('\n')
 
-  closeModal()
+  const ok = await sendMessage(message)
+  isSending.value = false
+
+  if (ok) {
+    name.value = ''
+    phone.value = ''
+    closeModal()
+    showSuccessToast()
+  }
+  else {
+    showErrorToast()
+  }
 }
 </script>
 
@@ -63,7 +83,7 @@ function handleSend() {
     <span class="text-left min-w-0">
       <span class="font-semibold block truncate">{{ props.btnName }}</span>
       <span class="text-sm text-white/75 block transition-colors group-hover:text-white/80">
-        расчет за {{ formattedArea }} м²
+        расчёт за {{ formattedArea }} м²
       </span>
     </span>
 
@@ -108,7 +128,7 @@ function handleSend() {
               </p>
 
               <h2 id="modal-title" class="text-2xl leading-tight font-bold mt-2 sm:text-3xl">
-                Зафиксируем расчет и свяжемся с вами
+                Зафиксируем расчёт и свяжемся с вами
               </h2>
 
               <p class="text-white/70 mt-3">
@@ -153,17 +173,17 @@ function handleSend() {
               </div>
 
               <p class="text-sm text-slate-500 leading-relaxed">
-                Заявка уйдет напрямую в Telegram. Точная цена подтверждается после замера.
+                Заявка уйдёт напрямую в Telegram. Точная цена подтверждается после замера.
               </p>
             </div>
 
             <button
               class="text-white font-semibold py-4 rounded-lg bg-blue-600 flex gap-2 w-full transition-all duration-300 items-center justify-center disabled:text-slate-500 disabled:bg-slate-300 hover:bg-blue-700 disabled:cursor-not-allowed"
-              :disabled="!canSend"
+              :disabled="!canSend || isSending"
               @click="handleSend"
             >
               <span class="i-mdi:send text-xl" />
-              Отправить заявку
+              {{ isSending ? 'Отправляем...' : 'Отправить заявку' }}
             </button>
           </div>
         </div>
