@@ -57,17 +57,17 @@ function handleSend() {
 
 <template>
   <button
-    class="group text-white px-5 py-4 rounded-lg bg-[#0F66D6] flex gap-4 w-full shadow-[0_16px_36px_rgba(15,102,214,0.24)] transition-all duration-300 items-center justify-between hover:text-[#121826] hover:bg-[#F2B705] hover:shadow-[0_18px_40px_rgba(242,183,5,0.28)] active:translate-y-0.5"
+    class="group text-white px-5 py-4 rounded-lg bg-blue-600 flex gap-4 w-full shadow-[0_16px_36px_rgba(37,99,235,0.20)] transition-all duration-300 items-center justify-between hover:bg-blue-700 hover:shadow-[0_18px_40px_rgba(37,99,235,0.26)] active:translate-y-0.5"
     @click="openModal"
   >
     <span class="text-left min-w-0">
       <span class="font-semibold block truncate">{{ props.btnName }}</span>
-      <span class="text-sm text-white/75 block transition-colors group-hover:text-[#121826]/70">
+      <span class="text-sm text-white/75 block transition-colors group-hover:text-white/80">
         расчет за {{ formattedArea }} м²
       </span>
     </span>
 
-    <span class="rounded-lg bg-white/15 flex shrink-0 h-11 w-11 transition-colors items-center justify-center group-hover:bg-[#121826]/10">
+    <span class="rounded-lg bg-white/15 flex shrink-0 h-11 w-11 transition-colors items-center justify-center group-hover:bg-white/20">
       <span class="i-mdi:arrow-right text-2xl" />
     </span>
   </button>
@@ -101,12 +101,9 @@ function handleSend() {
             <span class="i-mdi:close text-2xl" />
           </button>
 
-          <div class="text-white px-5 pb-6 pt-14 bg-[#101828] relative overflow-hidden sm:px-7 sm:pt-8">
-            <div class="rounded-full bg-[#F2B705]/20 h-24 w-24 right-[-34px] top-[-34px] absolute" />
-            <div class="rounded-full bg-[#2EC4B6]/18 h-16 w-16 bottom-[-26px] left-[-24px] absolute" />
-
+          <div class="text-white px-5 pb-6 pt-14 bg-gray-900 relative overflow-hidden sm:px-7 sm:pt-8">
             <div class="relative">
-              <p class="text-sm text-[#F2B705] tracking-wide font-semibold uppercase">
+              <p class="text-sm text-blue-200 tracking-wide font-semibold uppercase">
                 Финальный шаг
               </p>
 
@@ -124,7 +121,7 @@ function handleSend() {
             <div class="gap-3 grid grid-cols-2">
               <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
                 <div class="text-sm text-slate-500 flex gap-2 items-center">
-                  <span class="i-mdi:ruler-square text-lg text-[#0F66D6]" />
+                  <span class="i-mdi:ruler-square text-lg text-blue-600" />
                   Площадь
                 </div>
 
@@ -133,13 +130,13 @@ function handleSend() {
                 </div>
               </div>
 
-              <div class="p-4 border border-slate-200 rounded-lg bg-[#FFF8DF]">
+              <div class="p-4 border border-slate-200 rounded-lg bg-gray-50">
                 <div class="text-sm text-slate-600 flex gap-2 items-center">
-                  <span class="i-mdi:cash text-lg text-[#B7791F]" />
+                  <span class="i-mdi:cash text-lg text-blue-600" />
                   Стоимость
                 </div>
 
-                <div class="text-2xl text-[#121826] font-bold mt-2">
+                <div class="text-2xl text-slate-950 font-bold mt-2">
                   ~{{ formattedPrice }} ₸
                 </div>
               </div>
@@ -151,7 +148,7 @@ function handleSend() {
             </div>
 
             <div class="p-4 border border-slate-200 rounded-lg bg-white flex gap-3">
-              <div class="text-[#0E8F80] rounded-lg bg-[#E8F7F5] flex shrink-0 h-10 w-10 items-center justify-center">
+              <div class="text-blue-600 rounded-lg bg-blue-50 flex shrink-0 h-10 w-10 items-center justify-center">
                 <span class="i-mdi:shield-check text-xl" />
               </div>
 
@@ -161,7 +158,7 @@ function handleSend() {
             </div>
 
             <button
-              class="text-white font-semibold py-4 rounded-lg bg-[#0F66D6] flex gap-2 w-full transition-all duration-300 items-center justify-center disabled:text-slate-500 disabled:bg-slate-300 hover:bg-[#0B55B5] disabled:cursor-not-allowed"
+              class="text-white font-semibold py-4 rounded-lg bg-blue-600 flex gap-2 w-full transition-all duration-300 items-center justify-center disabled:text-slate-500 disabled:bg-slate-300 hover:bg-blue-700 disabled:cursor-not-allowed"
               :disabled="!canSend"
               @click="handleSend"
             >

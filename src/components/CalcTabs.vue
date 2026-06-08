@@ -149,7 +149,7 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
 
 <template>
   <div class="px-4 py-8 bg-gray-50 min-h-screen">
-    <div class="mx-auto p-4 rounded-2xl bg-white max-w-6xl shadow-md md:p-10">
+    <div class="mx-auto p-4 border border-gray-200 rounded-2xl bg-white max-w-6xl shadow-sm md:p-10">
       <!-- HEADER -->
       <div class="mb-8 text-center">
         <h1 class="text-3xl font-bold md:text-4xl">
@@ -163,7 +163,7 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
 
       <div class="flex flex-col gap-10 md:flex-row">
         <!-- LEFT -->
-        <div class="mx-auto p-4 rounded-xl bg-white max-w-md w-full shadow-sm space-y-6 md:mx-0">
+        <div class="mx-auto p-4 border border-gray-200 rounded-xl bg-white max-w-md w-full shadow-sm space-y-6 md:mx-0">
           <div>
             <Label class="text-sm text-slate-600 font-medium mb-2 block">Длина комнаты</Label>
             <NumberFieldRoot
@@ -333,7 +333,7 @@ const extraH = computed(() => (extraLength.value || 0) * scale.value)
           </div>
 
           <!-- RESULT -->
-          <div class="p-4 rounded bg-gray-100">
+          <div class="p-4 border border-gray-200 rounded bg-gray-50">
             <p><b>Площадь:</b> {{ totalArea }} м²</p>
 
             <p class="mt-2">

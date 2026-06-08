@@ -44,7 +44,7 @@ function handleSend() {
 <template>
   <!-- Кнопка "Заказать" -->
   <button
-    class="text-sm text-white font-semibold px-5 py-2 rounded-lg bg-blue-600 inline-flex gap-2 shadow transition items-center hover:bg-blue-400"
+    class="text-sm text-white font-semibold px-5 py-2 rounded-lg bg-blue-600 inline-flex gap-2 shadow shadow-blue-900/15 transition items-center hover:bg-blue-700"
     @click="openModal"
   >
     Заказать
@@ -68,10 +68,10 @@ function handleSend() {
         aria-modal="true"
         aria-labelledby="modal-title"
       >
-        <div class="p-6 rounded-xl bg-white max-w-md w-full shadow-xl relative">
+        <div class="p-6 border border-gray-200 rounded-xl bg-white max-w-md w-full shadow-gray-900/15 shadow-xl relative">
           <!-- Кнопка закрытия -->
           <button
-            class="text-2xl text-gray-400 right-3 top-3 absolute hover:text-red-500"
+            class="text-2xl text-gray-400 right-3 top-3 absolute hover:text-gray-900"
             aria-label="Закрыть"
             @click="closeModal"
           >
@@ -91,7 +91,7 @@ function handleSend() {
 
           <!-- Кнопка отправки -->
           <button
-            class="text-white font-semibold mt-6 py-3 rounded-lg bg-red-600 w-full transition hover:bg-red-700"
+            class="text-white font-semibold mt-6 py-3 rounded-lg bg-blue-600 w-full transition hover:bg-blue-700"
             @click="handleSend"
           >
             Отправить заявку

@@ -12,7 +12,7 @@
 
       <!-- Преимущества -->
       <div class="mb-20 gap-6 grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2">
-        <div class="p-6 text-center border-t-4 border-blue-500 rounded-xl bg-white shadow-md">
+        <div class="p-6 text-center border border-t-4 border-gray-200 border-t-blue-600 rounded-xl bg-white shadow-sm">
           <div class="text-4xl mb-3">
             🚛
           </div>
@@ -23,7 +23,7 @@
             Гарантируем своевременную доставку без посредников.
           </p>
         </div>
-        <div class="p-6 text-center rounded-xl bg-gray-50 shadow-md">
+        <div class="p-6 text-center border border-gray-200 rounded-xl bg-gray-50 shadow-sm">
           <div class="text-4xl mb-3">
             ⏱️
           </div>
@@ -34,7 +34,7 @@
             Оперативно поставим бетон прямо на ваш объект.
           </p>
         </div>
-        <div class="bg-gradient-to-tr p-6 text-center rounded-xl shadow-md from-red-50 to-white">
+        <div class="p-6 text-center border border-gray-200 rounded-xl bg-white shadow-sm">
           <div class="text-4xl mb-3">
             💰
           </div>
@@ -45,7 +45,7 @@
             Любая форма оплаты — наличный и безналичный расчёт.
           </p>
         </div>
-        <div class="p-6 text-center border border-gray-200 rounded-xl bg-white shadow-md">
+        <div class="p-6 text-center border border-gray-200 rounded-xl bg-white shadow-sm">
           <div class="text-4xl mb-3">
             🕐
           </div>
@@ -60,7 +60,7 @@
 
       <!-- Дополнительные факты о компании -->
       <div class="mb-20 gap-6 grid grid-cols-1 md:grid-cols-3">
-        <div class="p-6 text-center rounded-xl bg-gray-50 shadow">
+        <div class="p-6 text-center border border-gray-200 rounded-xl bg-gray-50 shadow-sm">
           <div class="text-4xl mb-2">
             🏗️
           </div>
@@ -71,7 +71,7 @@
             Более 10 лет и десятки реализованных проектов.
           </p>
         </div>
-        <div class="p-6 text-center border-t-4 border-blue-500 rounded-xl bg-white shadow">
+        <div class="p-6 text-center border border-t-4 border-gray-200 border-t-blue-600 rounded-xl bg-white shadow-sm">
           <div class="text-4xl mb-2">
             🤝
           </div>
@@ -82,7 +82,7 @@
             Работаем напрямую с бетонными и щебёночными заводами.
           </p>
         </div>
-        <div class="bg-gradient-to-bl p-6 text-center rounded-xl shadow from-white to-red-50">
+        <div class="p-6 text-center border border-gray-200 rounded-xl bg-white shadow-sm">
           <div class="text-4xl mb-2">
             📄
           </div>

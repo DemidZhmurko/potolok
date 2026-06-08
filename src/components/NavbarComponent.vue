@@ -36,26 +36,26 @@ onMounted(() => {
 
 <template>
   <header
-    class="bg-gray-100 w-full transition-all duration-500 top-0 sticky z-50"
+    class="border-b border-gray-200 bg-white/95 w-full transition-all duration-500 top-0 sticky z-50 backdrop-blur"
     :class="[
       isReady ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4',
-      isScrolled ? 'shadow-lg' : 'shadow-md',
+      isScrolled ? 'shadow-lg shadow-gray-900/8' : 'shadow-sm shadow-gray-900/5',
     ]"
   >
     <div class="mx-auto px-4 py-1 flex items-center justify-between container">
       <!-- Логотип -->
       <a href="/" class="flex items-center">
-        <div class="p-2 rounded bg-blue-500 overflow-hidden">
+        <div class="p-2 border border-gray-200 rounded bg-gray-50 overflow-hidden">
           <img src="/logo.png" alt="Logo" class="h-20 w-35 scale-140 transform object-cover">
         </div>
       </a>
 
       <div class="w-[70%] block">
         <div class="border-concrete pb-2 border-b-2 border-gray-300 hidden md:block">
-          <ul class="text-sm text-gray-700 flex justify-between space-x-4">
+          <ul class="text-sm text-gray-600 flex justify-between space-x-4">
             <li>РК, г. Алматы, Улица Казыбаева, 262</li>
             <li class="flex items-center">
-              <div class="i-mdi-phone text-xs text-green-500 mr-2" />
+              <div class="i-mdi-phone text-xs text-blue-600 mr-2" />
               <a href="tel:+77074852328" class="transition hover:underline">
                 +7 (707) 485-23-28
               </a>
@@ -80,7 +80,7 @@ onMounted(() => {
       <!-- Десктоп-кнопка -->
       <!-- <div class="hidden md:block">
         <a href="tel:+77074852328" class="text-gray-700 mt-2 flex items-center">
-          <div class="i-mdi-phone text-xs text-green-500 mr-2" />
+              <div class="i-mdi-phone text-xs text-blue-600 mr-2" />
           <span class="text-sm">+7 (707) 485-23-28 </span>
         </a>
       </div> -->
@@ -91,7 +91,7 @@ onMounted(() => {
           href="tel:+7(707)485-23-28"
           class="text-gray-700 font-semibold flex transition items-center hover:text-blue-600"
         >
-          <div class="i-mdi-phone text-lg text-green-500 mr-1" />
+          <div class="i-mdi-phone text-lg text-blue-600 mr-1" />
           <span class="text-sm">Позвонить</span>
         </a>
 
@@ -109,13 +109,13 @@ onMounted(() => {
     <transition name="fade-scale">
       <nav
         v-if="isMobileMenuOpen"
-        class="bg-white shadow-lg md:hidden"
+        class="border-t border-gray-100 bg-white shadow-lg md:hidden"
       >
         <ul class="py-6 flex flex-col items-center space-y-6">
           <li v-for="item in navItems" :key="item.href">
             <a
               :href="item.href"
-              class="text-lg text-gray-700 transition hover:text-red-600"
+              class="text-lg text-gray-700 transition hover:text-blue-600"
               @click="toggleMobileMenu"
             >
               {{ item.name }}

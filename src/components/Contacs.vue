@@ -16,7 +16,7 @@
             <p class="text-2xl font-semibold">
               📞 Телефон:
             </p>
-            <a href="tel:+77074852328" class="text-2xl text-blue-600 font-medium hover:underline">
+            <a href="tel:+77074852328" class="text-2xl text-blue-600 font-medium hover:text-blue-700 hover:underline">
               +7 (707) 485-23-28
             </a>
           </div>
@@ -27,7 +27,7 @@
             <a
               href="https://wa.me/77074852328"
               target="_blank"
-              class="text-2xl text-green-600 font-medium hover:underline"
+              class="text-2xl text-gray-800 font-medium hover:text-blue-700 hover:underline"
             >
               Написать в WhatsApp
             </a>
@@ -43,8 +43,8 @@
         </div>
 
         <!-- Правая колонка: описание компании -->
-        <div class="p-6 border-l-4 border-yellow-400 rounded-xl bg-white shadow-md">
-          <h3 class="text-2xl text-blue-700 font-bold mb-4">
+        <div class="p-6 border border-l-4 border-gray-200 border-l-blue-600 rounded-xl bg-white shadow-sm">
+          <h3 class="text-2xl text-gray-900 font-bold mb-4">
             О компании TAUBETON
           </h3>
           <p class="text-lg text-gray-700 leading-relaxed">
@@ -53,10 +53,10 @@
             точные сроки и открытые условия сотрудничества.
           </p>
           <ul class="text-base text-gray-800 mt-4 pl-5 list-disc space-y-2">
-            <li><span class="text-blue-600 font-medium">Точное соблюдение марки бетона</span></li>
-            <li><span class="text-yellow-600 font-medium">Доставка точно в срок</span></li>
-            <li><span class="text-blue-600 font-medium">Честная цена без скрытых наценок</span></li>
-            <li><span class="text-yellow-600 font-medium">Прямой контакт с производством</span></li>
+            <li><span class="text-gray-800 font-medium">Точное соблюдение марки бетона</span></li>
+            <li><span class="text-gray-800 font-medium">Доставка точно в срок</span></li>
+            <li><span class="text-gray-800 font-medium">Честная цена без скрытых наценок</span></li>
+            <li><span class="text-gray-800 font-medium">Прямой контакт с производством</span></li>
           </ul>
         </div>
       </div>
@@ -69,9 +69,9 @@
           © {{ new Date().getFullYear() }} «TAUBETON». Все права защищены.
         </div>
         <div class="text-center space-x-4 sm:text-right">
-          <a href="#about" class="hover:text-yellow-600">О нас</a>
-          <a href="#assoritment" class="hover:text-yellow-600">Ассортимент</a>
-          <a href="#contacts" class="hover:text-yellow-600">Контакты</a>
+          <a href="#about" class="hover:text-blue-600">О нас</a>
+          <a href="#assoritment" class="hover:text-blue-600">Ассортимент</a>
+          <a href="#contacts" class="hover:text-blue-600">Контакты</a>
         </div>
       </div>
     </footer>

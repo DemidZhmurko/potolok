@@ -121,18 +121,27 @@ useSchemaOrg([
   <!-- Hero -->
   <section
     id="hero"
-    class="bg-[url('/background.png')] flex min-h-screen items-center relative bg-cover bg-center scroll-mt-16"
+    class="bg-[url('/background.png')] flex min-h-[calc(100vh-96px)] items-center relative overflow-hidden bg-cover bg-center scroll-mt-16"
   >
-    <div class="bg-black/60 inset-0 absolute z-0" aria-hidden="true" />
+    <div class="bg-gray-950/55 inset-0 absolute z-0" aria-hidden="true" />
+    <div class="bg-gradient-to-r inset-0 absolute z-0 from-gray-950/72 to-gray-800/15 via-gray-900/45" aria-hidden="true" />
     <div class="mx-auto px-4 relative z-10 container">
-      <div class="md:items-left text-white py-12 flex flex-col min-h-[70vh] items-start justify-center md:text-left md:w1/2">
+      <div class="md:items-left text-white py-12 flex flex-col min-h-[70vh] items-start justify-center md:text-left md:w-[58%]">
         <div class="text-center w-full space-y-6 md:text-left">
-          <h1 class="text-2xl leading-tight font-bold md:text-6xl sm:text-5xl">
+          <div class="text-sm text-blue-200 tracking-wide font-semibold uppercase">
+            Натяжные потолки в Алматы
+          </div>
+          <h1 class="text-3xl leading-tight font-bold md:text-6xl sm:text-5xl">
             Натяжные потолки с гарантией качества от 5 лет
           </h1>
-          <p class="text-base sm:text-lg">
+          <p class="text-base text-gray-100 leading-relaxed sm:text-lg">
             Компания «ДЯДЯ Вова» занимается установкой натяжных потолков в Алматы, гарантируя высокое качество и соблюдение сроков!
           </p>
+          <div class="text-sm text-gray-100 flex flex-wrap gap-3 justify-center md:justify-start">
+            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Бесплатный замер</span>
+            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Монтаж за 1 день</span>
+            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Гарантия 5 лет</span>
+          </div>
           <div class="mt-6">
             <RequestModal />
           </div>
