@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+import PhoneInput from '~/components/Inputs/PhoneInput.vue'
+import UsernameInput from '~/components/Inputs/UsernameInput.vue'
 import { useAppToast } from '~/composables/useAppToast'
 import { useTelegram } from '~/composables/useTelegramApi'
 
@@ -7,6 +9,15 @@ const props = defineProps<{
   totalArea: number
   totalPrice: number
   btnName: string
+  length: number
+  width: number
+  roomArea: number
+  cutoutArea: number
+  projectionArea: number
+  lights: number
+  lightingPrice: number
+  basePricePerM2: number
+  ceilingPrice: number
 }>()
 
 const { sendMessage } = useTelegram()
@@ -14,15 +25,24 @@ const { showErrorToast, showSuccessToast } = useAppToast()
 
 const name = ref('')
 const phone = ref('')
+const comment = ref('')
 const isOpen = ref(false)
 const isSending = ref(false)
 
 const roundedPrice = computed(() => Math.round(props.totalPrice))
-const formattedArea = computed(() => props.totalArea.toLocaleString('ru-RU', {
-  maximumFractionDigits: 2,
-}))
-const formattedPrice = computed(() => roundedPrice.value.toLocaleString('ru-RU'))
+const formattedArea = computed(() => formatNumber(props.totalArea))
+const formattedPrice = computed(() => formatPrice(roundedPrice.value))
 const canSend = computed(() => Boolean(name.value.trim() && phone.value.trim()))
+
+function formatNumber(value: number) {
+  return value.toLocaleString('ru-RU', {
+    maximumFractionDigits: 2,
+  })
+}
+
+function formatPrice(value: number) {
+  return Math.round(value).toLocaleString('ru-RU')
+}
 
 function openModal() {
   isOpen.value = true
@@ -35,6 +55,13 @@ function closeModal() {
 function onEsc(e: KeyboardEvent) {
   if (e.key === 'Escape')
     closeModal()
+}
+
+function getPageUrl() {
+  if (typeof window === 'undefined')
+    return 'URL недоступен'
+
+  return window.location.href
 }
 
 onMounted(() => {
@@ -51,13 +78,29 @@ async function handleSend() {
 
   isSending.value = true
 
+  const requestedAt = new Date().toLocaleString('ru-RU')
+  const userComment = comment.value.trim() || 'Без комментария'
+
   const message = [
-    '<b>Заявка с сайта натяжных потолков</b>',
+    '<b>Заявка с калькулятора натяжных потолков</b>',
+    '',
+    `<b>Длина комнаты:</b> ${formatNumber(props.length)} м`,
+    `<b>Ширина комнаты:</b> ${formatNumber(props.width)} м`,
+    `<b>Площадь комнаты:</b> ${formatNumber(props.roomArea)} м²`,
+    `<b>Площадь вырезов:</b> ${formatNumber(props.cutoutArea)} м²`,
+    `<b>Площадь выступов:</b> ${formatNumber(props.projectionArea)} м²`,
+    `<b>Итоговая площадь:</b> ${formattedArea.value} м²`,
+    `<b>Количество точек освещения:</b> ${props.lights}`,
+    `<b>Стоимость освещения:</b> ${formatPrice(props.lightingPrice)} ₸`,
+    `<b>Базовая цена за м²:</b> ${formatPrice(props.basePricePerM2)} ₸`,
+    `<b>Стоимость потолка:</b> ${formatPrice(props.ceilingPrice)} ₸`,
+    `<b>Итоговая ориентировочная стоимость:</b> ${formattedPrice.value} ₸`,
     '',
     `<b>Имя клиента:</b> ${name.value.trim()}`,
     `<b>Телефон:</b> ${phone.value.trim()}`,
-    `<b>Расчёт:</b> ${formattedArea.value} м²`,
-    `<b>Ориентировочная цена:</b> ${formattedPrice.value} ₸`,
+    `<b>Комментарий:</b> ${userComment}`,
+    `<b>URL страницы:</b> ${getPageUrl()}`,
+    `<b>Дата и время:</b> ${requestedAt}`,
   ].join('\n')
 
   const ok = await sendMessage(message)
@@ -66,6 +109,7 @@ async function handleSend() {
   if (ok) {
     name.value = ''
     phone.value = ''
+    comment.value = ''
     closeModal()
     showSuccessToast()
   }
@@ -77,7 +121,7 @@ async function handleSend() {
 
 <template>
   <button
-    class="group text-white px-5 py-4 rounded-lg bg-blue-600 flex gap-4 w-full shadow-[0_16px_36px_rgba(37,99,235,0.20)] transition-all duration-300 items-center justify-between hover:bg-blue-700 hover:shadow-[0_18px_40px_rgba(37,99,235,0.26)] active:translate-y-0.5"
+    class="group text-white px-5 py-4 rounded-xl bg-blue-600 flex gap-4 w-full shadow-[0_16px_36px_rgba(37,99,235,0.20)] transition-all duration-300 items-center justify-between hover:bg-blue-700 hover:shadow-[0_18px_40px_rgba(37,99,235,0.26)] active:translate-y-0.5"
     @click="openModal"
   >
     <span class="text-left min-w-0">
@@ -110,7 +154,7 @@ async function handleSend() {
         @click.self="closeModal"
       >
         <div
-          class="rounded-lg bg-white max-h-[calc(100vh-2rem)] max-w-[520px] w-full shadow-[0_28px_80px_rgba(0,0,0,0.32)] relative overflow-hidden"
+          class="rounded-xl bg-white max-h-[calc(100vh-2rem)] max-w-[540px] w-full shadow-[0_28px_80px_rgba(0,0,0,0.32)] relative overflow-y-auto"
           role="document"
         >
           <button
@@ -122,19 +166,17 @@ async function handleSend() {
           </button>
 
           <div class="text-white px-5 pb-6 pt-14 bg-gray-900 relative overflow-hidden sm:px-7 sm:pt-8">
-            <div class="relative">
-              <p class="text-sm text-blue-200 tracking-wide font-semibold uppercase">
-                Финальный шаг
-              </p>
+            <p class="text-sm text-blue-200 tracking-wide font-semibold uppercase">
+              4. Оставить заявку
+            </p>
 
-              <h2 id="modal-title" class="text-2xl leading-tight font-bold mt-2 sm:text-3xl">
-                Зафиксируем расчёт и свяжемся с вами
-              </h2>
+            <h2 id="modal-title" class="text-2xl leading-tight font-bold mt-2 sm:text-3xl">
+              Отправим расчёт мастеру
+            </h2>
 
-              <p class="text-white/70 mt-3">
-                Передадим мастеру площадь, ориентировочную сумму и ваши контакты.
-              </p>
-            </div>
+            <p class="text-white/70 mt-3">
+              Передадим размеры, ориентировочную стоимость и ваши контакты.
+            </p>
           </div>
 
           <div class="p-5 space-y-5 sm:p-7">
@@ -165,16 +207,11 @@ async function handleSend() {
             <div class="space-y-4">
               <UsernameInput v-model="name" />
               <PhoneInput v-model="phone" />
-            </div>
-
-            <div class="p-4 border border-slate-200 rounded-lg bg-white flex gap-3">
-              <div class="text-blue-600 rounded-lg bg-blue-50 flex shrink-0 h-10 w-10 items-center justify-center">
-                <span class="i-mdi:shield-check text-xl" />
-              </div>
-
-              <p class="text-sm text-slate-500 leading-relaxed">
-                Заявка уйдёт напрямую в Telegram. Точная цена подтверждается после замера.
-              </p>
+              <textarea
+                v-model="comment"
+                class="text-base text-gray-900 px-4 py-3 border border-gray-300 rounded-lg bg-white min-h-22 w-full resize-y transition focus:outline-none focus:border-blue-500 hover:border-blue-400 focus:ring-2 focus:ring-blue-200"
+                placeholder="Комментарий: адрес, удобное время, пожелания"
+              />
             </div>
 
             <button
