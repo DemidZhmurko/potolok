@@ -1,49 +1,53 @@
 <script setup lang="ts">
 import { useHead, useSeoMeta } from '@unhead/vue'
 import { defineLocalBusiness, defineWebPage, defineWebSite, useSchemaOrg } from '@vueuse/schema-org'
+import {
+  AccordionContent,
+  AccordionHeader,
+  AccordionItem,
+  AccordionRoot,
+  AccordionTrigger,
+} from 'reka-ui'
 
 defineOptions({
   name: 'IndexPage',
 })
 
+const faqItems = [
+  {
+    question: 'Сколько примерно будет стоить мой потолок?',
+    answer: 'Стоимость зависит от площади помещения, освещения, выбранного полотна и дополнительных элементов. Для удобства на сайте доступен предварительный калькулятор расчёта стоимости.',
+  },
+  {
+    question: 'Какие потолки лучше выбрать для квартиры?',
+    answer: 'Самыми популярными остаются матовые потолки — они выглядят аккуратно, подходят под любой интерьер и не создают лишних отражений. Для современных интерьеров также часто выбирают теневые потолки, скрытые гардины и магнитные треки.',
+  },
+  {
+    question: 'Сколько времени занимает установка?',
+    answer: 'В большинстве случаев монтаж одной комнаты занимает несколько часов. Более сложные проекты с подсветкой, треками или многоуровневыми конструкциями требуют дополнительного времени.',
+  },
+  {
+    question: 'Какие гарантии вы предоставляете?',
+    answer: 'Мы используем сертифицированные материалы от проверенных поставщиков и предоставляем гарантию как на полотно, так и на выполненные монтажные работы.',
+  },
+  {
+    question: 'Что входит в стоимость потолка под ключ?',
+    answer: 'В стоимость обычно входят материалы, комплектующие, монтажные работы и базовая установка потолка. Итоговая цена зависит от площади помещения, освещения и выбранных дополнительных решений.',
+  },
+]
+
 // ✅ FAQ Schema (JSON-LD)
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  'mainEntity': [
-    {
-      '@type': 'Question',
-      'name': 'Какая марка бетона подходит для фундамента?',
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': 'Для фундамента частного дома чаще всего используют бетон М300 или М350, так как они обеспечивают прочность и долговечность конструкции.',
-      },
+  'mainEntity': faqItems.map(item => ({
+    '@type': 'Question',
+    'name': item.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': item.answer,
     },
-    {
-      '@type': 'Question',
-      'name': 'Сколько стоит бетон в Алматы?',
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': 'Цена бетона зависит от марки и объема. Уточните стоимость у наших специалистов — мы предложим выгодные условия с доставкой.',
-      },
-    },
-    {
-      '@type': 'Question',
-      'name': 'Доставляете ли вы бетон по Алматы?',
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': 'Да, компания TAUBETON осуществляет доставку бетона по Алматы и области собственным транспортом точно в срок.',
-      },
-    },
-    {
-      '@type': 'Question',
-      'name': 'Соответствует ли бетон ГОСТ?',
-      'acceptedAnswer': {
-        '@type': 'Answer',
-        'text': 'Да, весь бетон производится по ГОСТ и сопровождается паспортом качества.',
-      },
-    },
-  ],
+  })),
 }
 
 // ✅ Head (GA + FAQ)
@@ -308,72 +312,63 @@ useSchemaOrg([
     </div>
   </section>
   <!-- FAQ -->
-  <section class="py-12 bg-gray-50">
-    <div class="mx-auto px-4 max-w-4xl container">
-      <h2 class="text-2xl font-bold mb-8 md:text-3xl">
-        Часто задаваемые вопросы о бетоне
-      </h2>
+  <section class="py-14 bg-gray-50 sm:py-16">
+    <div class="mx-auto px-4 max-w-5xl container">
+      <div class="mx-auto text-center max-w-3xl">
+        <p class="text-xs text-blue-600 tracking-wide font-semibold uppercase">
+          FAQ
+        </p>
+        <h2 class="text-2xl text-gray-950 leading-tight font-bold mt-2 md:text-4xl">
+          Часто задаваемые вопросы
+        </h2>
+        <p class="text-base text-gray-600 leading-relaxed mt-4">
+          Ответили на главные вопросы, которые помогают заранее понять стоимость, сроки и особенности установки натяжных потолков.
+        </p>
+      </div>
 
-      <div class="border rounded-xl bg-white shadow-sm divide-y">
-        <!-- Item -->
-        <details class="group p-5 cursor-pointer">
-          <summary class="text-lg font-semibold list-none flex items-center justify-between">
-            Какая марка бетона подходит для фундамента?
+      <AccordionRoot
+        class="mx-auto mt-9 max-w-4xl space-y-3"
+        collapsible
+        default-value="faq-0"
+        type="single"
+      >
+        <AccordionItem
+          v-for="(item, index) in faqItems"
+          :key="item.question"
+          :value="`faq-${index}`"
+          class="group border border-gray-200 rounded-2xl bg-white shadow-[0_14px_34px_rgba(15,23,42,0.06)] transition-all duration-300 overflow-hidden data-[state=open]:border-blue-100 hover:border-blue-200 data-[state=open]:bg-blue-50/70 data-[state=open]:shadow-[0_22px_52px_rgba(37,99,235,0.14)] hover:shadow-[0_20px_46px_rgba(37,99,235,0.12)]"
+        >
+          <AccordionHeader>
+            <AccordionTrigger class="px-5 py-5 text-left flex gap-4 min-h-18 w-full items-center justify-between sm:px-6 sm:py-5">
+              <span class="text-base text-gray-950 leading-snug font-semibold sm:text-lg">
+                {{ item.question }}
+              </span>
+              <span class="text-blue-600 rounded-full bg-blue-50 flex shrink-0 h-9 w-9 transition items-center justify-center group-data-[state=open]:bg-white group-data-[state=open]:rotate-45">
+                +
+              </span>
+            </AccordionTrigger>
+          </AccordionHeader>
 
-            <span class="transition-transform duration-300 group-open:rotate-180">
-              ▼
-            </span>
-          </summary>
+          <AccordionContent class="data-[state=closed]:animate-out data-[state=open]:animate-in overflow-hidden">
+            <div class="px-5 pb-5 pt-0 sm:px-6 sm:pb-6">
+              <p class="text-sm text-gray-600 leading-relaxed pt-4 border-t border-blue-100 sm:text-base">
+                {{ item.answer }}
+              </p>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </AccordionRoot>
 
-          <p class="text-gray-600 leading-relaxed mt-3">
-            Для фундамента частного дома чаще всего используют бетон М300 или М350. Эти марки обеспечивают высокую прочность и устойчивость к нагрузкам.
-          </p>
-        </details>
-
-        <!-- Item -->
-        <details class="group p-5 cursor-pointer">
-          <summary class="text-lg font-semibold list-none flex items-center justify-between">
-            Сколько стоит бетон в Алматы?
-
-            <span class="transition-transform duration-300 group-open:rotate-180">
-              ▼
-            </span>
-          </summary>
-
-          <p class="text-gray-600 leading-relaxed mt-3">
-            Цена зависит от марки и объема. В среднем стоимость начинается от 15 000 ₸ за м³ с доставкой. Для точного расчета оставьте заявку.
-          </p>
-        </details>
-
-        <!-- Item -->
-        <details class="group p-5 cursor-pointer">
-          <summary class="text-lg font-semibold list-none flex items-center justify-between">
-            Есть ли доставка бетона?
-
-            <span class="transition-transform duration-300 group-open:rotate-180">
-              ▼
-            </span>
-          </summary>
-
-          <p class="text-gray-600 leading-relaxed mt-3">
-            Да, компания TAUBETON осуществляет доставку бетона по Алматы и области собственным транспортом точно в срок.
-          </p>
-        </details>
-
-        <!-- Item -->
-        <details class="group p-5 cursor-pointer">
-          <summary class="text-lg font-semibold list-none flex items-center justify-between">
-            Соответствует ли бетон ГОСТ?
-
-            <span class="transition-transform duration-300 group-open:rotate-180">
-              ▼
-            </span>
-          </summary>
-
-          <p class="text-gray-600 leading-relaxed mt-3">
-            Да, весь бетон производится по ГОСТ и сопровождается паспортом качества.
-          </p>
-        </details>
+      <div class="mx-auto mt-8 p-5 border border-blue-100 rounded-2xl bg-white flex flex-col gap-4 max-w-4xl shadow-[0_18px_42px_rgba(15,23,42,0.06)] items-start justify-between sm:p-6 sm:flex-row sm:items-center">
+        <p class="text-sm text-gray-600 leading-relaxed sm:text-base">
+          Не нашли ответ на свой вопрос? Оставьте заявку — бесплатно проконсультируем и подскажем оптимальное решение.
+        </p>
+        <a
+          href="#contacts"
+          class="text-white font-semibold px-5 py-3 rounded-xl bg-blue-600 inline-flex shrink-0 shadow-blue-900/15 shadow-md transition hover:bg-blue-700 hover:shadow-lg"
+        >
+          Получить консультацию
+        </a>
       </div>
     </div>
   </section>
