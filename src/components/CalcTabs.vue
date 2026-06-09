@@ -11,8 +11,14 @@ import {
 } from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
+type AdditionalElementType = 'cutout' | 'projection'
+
 const length = ref<number | null>(null)
 const width = ref<number | null>(null)
+
+const hasAdditionalElements = ref(false)
+const additionalElementType = ref<AdditionalElementType>('cutout')
+const additionalElementLimitReached = ref(false)
 
 const hasCutout = ref(false)
 const cutoutLength = ref<number | null>(null)
@@ -51,10 +57,10 @@ function clamp(value: number | null, min: number, max: number) {
 
 watch(length, value => (length.value = clamp(value, 1, 15)))
 watch(width, value => (width.value = clamp(value, 1, 15)))
-watch(cutoutLength, value => (cutoutLength.value = clamp(value, 0, 10)))
-watch(cutoutWidth, value => (cutoutWidth.value = clamp(value, 0, 10)))
-watch(projectionLength, value => (projectionLength.value = clamp(value, 0, 10)))
-watch(projectionWidth, value => (projectionWidth.value = clamp(value, 0, 10)))
+watch(cutoutLength, value => (cutoutLength.value = clamp(value, 0, 5)))
+watch(cutoutWidth, value => (cutoutWidth.value = clamp(value, 0, 5)))
+watch(projectionLength, value => (projectionLength.value = clamp(value, 0, 5)))
+watch(projectionWidth, value => (projectionWidth.value = clamp(value, 0, 5)))
 watch(lights, value => (lights.value = clamp(value, 0, 60) || 0))
 
 const roomArea = computed(() => {
@@ -115,6 +121,89 @@ const cutoutW = computed(() => (cutoutWidth.value || 0) * scale.value)
 const cutoutH = computed(() => (cutoutLength.value || 0) * scale.value)
 const projectionW = computed(() => (projectionWidth.value || 0) * scale.value)
 const projectionH = computed(() => (projectionLength.value || 0) * scale.value)
+
+const additionalElementLength = computed({
+  get() {
+    return additionalElementType.value === 'cutout' ? cutoutLength.value : projectionLength.value
+  },
+  set(value: number | null) {
+    if (additionalElementType.value === 'cutout')
+      cutoutLength.value = value
+    else
+      projectionLength.value = value
+  },
+})
+
+const additionalElementWidth = computed({
+  get() {
+    return additionalElementType.value === 'cutout' ? cutoutWidth.value : projectionWidth.value
+  },
+  set(value: number | null) {
+    if (additionalElementType.value === 'cutout')
+      cutoutWidth.value = value
+    else
+      projectionWidth.value = value
+  },
+})
+
+const additionalElementArea = computed(() => {
+  if (!hasAdditionalElements.value)
+    return 0
+
+  return additionalElementType.value === 'cutout' ? cutoutArea.value : projectionArea.value
+})
+
+const additionalElementTypeName = computed(() => {
+  if (!hasAdditionalElements.value)
+    return 'нет'
+
+  return additionalElementType.value === 'cutout' ? 'вырез' : 'выступ'
+})
+
+function applyAdditionalElementType() {
+  hasCutout.value = hasAdditionalElements.value && additionalElementType.value === 'cutout'
+  hasProjection.value = hasAdditionalElements.value && additionalElementType.value === 'projection'
+}
+
+function setAdditionalElements(value: boolean) {
+  hasAdditionalElements.value = value
+  additionalElementLimitReached.value = false
+  applyAdditionalElementType()
+}
+
+function selectAdditionalElementType(type: AdditionalElementType) {
+  additionalElementType.value = type
+  additionalElementLimitReached.value = false
+  applyAdditionalElementType()
+}
+
+function parseAdditionalElementSize(value: string) {
+  const normalizedValue = value.trim().replace(',', '.')
+
+  if (normalizedValue === '') {
+    additionalElementLimitReached.value = false
+    return null
+  }
+
+  const parsedValue = Number(normalizedValue)
+
+  if (Number.isNaN(parsedValue)) {
+    additionalElementLimitReached.value = false
+    return null
+  }
+
+  additionalElementLimitReached.value = parsedValue > 5
+
+  return clamp(parsedValue, 0, 5)
+}
+
+function updateAdditionalElementLength(event: Event) {
+  additionalElementLength.value = parseAdditionalElementSize((event.target as HTMLInputElement).value)
+}
+
+function updateAdditionalElementWidth(event: Event) {
+  additionalElementWidth.value = parseAdditionalElementSize((event.target as HTMLInputElement).value)
+}
 </script>
 
 <template>
@@ -239,117 +328,101 @@ const projectionH = computed(() => (projectionLength.value || 0) * scale.value)
                 </div>
 
                 <div class="pt-4 border-t border-gray-100">
-                  <div class="mb-3">
-                    <h3 class="text-base text-gray-950 font-semibold">
-                      2. Дополнительные параметры
-                    </h3>
-                    <p class="text-xs text-gray-500 mt-0.5">
-                      Вырезы, выступы и точки освещения.
-                    </p>
-                  </div>
-
-                  <div class="gap-3 grid sm:grid-cols-2 xl:grid-cols-3">
-                    <div
-                      class="p-3 border rounded-xl bg-gray-50 transition"
-                      :class="hasCutout ? 'border-blue-300 bg-blue-50/70' : 'border-gray-200'"
-                    >
-                      <button
-                        type="button"
-                        class="text-left flex gap-3 w-full items-center justify-between"
-                        :aria-pressed="hasCutout"
-                        @click="hasCutout = !hasCutout"
-                      >
-                        <span>
-                          <span class="text-sm text-gray-950 font-semibold block">Есть вырез</span>
-                          <span class="text-xs text-gray-500">Вычитается из площади</span>
-                        </span>
-                        <span
-                          class="text-xs font-semibold px-2.5 py-1 rounded-full"
-                          :class="hasCutout ? 'text-blue-700 bg-white' : 'text-gray-500 bg-white'"
-                        >
-                          {{ hasCutout ? 'Добавлено' : 'Нет' }}
-                        </span>
-                      </button>
-
-                      <div v-if="hasCutout" class="mt-3 gap-2 grid grid-cols-2">
+                  <div class="gap-3 grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(230px,0.8fr)]">
+                    <div class="p-3 border border-gray-200 rounded-xl bg-white shadow-sm">
+                      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div>
-                          <Label class="text-xs text-slate-600 mb-1 block">Длина</Label>
-                          <NumberFieldRoot v-model="cutoutLength" :min="0" :max="10" :step="0.1" class="p-1 border border-slate-200 rounded-lg bg-white flex gap-1 items-center">
-                            <NumberFieldDecrement class="text-slate-700 rounded-md bg-slate-50 h-9 w-8">
-                              −
-                            </NumberFieldDecrement>
-                            <NumberFieldInput placeholder="0" class="text-sm text-slate-900 font-semibold py-2 text-center outline-none bg-white flex-1 min-w-0" />
-                            <NumberFieldIncrement class="text-slate-700 rounded-md bg-slate-50 h-9 w-8">
-                              +
-                            </NumberFieldIncrement>
-                          </NumberFieldRoot>
+                          <h3 class="text-base text-gray-950 font-semibold">
+                            2. Дополнительные элементы
+                          </h3>
                         </div>
-                        <div>
-                          <Label class="text-xs text-slate-600 mb-1 block">Ширина</Label>
-                          <NumberFieldRoot v-model="cutoutWidth" :min="0" :max="10" :step="0.1" class="p-1 border border-slate-200 rounded-lg bg-white flex gap-1 items-center">
-                            <NumberFieldDecrement class="text-slate-700 rounded-md bg-slate-50 h-9 w-8">
-                              −
-                            </NumberFieldDecrement>
-                            <NumberFieldInput placeholder="0" class="text-sm text-slate-900 font-semibold py-2 text-center outline-none bg-white flex-1 min-w-0" />
-                            <NumberFieldIncrement class="text-slate-700 rounded-md bg-slate-50 h-9 w-8">
-                              +
-                            </NumberFieldIncrement>
-                          </NumberFieldRoot>
+
+                        <div class="p-1 rounded-lg bg-gray-100 gap-1.5 grid grid-cols-2 sm:w-[180px]">
+                          <button
+                            type="button"
+                            class="text-sm font-semibold px-3 py-2 border rounded-md transition"
+                            :class="!hasAdditionalElements ? 'text-white border-blue-600 bg-blue-600 shadow-blue-900/15 shadow-sm' : 'text-slate-600 border-transparent bg-transparent hover:bg-white'"
+                            :aria-pressed="!hasAdditionalElements"
+                            @click="setAdditionalElements(false)"
+                          >
+                            Нет
+                          </button>
+                          <button
+                            type="button"
+                            class="text-sm font-semibold px-3 py-2 border rounded-md transition"
+                            :class="hasAdditionalElements ? 'text-white border-blue-600 bg-blue-600 shadow-blue-900/15 shadow-sm' : 'text-slate-600 border-transparent bg-transparent hover:bg-white'"
+                            :aria-pressed="hasAdditionalElements"
+                            @click="setAdditionalElements(true)"
+                          >
+                            Да
+                          </button>
                         </div>
                       </div>
-                    </div>
 
-                    <div
-                      class="p-3 border rounded-xl bg-gray-50 transition"
-                      :class="hasProjection ? 'border-blue-300 bg-blue-50/70' : 'border-gray-200'"
-                    >
-                      <button
-                        type="button"
-                        class="text-left flex gap-3 w-full items-center justify-between"
-                        :aria-pressed="hasProjection"
-                        @click="hasProjection = !hasProjection"
+                      <Transition
+                        enter-active-class="transition duration-200 ease-out overflow-hidden"
+                        enter-from-class="opacity-0 -translate-y-1 max-h-0"
+                        enter-to-class="opacity-100 translate-y-0 max-h-48"
+                        leave-active-class="transition duration-150 ease-in overflow-hidden"
+                        leave-from-class="opacity-100 translate-y-0 max-h-48"
+                        leave-to-class="opacity-0 -translate-y-1 max-h-0"
                       >
-                        <span>
-                          <span class="text-sm text-gray-950 font-semibold block">Есть выступ</span>
-                          <span class="text-xs text-gray-500">Добавляется к площади</span>
-                        </span>
-                        <span
-                          class="text-xs font-semibold px-2.5 py-1 rounded-full"
-                          :class="hasProjection ? 'text-blue-700 bg-white' : 'text-gray-500 bg-white'"
-                        >
-                          {{ hasProjection ? 'Добавлено' : 'Нет' }}
-                        </span>
-                      </button>
+                        <div v-if="hasAdditionalElements" class="mt-3 pt-3 border-t border-gray-100">
+                          <div class="gap-2 grid sm:grid-cols-[minmax(160px,0.58fr)_minmax(0,1fr)]">
+                            <div>
+                              <div class="p-1 rounded-lg bg-gray-100 gap-1.5 grid grid-cols-2">
+                                <button
+                                  type="button"
+                                  class="text-sm font-semibold px-3 py-2 border rounded-md transition"
+                                  :class="additionalElementType === 'cutout' ? 'text-blue-700 border-blue-200 bg-white shadow-sm' : 'text-slate-600 border-transparent bg-transparent hover:bg-white'"
+                                  :aria-pressed="additionalElementType === 'cutout'"
+                                  @click="selectAdditionalElementType('cutout')"
+                                >
+                                  Вырез
+                                </button>
+                                <button
+                                  type="button"
+                                  class="text-sm font-semibold px-3 py-2 border rounded-md transition"
+                                  :class="additionalElementType === 'projection' ? 'text-blue-700 border-blue-200 bg-white shadow-sm' : 'text-slate-600 border-transparent bg-transparent hover:bg-white'"
+                                  :aria-pressed="additionalElementType === 'projection'"
+                                  @click="selectAdditionalElementType('projection')"
+                                >
+                                  Выступ
+                                </button>
+                              </div>
+                            </div>
 
-                      <div v-if="hasProjection" class="mt-3 gap-2 grid grid-cols-2">
-                        <div>
-                          <Label class="text-xs text-slate-600 mb-1 block">Длина</Label>
-                          <NumberFieldRoot v-model="projectionLength" :min="0" :max="10" :step="0.1" class="p-1 border border-slate-200 rounded-lg bg-white flex gap-1 items-center">
-                            <NumberFieldDecrement class="text-slate-700 rounded-md bg-slate-50 h-9 w-8">
-                              −
-                            </NumberFieldDecrement>
-                            <NumberFieldInput placeholder="0" class="text-sm text-slate-900 font-semibold py-2 text-center outline-none bg-white flex-1 min-w-0" />
-                            <NumberFieldIncrement class="text-slate-700 rounded-md bg-slate-50 h-9 w-8">
-                              +
-                            </NumberFieldIncrement>
-                          </NumberFieldRoot>
+                            <div>
+                              <div class="gap-2 grid grid-cols-2">
+                                <input
+                                  :value="additionalElementLength ?? ''"
+                                  type="text"
+                                  inputmode="decimal"
+                                  placeholder="Длина, м"
+                                  aria-label="Длина дополнительного элемента, м"
+                                  class="text-sm text-slate-900 font-semibold px-3 py-2 outline-none border border-slate-200 rounded-lg bg-white w-full transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+                                  @input="updateAdditionalElementLength"
+                                >
+                                <input
+                                  :value="additionalElementWidth ?? ''"
+                                  type="text"
+                                  inputmode="decimal"
+                                  placeholder="Ширина, м"
+                                  aria-label="Ширина дополнительного элемента, м"
+                                  class="text-sm text-slate-900 font-semibold px-3 py-2 outline-none border border-slate-200 rounded-lg bg-white w-full transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+                                  @input="updateAdditionalElementWidth"
+                                >
+                              </div>
+                              <p class="text-[11px] leading-snug mt-1.5" :class="additionalElementLimitReached ? 'text-amber-700' : 'text-gray-500'">
+                                {{ additionalElementLimitReached ? 'Максимум 5 м' : 'Вырез — ниша внутри комнаты, выступ — часть помещения за основным контуром.' }}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <Label class="text-xs text-slate-600 mb-1 block">Ширина</Label>
-                          <NumberFieldRoot v-model="projectionWidth" :min="0" :max="10" :step="0.1" class="p-1 border border-slate-200 rounded-lg bg-white flex gap-1 items-center">
-                            <NumberFieldDecrement class="text-slate-700 rounded-md bg-slate-50 h-9 w-8">
-                              −
-                            </NumberFieldDecrement>
-                            <NumberFieldInput placeholder="0" class="text-sm text-slate-900 font-semibold py-2 text-center outline-none bg-white flex-1 min-w-0" />
-                            <NumberFieldIncrement class="text-slate-700 rounded-md bg-slate-50 h-9 w-8">
-                              +
-                            </NumberFieldIncrement>
-                          </NumberFieldRoot>
-                        </div>
-                      </div>
+                      </Transition>
                     </div>
 
-                    <div class="p-3 border border-gray-200 rounded-xl bg-gray-50 sm:col-span-2 xl:col-span-1">
+                    <div class="p-3 border border-gray-200 rounded-xl bg-gray-50">
                       <div class="flex gap-3 items-start justify-between">
                         <div>
                           <Label class="text-sm text-gray-950 font-semibold block">Точки освещения</Label>
@@ -357,9 +430,7 @@ const projectionH = computed(() => (projectionLength.value || 0) * scale.value)
                             {{ lightPointPrice.toLocaleString('ru-RU') }} ₸ за точку
                           </p>
                         </div>
-                        <span class="text-xs text-gray-500 px-2 py-1 rounded-full bg-white">
-                          {{ lights }} шт.
-                        </span>
+                        <span class="text-xs text-gray-500 px-2 py-1 rounded-full bg-white">{{ lights }} шт.</span>
                       </div>
 
                       <NumberFieldRoot v-model="lights" :min="0" :max="60" :step="1" class="mt-3 p-1 border border-slate-200 rounded-lg bg-white flex gap-1 items-center">
@@ -440,9 +511,14 @@ const projectionH = computed(() => (projectionLength.value || 0) * scale.value)
                 </div>
 
                 <ModalCalc
+                  :additional-element-area="hasAdditionalElements ? additionalElementArea : 0"
+                  :additional-element-length="hasAdditionalElements ? additionalElementLength || 0 : 0"
+                  :additional-element-type="additionalElementTypeName"
+                  :additional-element-width="hasAdditionalElements ? additionalElementWidth || 0 : 0"
                   :base-price-per-m2="basePricePerM2"
                   :ceiling-price="ceilingPrice"
                   :cutout-area="cutoutArea"
+                  :has-additional-elements="hasAdditionalElements"
                   :length="length || 0"
                   :lighting-price="lightingPrice"
                   :lights="lights"

@@ -12,6 +12,11 @@ const props = defineProps<{
   length: number
   width: number
   roomArea: number
+  hasAdditionalElements: boolean
+  additionalElementType: string
+  additionalElementLength: number
+  additionalElementWidth: number
+  additionalElementArea: number
   cutoutArea: number
   projectionArea: number
   lights: number
@@ -87,6 +92,11 @@ async function handleSend() {
     `<b>Длина комнаты:</b> ${formatNumber(props.length)} м`,
     `<b>Ширина комнаты:</b> ${formatNumber(props.width)} м`,
     `<b>Площадь комнаты:</b> ${formatNumber(props.roomArea)} м²`,
+    `<b>Дополнительные элементы:</b> ${props.hasAdditionalElements ? 'да' : 'нет'}`,
+    `<b>Тип дополнительного элемента:</b> ${props.additionalElementType}`,
+    `<b>Длина дополнительного элемента:</b> ${formatNumber(props.additionalElementLength)} м`,
+    `<b>Ширина дополнительного элемента:</b> ${formatNumber(props.additionalElementWidth)} м`,
+    `<b>Площадь дополнительного элемента:</b> ${formatNumber(props.additionalElementArea)} м²`,
     `<b>Площадь вырезов:</b> ${formatNumber(props.cutoutArea)} м²`,
     `<b>Площадь выступов:</b> ${formatNumber(props.projectionArea)} м²`,
     `<b>Итоговая площадь:</b> ${formattedArea.value} м²`,
