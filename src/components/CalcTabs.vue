@@ -413,7 +413,7 @@ function updateAdditionalElementWidth(event: Event) {
                                   @input="updateAdditionalElementWidth"
                                 >
                               </div>
-                              <p class="text-[11px] leading-snug mt-1.5" :class="additionalElementLimitReached ? 'text-amber-700' : 'text-gray-500'">
+                              <p class="text-[11px] leading-snug mt-1.5" :class="additionalElementLimitReached ? 'text-blue-700' : 'text-gray-500'">
                                 {{ additionalElementLimitReached ? 'Максимум 5 м' : 'Вырез — ниша внутри комнаты, выступ — часть помещения за основным контуром.' }}
                               </p>
                             </div>
@@ -460,7 +460,7 @@ function updateAdditionalElementWidth(event: Event) {
                   </p>
                 </div>
 
-                <div v-if="isLargeRoom" class="text-sm text-amber-900 p-3 border border-amber-200 rounded-xl bg-amber-50">
+                <div v-if="isLargeRoom" class="text-sm text-blue-900 p-3 border border-blue-100 rounded-xl bg-blue-50">
                   Для помещений больше 15 м² рекомендуем оставить заявку для точного расчёта стоимости.
                 </div>
 

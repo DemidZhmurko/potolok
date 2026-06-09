@@ -25,7 +25,7 @@ function handleOpenChange(id: number, open: boolean) {
       :key="toast.id"
       :open="toast.open"
       class="data-[state=closed]:animate-out data-[state=open]:animate-in p-4 border rounded-xl bg-white max-w-[calc(100vw-2rem)] w-[360px] shadow-2xl shadow-gray-950/15 data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--reka-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--reka-toast-swipe-move-x)] data-[swipe=cancel]:transition-transform"
-      :class="toast.type === 'success' ? 'border-green-200' : 'border-red-200'"
+      :class="toast.type === 'success' ? 'border-blue-100' : 'border-gray-200'"
       @update:open="handleOpenChange(toast.id, $event)"
       @animationend="!toast.open && removeToast(toast.id)"
     >
