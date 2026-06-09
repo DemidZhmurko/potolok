@@ -125,29 +125,43 @@ useSchemaOrg([
   <!-- Hero -->
   <section
     id="hero"
-    class="bg-[url('/background.png')] flex min-h-[calc(100vh-96px)] items-center relative overflow-hidden bg-cover bg-center scroll-mt-16"
+    class="bg-[url(/background.png)] flex min-h-[calc(82vh-64px)] items-center relative overflow-hidden bg-cover bg-center scroll-mt-16 lg:min-h-[86vh] sm:min-h-[78vh]"
   >
-    <div class="bg-gray-950/55 inset-0 absolute z-0" aria-hidden="true" />
-    <div class="bg-gradient-to-r inset-0 absolute z-0 from-gray-950/72 to-gray-800/15 via-gray-900/45" aria-hidden="true" />
-    <div class="mx-auto px-4 relative z-10 container">
-      <div class="md:items-left text-white py-12 flex flex-col min-h-[70vh] items-start justify-center md:text-left md:w-[58%]">
-        <div class="text-center w-full space-y-6 md:text-left">
+    <div class="bg-gray-950/58 inset-0 absolute z-0" aria-hidden="true" />
+    <div class="bg-gradient-to-r inset-0 absolute z-0 from-gray-950/86 to-gray-950/18 via-gray-950/58" aria-hidden="true" />
+    <div class="bg-gradient-to-t h-1/2 inset-x-0 bottom-0 absolute z-0 from-gray-950/55 to-transparent" aria-hidden="true" />
+
+    <div class="mx-auto px-4 w-full relative z-10 container">
+      <div class="text-white py-16 flex min-h-[calc(82vh-64px)] items-center lg:min-h-[86vh] sm:min-h-[78vh]">
+        <div class="mx-auto text-center max-w-3xl space-y-6 md:mx-0 md:text-left lg:max-w-3xl md:max-w-2xl">
           <div class="text-sm text-blue-200 tracking-wide font-semibold uppercase">
-            Натяжные потолки в Алматы
+            Натяжные потолки в Алматы под ключ
           </div>
-          <h1 class="text-3xl leading-tight font-bold md:text-6xl sm:text-5xl">
-            Натяжные потолки с гарантией качества от 5 лет
+          <h1 class="text-4xl leading-tight font-bold lg:text-6xl sm:text-5xl">
+            Натяжные потолки под ключ в Алматы
           </h1>
-          <p class="text-base text-gray-100 leading-relaxed sm:text-lg">
-            Компания «ДЯДЯ Вова» занимается установкой натяжных потолков в Алматы, гарантируя высокое качество и соблюдение сроков!
+          <p class="text-base text-gray-100 leading-relaxed mx-auto max-w-2xl sm:text-lg md:mx-0">
+            Устанавливаем современные натяжные потолки с теневым профилем, магнитными треками, скрытыми гардинами и подсветкой — с материалами, монтажом и гарантией.
           </p>
-          <div class="text-sm text-gray-100 flex flex-wrap gap-3 justify-center md:justify-start">
+          <div class="text-sm text-gray-100 flex flex-wrap gap-2.5 justify-center md:justify-start">
             <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Бесплатный замер</span>
-            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Монтаж за 1 день</span>
-            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Гарантия 5 лет</span>
+            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Монтаж в ближайшее время</span>
+            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Работаем без выходных</span>
+            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Сертифицированные полотна</span>
           </div>
-          <div class="mt-6">
-            <RequestModal />
+          <div class="pt-2 flex flex-col gap-3 justify-center sm:flex-row md:justify-start">
+            <a
+              href="#contacts"
+              class="text-white font-semibold px-6 py-3.5 rounded-xl bg-blue-600 inline-flex min-h-12 shadow-blue-900/15 shadow-md transition items-center justify-center hover:bg-blue-700 hover:shadow-lg"
+            >
+              Получить консультацию
+            </a>
+            <a
+              href="#calc"
+              class="text-white font-semibold px-6 py-3.5 border border-white/22 rounded-xl bg-white/10 inline-flex min-h-12 shadow-sm transition items-center justify-center backdrop-blur-sm hover:border-white/35 hover:bg-white/18"
+            >
+              Рассчитать стоимость
+            </a>
           </div>
         </div>
       </div>

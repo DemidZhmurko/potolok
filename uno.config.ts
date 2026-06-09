@@ -2,7 +2,6 @@ import {
   defineConfig,
   presetAttributify,
   presetIcons,
-  presetWebFonts,
   presetWind4,
 } from 'unocss'
 
@@ -15,15 +14,11 @@ export default defineConfig({
     presetWind4(),
     presetAttributify(),
     presetIcons({
+      collections: {
+        mdi: () => import('@iconify-json/mdi/icons.json').then(i => i.default),
+      },
       scale: 1.2,
       warn: true,
-    }),
-    presetWebFonts({
-      fonts: {
-        sans: 'DM Sans',
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
-      },
     }),
   ],
 })
