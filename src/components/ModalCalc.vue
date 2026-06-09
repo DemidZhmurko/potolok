@@ -131,7 +131,7 @@ async function handleSend() {
 
 <template>
   <button
-    class="group text-white px-5 py-4 rounded-xl bg-blue-600 flex gap-4 w-full shadow-[0_16px_36px_rgba(37,99,235,0.20)] transition-all duration-300 items-center justify-between hover:bg-blue-700 hover:shadow-[0_18px_40px_rgba(37,99,235,0.26)] active:translate-y-0.5"
+    class="group text-white px-5 py-4 rounded-xl bg-blue-600 flex gap-4 w-full shadow-[0_16px_36px_rgba(184,154,114,0.22)] transition-all duration-300 items-center justify-between hover:bg-blue-700 hover:shadow-[0_18px_40px_rgba(184,154,114,0.28)] active:translate-y-0.5"
     @click="openModal"
   >
     <span class="text-left min-w-0">

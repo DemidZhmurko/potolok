@@ -223,7 +223,7 @@ async function sendCeilingRequest() {
         <article
           v-for="(item, index) in ceilings"
           :key="item.title"
-          class="group border border-gray-200 rounded-xl bg-white flex flex-col h-full min-h-[350px] cursor-pointer shadow-sm transition overflow-hidden sm:min-h-[370px] hover:shadow-gray-900/12 hover:shadow-xl"
+          class="group border border-gray-200 rounded-xl bg-white flex flex-col h-full min-h-[350px] cursor-pointer shadow-[0_14px_34px_rgba(47,42,36,0.06)] transition overflow-hidden hover:border-blue-200 sm:min-h-[370px] hover:shadow-[0_22px_46px_rgba(184,154,114,0.14)]"
           role="button"
           tabindex="0"
           @click="openCeiling(index)"

@@ -1,7 +1,7 @@
 html,
 body,
 #app {
-  background: #f5f6f8;
+  background: var(--color-page);
   color: var(--color-ink);
   height: 100%;
   margin: 0;
@@ -10,13 +10,20 @@ body,
 }
 
 :root {
-  --color-primary: #2563eb;
-  --color-primary-hover: #1d4ed8;
-  --color-primary-active: #1e40af;
-  --color-primary-soft: #eff6ff;
-  --color-primary-soft-strong: #dbeafe;
-  --color-primary-muted: #93c5fd;
-  --color-ink: #1f2937;
+  --color-page: #faf8f5;
+  --color-card: #ffffff;
+  --color-surface: #f3eee8;
+  --color-ink: #2f2a24;
+  --color-muted: #6a625a;
+  --color-primary: #b89a72;
+  --color-primary-hover: #a7865e;
+  --color-primary-active: #8f704c;
+  --color-primary-soft: #f7f1e9;
+  --color-primary-soft-strong: #eee1d0;
+  --color-primary-muted: #dcc7ab;
+  --color-border: #eee8e1;
+  --color-shadow: rgb(47 42 36 / 0.08);
+  --color-primary-shadow: rgb(184 154 114 / 0.22);
 }
 
 body {
@@ -25,7 +32,7 @@ body {
 
 ::selection {
   background: var(--color-primary-soft-strong);
-  color: #111827;
+  color: var(--color-ink);
 }
 
 html.dark {
@@ -33,10 +40,56 @@ html.dark {
 }
 
 /* Unified accent palette */
+.bg-gray-50,
+.bg-slate-50 {
+  background-color: var(--color-page) !important;
+}
+
+.bg-gray-50\/70,
+.bg-gray-50\/80,
+.bg-gray-100,
+.bg-slate-100 {
+  background-color: var(--color-surface) !important;
+}
+
+.bg-white {
+  background-color: var(--color-card) !important;
+}
+
+.text-gray-950,
+.text-gray-900,
+.text-slate-950,
+.text-slate-900,
+.text-gray-800,
+.text-slate-800 {
+  color: var(--color-ink) !important;
+}
+
+.text-gray-700,
+.text-slate-700,
+.text-gray-600,
+.text-slate-600,
+.text-gray-500,
+.text-slate-500,
+.hover\:text-gray-900:hover,
+.hover\:text-gray-950:hover {
+  color: var(--color-muted) !important;
+}
+
+.border-gray-100,
+.border-gray-200,
+.border-gray-300,
+.border-slate-200,
+.border-slate-300,
+.hover\:border-gray-200:hover,
+.hover\:border-slate-200:hover {
+  border-color: var(--color-border) !important;
+}
+
 .text-blue-50,
 .text-blue-100,
 .text-blue-200 {
-  color: #dbeafe !important;
+  color: #f3eee8 !important;
 }
 
 .text-blue-600,
@@ -68,7 +121,7 @@ html.dark {
 }
 
 .bg-blue-200 {
-  background-color: #bfdbfe !important;
+  background-color: var(--color-primary-muted) !important;
 }
 
 .bg-blue-600,
@@ -113,14 +166,19 @@ html.dark {
 
 .shadow-blue-900\/15,
 .shadow-blue-900\/20 {
-  --un-shadow-color: rgb(37 99 235 / 0.18) !important;
+  --un-shadow-color: var(--color-primary-shadow) !important;
 }
 
 .from-blue-600 {
   --un-gradient-from: var(--color-primary) !important;
-  --un-gradient-stops: var(--un-gradient-from), var(--un-gradient-to, rgb(37 99 235 / 0)) !important;
+  --un-gradient-stops: var(--un-gradient-from), var(--un-gradient-to, rgb(184 154 114 / 0)) !important;
 }
 
 .via-blue-200 {
-  --un-gradient-stops: var(--un-gradient-from), var(--color-primary-muted), var(--un-gradient-to, rgb(37 99 235 / 0)) !important;
+  --un-gradient-stops: var(--un-gradient-from), var(--color-primary-muted), var(--un-gradient-to, rgb(184 154 114 / 0)) !important;
+}
+
+.focus\:ring-blue-100:focus,
+.focus\:ring-blue-200:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 22%, transparent) !important;
 }

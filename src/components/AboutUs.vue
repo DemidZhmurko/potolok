@@ -7,7 +7,7 @@
     <div class="mx-auto px-4 container">
       <!-- Заголовок -->
       <h2 class="text-3xl font-bold mb-12 text-center">
-        О компании и наши преимущества
+        О KONTUR и наших решениях
       </h2>
 
       <!-- Преимущества -->
@@ -17,10 +17,10 @@
             🚛
           </div>
           <h3 class="text-lg font-semibold mb-1">
-            Собственный автопарк
+            Бесплатный замер
           </h3>
           <p class="text-sm text-gray-600">
-            Гарантируем своевременную доставку без посредников.
+            Выезжаем на объект, консультируем и помогаем выбрать решение.
           </p>
         </div>
         <div class="p-6 text-center border border-gray-200 rounded-xl bg-gray-50 shadow-sm">
@@ -28,10 +28,10 @@
             ⏱️
           </div>
           <h3 class="text-lg font-semibold mb-1">
-            Доставка в день заказа
+            Быстрый монтаж
           </h3>
           <p class="text-sm text-gray-600">
-            Оперативно поставим бетон прямо на ваш объект.
+            Согласовываем удобную дату и выполняем монтаж аккуратно.
           </p>
         </div>
         <div class="p-6 text-center border border-gray-200 rounded-xl bg-white shadow-sm">
@@ -50,10 +50,10 @@
             🕐
           </div>
           <h3 class="text-lg font-semibold mb-1">
-            Круглосуточная работа
+            Без выходных
           </h3>
           <p class="text-sm text-gray-600">
-            Принимаем и выполняем заказы 24/7, без выходных.
+            Принимаем заявки ежедневно и остаёмся на связи.
           </p>
         </div>
       </div>
@@ -65,10 +65,10 @@
             🏗️
           </div>
           <h3 class="text-lg font-semibold mb-1">
-            Опыт в строительстве
+            Опыт в потолках
           </h3>
           <p class="text-sm text-gray-600">
-            Более 10 лет и десятки реализованных проектов.
+            Знаем нюансы монтажа, освещения и современных профилей.
           </p>
         </div>
         <div class="p-6 text-center border border-t-4 border-gray-200 border-t-blue-600 rounded-xl bg-white shadow-sm">
@@ -79,7 +79,7 @@
             Надёжные партнёры
           </h3>
           <p class="text-sm text-gray-600">
-            Работаем напрямую с бетонными и щебёночными заводами.
+            Работаем с проверенными поставщиками полотен и комплектующих.
           </p>
         </div>
         <div class="p-6 text-center border border-gray-200 rounded-xl bg-white shadow-sm">
@@ -90,7 +90,7 @@
             Сертификаты качества
           </h3>
           <p class="text-sm text-gray-600">
-            Продукция сертифицирована по ГОСТ и ТР РК.
+            Используем сертифицированные полотна и комплектующие.
           </p>
         </div>
       </div>

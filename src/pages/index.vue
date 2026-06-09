@@ -79,38 +79,38 @@ useHead({
   ],
 })
 
-// ✅ SEO Meta (под TAUBETON)
+// ✅ SEO Meta
 useSeoMeta({
-  title: 'Купить бетон в Алматы с доставкой — TAUBETON',
-  description: 'Купить бетон в Алматы с доставкой от производителя TAUBETON. Все марки бетона по ГОСТ, выгодные цены и быстрая доставка.',
-  ogTitle: 'Бетон с доставкой в Алматы — TAUBETON',
-  ogDescription: 'Производство и доставка бетона по Алматы. Марки М200–М350, гарантия качества.',
-  ogUrl: 'https://taubeton.kz',
-  ogSiteName: 'TAUBETON',
+  title: 'Натяжные потолки под ключ в Алматы — KONTUR',
+  description: 'KONTUR — современные потолочные решения для интерьера в Алматы: натяжные потолки, теневой профиль, скрытые гардины, магнитные треки и подсветка под ключ.',
+  ogTitle: 'Натяжные потолки под ключ в Алматы — KONTUR',
+  ogDescription: 'Современные потолочные решения для квартир, домов и коммерческих помещений: монтаж, материалы, освещение и гарантия.',
+  ogUrl: 'https://kontur.kz',
+  ogSiteName: 'KONTUR',
   twitterCard: 'summary',
-  twitterTitle: 'Купить бетон в Алматы — TAUBETON',
-  twitterDescription: 'Бетон с доставкой по Алматы по выгодной цене.',
+  twitterTitle: 'Натяжные потолки в Алматы — KONTUR',
+  twitterDescription: 'Тёплые интерьерные потолочные решения под ключ: теневые профили, скрытые гардины, магнитные треки и подсветка.',
 })
 
 // ✅ Schema.org
 useSchemaOrg([
   defineWebPage({
-    name: 'Купить бетон в Алматы | TAUBETON',
-    description: 'Купить бетон в Алматы с доставкой от производителя TAUBETON. Продажа бетона всех марок.',
+    name: 'Натяжные потолки под ключ в Алматы | KONTUR',
+    description: 'Современные натяжные потолки и потолочные решения для интерьера: теневые профили, скрытые гардины, магнитные треки и подсветка.',
   }),
 
   defineWebSite({
-    name: 'TAUBETON',
-    url: 'https://taubeton.kz',
-    description: 'Производство и доставка бетона по Алматы и Казахстану.',
+    name: 'KONTUR',
+    url: 'https://kontur.kz',
+    description: 'KONTUR — современные потолочные решения для интерьера в Алматы.',
   }),
 
   defineLocalBusiness({
-    name: 'TAUBETON',
-    url: 'https://taubeton.kz',
-    image: 'https://taubeton.kz/logo.png',
+    name: 'KONTUR',
+    url: 'https://kontur.kz',
+    image: 'https://kontur.kz/logo.png',
     telephone: '+77074852328',
-    description: 'Производство и доставка бетона по Алматы. Все марки бетона с гарантией качества.',
+    description: 'Натяжные потолки под ключ в Алматы: замер, подбор решений, материалы, монтаж и гарантия.',
     address: {
       streetAddress: 'Алматы',
       addressLocality: 'Алматы',
@@ -133,9 +133,9 @@ useSchemaOrg([
 
     <div class="mx-auto px-4 w-full relative z-10 container">
       <div class="text-white py-16 flex min-h-[calc(82vh-64px)] items-center lg:min-h-[86vh] sm:min-h-[78vh]">
-        <div class="mx-auto text-center max-w-3xl space-y-6 md:mx-0 md:text-left lg:max-w-3xl md:max-w-2xl">
+        <div class="mx-auto text-center max-w-3xl space-y-6 md:mx-0 md:text-left md:max-w-2xl">
           <div class="text-sm text-blue-200 tracking-wide font-semibold uppercase">
-            Натяжные потолки в Алматы под ключ
+            KONTUR — современные потолочные решения
           </div>
           <h1 class="text-4xl leading-tight font-bold lg:text-6xl sm:text-5xl">
             Натяжные потолки под ключ в Алматы
@@ -152,12 +152,14 @@ useSchemaOrg([
           <div class="pt-2 flex flex-col gap-3 justify-center sm:flex-row md:justify-start">
             <a
               href="#contacts"
+              aria-label="Получить консультацию по натяжным потолкам в Алматы"
               class="text-white font-semibold px-6 py-3.5 rounded-xl bg-blue-600 inline-flex min-h-12 shadow-blue-900/15 shadow-md transition items-center justify-center hover:bg-blue-700 hover:shadow-lg"
             >
               Получить консультацию
             </a>
             <a
               href="#calc"
+              aria-label="Рассчитать стоимость натяжного потолка"
               class="text-white font-semibold px-6 py-3.5 border border-white/22 rounded-xl bg-white/10 inline-flex min-h-12 shadow-sm transition items-center justify-center backdrop-blur-sm hover:border-white/35 hover:bg-white/18"
             >
               Рассчитать стоимость
@@ -176,11 +178,6 @@ useSchemaOrg([
   <!-- Ассортимент -->
   <section id="assortiment" class="scroll-mt-16">
     <ProductGrid />
-  </section>
-
-  <!-- Автобетононасосы -->
-  <section id="pumps" class="scroll-mt-16">
-    <Pumps />
   </section>
 
   <!-- О компании -->
@@ -218,7 +215,7 @@ useSchemaOrg([
         </div>
 
         <div class="mt-10 gap-5 grid lg:grid-cols-4 sm:grid-cols-2">
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] hover:-translate-y-1">
+          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
             <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
             <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
               <span class="text-sm font-bold">01</span>
@@ -231,7 +228,7 @@ useSchemaOrg([
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] hover:-translate-y-1">
+          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
             <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
             <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
               <span class="text-sm font-bold">02</span>
@@ -244,7 +241,7 @@ useSchemaOrg([
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] hover:-translate-y-1">
+          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
             <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
             <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
               <span class="text-sm font-bold">03</span>
@@ -257,7 +254,7 @@ useSchemaOrg([
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] hover:-translate-y-1">
+          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
             <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
             <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
               <span class="text-sm font-bold">04</span>
@@ -270,7 +267,7 @@ useSchemaOrg([
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] hover:-translate-y-1">
+          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
             <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
             <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
               <span class="text-sm font-bold">05</span>
@@ -283,7 +280,7 @@ useSchemaOrg([
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] hover:-translate-y-1">
+          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
             <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
             <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
               <span class="text-sm font-bold">06</span>
@@ -296,7 +293,7 @@ useSchemaOrg([
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] hover:-translate-y-1">
+          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
             <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
             <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
               <span class="text-sm font-bold">07</span>
@@ -309,7 +306,7 @@ useSchemaOrg([
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] hover:-translate-y-1">
+          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
             <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
             <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
               <span class="text-sm font-bold">08</span>
@@ -350,7 +347,7 @@ useSchemaOrg([
           v-for="(item, index) in faqItems"
           :key="item.question"
           :value="`faq-${index}`"
-          class="group border border-gray-200 rounded-2xl bg-white shadow-[0_14px_34px_rgba(15,23,42,0.06)] transition-all duration-300 overflow-hidden data-[state=open]:border-blue-100 hover:border-blue-200 data-[state=open]:bg-blue-50/70 data-[state=open]:shadow-[0_22px_52px_rgba(37,99,235,0.14)] hover:shadow-[0_20px_46px_rgba(37,99,235,0.12)]"
+          class="group border border-gray-200 rounded-2xl bg-white shadow-[0_14px_34px_rgba(47,42,36,0.06)] transition-all duration-300 overflow-hidden data-[state=open]:border-blue-100 hover:border-blue-200 data-[state=open]:bg-blue-50/70 data-[state=open]:shadow-[0_22px_52px_rgba(184,154,114,0.16)] hover:shadow-[0_20px_46px_rgba(184,154,114,0.12)]"
         >
           <AccordionHeader>
             <AccordionTrigger class="px-5 py-5 text-left flex gap-4 min-h-18 w-full items-center justify-between sm:px-6 sm:py-5">
@@ -373,7 +370,7 @@ useSchemaOrg([
         </AccordionItem>
       </AccordionRoot>
 
-      <div class="mx-auto mt-8 p-5 border border-blue-100 rounded-2xl bg-white flex flex-col gap-4 max-w-4xl shadow-[0_18px_42px_rgba(15,23,42,0.06)] items-start justify-between sm:p-6 sm:flex-row sm:items-center">
+      <div class="mx-auto mt-8 p-5 border border-blue-100 rounded-2xl bg-white flex flex-col gap-4 max-w-4xl shadow-[0_18px_42px_rgba(47,42,36,0.06)] items-start justify-between sm:p-6 sm:flex-row sm:items-center">
         <p class="text-sm text-gray-600 leading-relaxed sm:text-base">
           Не нашли ответ на свой вопрос? Оставьте заявку — бесплатно проконсультируем и подскажем оптимальное решение.
         </p>

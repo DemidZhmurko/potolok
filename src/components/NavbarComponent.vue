@@ -9,7 +9,7 @@ interface NavItem {
 const navItems = ref<NavItem[]>([
   { name: 'Потолки', href: '#assortiment' },
   { name: 'О нас', href: '#about' },
-  { name: 'Услуги', href: '#pumps' },
+  { name: 'Калькулятор', href: '#calc' },
   { name: 'Контакты', href: '#contacts' },
 ])
 
@@ -42,11 +42,17 @@ onMounted(() => {
       isScrolled ? 'shadow-lg shadow-gray-900/8' : 'shadow-sm shadow-gray-900/5',
     ]"
   >
-    <div class="mx-auto px-4 py-1 flex items-center justify-between container">
+    <div class="mx-auto px-4 py-3 flex items-center justify-between container">
       <!-- Логотип -->
-      <a href="/" class="flex items-center">
-        <div class="p-2 border border-gray-200 rounded bg-gray-50 overflow-hidden">
-          <img src="/logo.png" alt="Logo" class="h-20 w-35 scale-140 transform object-cover">
+      <a href="/" class="group inline-flex shrink-0 items-center" aria-label="KONTUR — натяжные потолки">
+        <div class="leading-none flex flex-col">
+          <span class="mb-2 bg-[#B89A72] h-px w-12 transition-all duration-300 group-hover:w-16" aria-hidden="true" />
+          <span class="text-[1.55rem] text-[#2F2A24] tracking-[0.22em] font-medium sm:text-[1.75rem]">
+            KONTUR
+          </span>
+          <span class="text-[0.62rem] text-[#8A8178] tracking-[0.24em] font-medium mt-1 uppercase sm:text-[0.68rem]">
+            натяжные потолки
+          </span>
         </div>
       </a>
 
@@ -61,7 +67,7 @@ onMounted(() => {
               </a>
             </li>
             <!-- почта -->
-            <li><a href="malto:demidbeton@mail.ru" class="hover:underline" />taubetonkz@mail.ru</li>
+            <li><a href="mailto:kontur.kz@mail.ru" class="hover:underline">kontur.kz@mail.ru</a></li>
           </ul>
         </div>
         <!-- Десктоп-навигация -->
