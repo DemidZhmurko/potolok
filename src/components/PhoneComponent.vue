@@ -7,7 +7,7 @@
     <!-- Плавающая кнопка -->
     <div class="p-4 rounded-full bg-blue-600 shadow-blue-900/20 shadow-lg transition-all duration-300 relative hover:bg-blue-700 hover:shadow-xl">
       <a
-        href="tel:+77074852328"
+        href="tel:+7(708)204-30-24"
         aria-label="Позвонить"
       >
         <div class="i-mdi:phone text-3xl text-white" />
