@@ -6,7 +6,7 @@ const name = defineModel<string>()
   <div class="w-full relative">
     <!-- Иконка -->
     <div
-      class="peer-focus:text-accent i-mdi:account text-xl text-gray-400 transition-colors duration-300 left-4 top-1/2 absolute -translate-y-1/2"
+      class="i-mdi:account text-xl text-gray-400 transition-colors duration-300 left-4 top-1/2 absolute peer-focus:text-blue-600 -translate-y-1/2"
     />
 
     <!-- Инпут -->
@@ -14,7 +14,7 @@ const name = defineModel<string>()
       v-model="name"
       type="text"
       placeholder="Ваше имя"
-      class="peer text-textColor border-concrete hover:border-main focus:ring-main text-lg py-3 pl-12 pr-4 border rounded-lg w-full transition-all duration-300 focus:outline-none focus:ring-2 hover:shadow-md"
+      class="peer text-lg text-gray-900 py-3 pl-12 pr-4 border border-gray-300 rounded-lg bg-white w-full transition-all duration-300 focus:outline-none focus:border-blue-500 hover:border-blue-400 focus:ring-2 focus:ring-blue-200 hover:shadow-sm"
     >
   </div>
 </template>

@@ -16,13 +16,13 @@ export const createApp = ViteSSG(
     head.use(
       SchemaOrgUnheadPlugin(
         {
-          host: 'https://taubeton.kz',
-          canonicalHost: 'https://taubeton.kz',
+          host: 'https://kontur.kz',
+          canonicalHost: 'https://kontur.kz',
         },
         () => ({
           // Можно задать мета-данные по умолчанию
-          title: 'Taubeton - Бетон в Алматы',
-          description: 'Продажа и доставка бетона по Алматы',
+          title: 'KONTUR — натяжные потолки в Алматы',
+          description: 'Современные потолочные решения для интерьера: натяжные потолки, теневые профили, скрытые гардины и подсветка.',
         }),
       ),
     )

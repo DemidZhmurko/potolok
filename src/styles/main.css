@@ -1,12 +1,184 @@
 html,
 body,
 #app {
+  background: var(--color-page);
+  color: var(--color-ink);
   height: 100%;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
 }
 
+:root {
+  --color-page: #faf8f5;
+  --color-card: #ffffff;
+  --color-surface: #f3eee8;
+  --color-ink: #2f2a24;
+  --color-muted: #6a625a;
+  --color-primary: #b89a72;
+  --color-primary-hover: #a7865e;
+  --color-primary-active: #8f704c;
+  --color-primary-soft: #f7f1e9;
+  --color-primary-soft-strong: #eee1d0;
+  --color-primary-muted: #dcc7ab;
+  --color-border: #eee8e1;
+  --color-shadow: rgb(47 42 36 / 0.08);
+  --color-primary-shadow: rgb(184 154 114 / 0.22);
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-primary-soft-strong);
+  color: var(--color-ink);
+}
+
 html.dark {
   color-scheme: dark;
+}
+
+/* Unified accent palette */
+.bg-gray-50,
+.bg-slate-50 {
+  background-color: var(--color-page) !important;
+}
+
+.bg-gray-50\/70,
+.bg-gray-50\/80,
+.bg-gray-100,
+.bg-slate-100 {
+  background-color: var(--color-surface) !important;
+}
+
+.bg-white {
+  background-color: var(--color-card) !important;
+}
+
+.text-gray-950,
+.text-gray-900,
+.text-slate-950,
+.text-slate-900,
+.text-gray-800,
+.text-slate-800 {
+  color: var(--color-ink) !important;
+}
+
+.text-gray-700,
+.text-slate-700,
+.text-gray-600,
+.text-slate-600,
+.text-gray-500,
+.text-slate-500,
+.hover\:text-gray-900:hover,
+.hover\:text-gray-950:hover {
+  color: var(--color-muted) !important;
+}
+
+.border-gray-100,
+.border-gray-200,
+.border-gray-300,
+.border-slate-200,
+.border-slate-300,
+.hover\:border-gray-200:hover,
+.hover\:border-slate-200:hover {
+  border-color: var(--color-border) !important;
+}
+
+.text-blue-50,
+.text-blue-100,
+.text-blue-200 {
+  color: #f3eee8 !important;
+}
+
+.text-blue-600,
+.text-blue-700,
+.text-blue-900,
+.text-blue-950,
+.hover\:text-blue-600:hover,
+.hover\:text-blue-700:hover,
+.peer:focus ~ .peer-focus\:text-blue-600 {
+  color: var(--color-primary) !important;
+}
+
+.text-blue-900\/75 {
+  color: color-mix(in srgb, var(--color-primary) 75%, transparent) !important;
+}
+
+.bg-blue-50,
+.bg-blue-50\/70,
+.bg-blue-50\/80 {
+  background-color: var(--color-primary-soft) !important;
+}
+
+.bg-blue-100 {
+  background-color: var(--color-primary-soft-strong) !important;
+}
+
+.group:hover .group-hover\:bg-blue-100 {
+  background-color: var(--color-primary-soft-strong) !important;
+}
+
+.bg-blue-200 {
+  background-color: var(--color-primary-muted) !important;
+}
+
+.bg-blue-600,
+.hover\:bg-blue-600:hover,
+.focus\:bg-blue-600:focus {
+  background-color: var(--color-primary) !important;
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: var(--color-primary-hover) !important;
+}
+
+.active\:bg-blue-700:active {
+  background-color: var(--color-primary-active) !important;
+}
+
+.border-blue-100,
+.border-blue-200,
+.hover\:border-blue-200:hover {
+  border-color: var(--color-primary-soft-strong) !important;
+}
+
+.border-blue-300,
+.border-blue-400,
+.border-blue-500,
+.border-blue-600,
+.border-l-blue-600,
+.border-t-blue-600,
+.focus\:border-blue-400:focus,
+.focus\:border-blue-500:focus,
+.hover\:border-blue-400:hover {
+  border-color: var(--color-primary) !important;
+}
+
+.ring-blue-100,
+.ring-blue-200,
+.focus\:ring-blue-100:focus,
+.focus\:ring-blue-200:focus {
+  --un-ring-color: var(--color-primary-soft-strong) !important;
+  border-color: var(--color-primary-muted) !important;
+}
+
+.shadow-blue-900\/15,
+.shadow-blue-900\/20 {
+  --un-shadow-color: var(--color-primary-shadow) !important;
+}
+
+.from-blue-600 {
+  --un-gradient-from: var(--color-primary) !important;
+  --un-gradient-stops: var(--un-gradient-from), var(--un-gradient-to, rgb(184 154 114 / 0)) !important;
+}
+
+.via-blue-200 {
+  --un-gradient-stops: var(--un-gradient-from), var(--color-primary-muted), var(--un-gradient-to, rgb(184 154 114 / 0)) !important;
+}
+
+.focus\:ring-blue-100:focus,
+.focus\:ring-blue-200:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 22%, transparent) !important;
 }

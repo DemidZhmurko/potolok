@@ -63,6 +63,21 @@ export default defineConfig({
     UnoCSS(),
   ],
 
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        if (
+          warning.message.includes('contains an annotation that Rollup cannot interpret')
+          && warning.id?.includes('@vueuse/core')
+        ) {
+          return
+        }
+
+        warn(warning)
+      },
+    },
+  },
+
   // https://github.com/vitest-dev/vitest
   test: {
     environment: 'jsdom',

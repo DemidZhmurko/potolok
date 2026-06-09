@@ -1,24 +1,53 @@
 <script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import PhoneInput from '~/components/Inputs/PhoneInput.vue'
+import UsernameInput from '~/components/Inputs/UsernameInput.vue'
+import { useAppToast } from '~/composables/useAppToast'
 import { useTelegram } from '~/composables/useTelegramApi'
 
 const props = defineProps<{
   totalArea: number
   totalPrice: number
   btnName: string
+  length: number
+  width: number
+  roomArea: number
+  hasAdditionalElements: boolean
+  additionalElementType: string
+  additionalElementLength: number
+  additionalElementWidth: number
+  additionalElementArea: number
+  cutoutArea: number
+  projectionArea: number
+  lights: number
+  lightingPrice: number
+  basePricePerM2: number
+  ceilingPrice: number
 }>()
 
 const { sendMessage } = useTelegram()
+const { showErrorToast, showSuccessToast } = useAppToast()
 
 const name = ref('')
 const phone = ref('')
+const comment = ref('')
 const isOpen = ref(false)
+const isSending = ref(false)
 
 const roundedPrice = computed(() => Math.round(props.totalPrice))
-const formattedArea = computed(() => props.totalArea.toLocaleString('ru-RU', {
-  maximumFractionDigits: 2,
-}))
-const formattedPrice = computed(() => roundedPrice.value.toLocaleString('ru-RU'))
+const formattedArea = computed(() => formatNumber(props.totalArea))
+const formattedPrice = computed(() => formatPrice(roundedPrice.value))
 const canSend = computed(() => Boolean(name.value.trim() && phone.value.trim()))
+
+function formatNumber(value: number) {
+  return value.toLocaleString('ru-RU', {
+    maximumFractionDigits: 2,
+  })
+}
+
+function formatPrice(value: number) {
+  return Math.round(value).toLocaleString('ru-RU')
+}
 
 function openModal() {
   isOpen.value = true
@@ -33,6 +62,13 @@ function onEsc(e: KeyboardEvent) {
     closeModal()
 }
 
+function getPageUrl() {
+  if (typeof window === 'undefined')
+    return 'URL недоступен'
+
+  return window.location.href
+}
+
 onMounted(() => {
   window.addEventListener('keydown', onEsc)
 })
@@ -41,33 +77,71 @@ onUnmounted(() => {
   window.removeEventListener('keydown', onEsc)
 })
 
-function handleSend() {
-  if (!canSend.value)
+async function handleSend() {
+  if (!canSend.value || isSending.value)
     return
 
-  const message = `📝 Заявка\n👤 Имя: ${name.value}\n📞 Телефон: ${phone.value}\n 💵 Расчет: ${formattedArea.value} м²\n 🥳 Ориентировочная цена: ${formattedPrice.value} ₸`
-  sendMessage(message)
+  isSending.value = true
 
-  name.value = ''
-  phone.value = ''
+  const requestedAt = new Date().toLocaleString('ru-RU')
+  const userComment = comment.value.trim() || 'Без комментария'
 
-  closeModal()
+  const message = [
+    '<b>Заявка с калькулятора натяжных потолков</b>',
+    '',
+    `<b>Длина комнаты:</b> ${formatNumber(props.length)} м`,
+    `<b>Ширина комнаты:</b> ${formatNumber(props.width)} м`,
+    `<b>Площадь комнаты:</b> ${formatNumber(props.roomArea)} м²`,
+    `<b>Дополнительные элементы:</b> ${props.hasAdditionalElements ? 'да' : 'нет'}`,
+    `<b>Тип дополнительного элемента:</b> ${props.additionalElementType}`,
+    `<b>Длина дополнительного элемента:</b> ${formatNumber(props.additionalElementLength)} м`,
+    `<b>Ширина дополнительного элемента:</b> ${formatNumber(props.additionalElementWidth)} м`,
+    `<b>Площадь дополнительного элемента:</b> ${formatNumber(props.additionalElementArea)} м²`,
+    `<b>Площадь вырезов:</b> ${formatNumber(props.cutoutArea)} м²`,
+    `<b>Площадь выступов:</b> ${formatNumber(props.projectionArea)} м²`,
+    `<b>Итоговая площадь:</b> ${formattedArea.value} м²`,
+    `<b>Количество точек освещения:</b> ${props.lights}`,
+    `<b>Стоимость освещения:</b> ${formatPrice(props.lightingPrice)} ₸`,
+    `<b>Базовая цена за м²:</b> ${formatPrice(props.basePricePerM2)} ₸`,
+    `<b>Стоимость потолка:</b> ${formatPrice(props.ceilingPrice)} ₸`,
+    `<b>Итоговая ориентировочная стоимость:</b> ${formattedPrice.value} ₸`,
+    '',
+    `<b>Имя клиента:</b> ${name.value.trim()}`,
+    `<b>Телефон:</b> ${phone.value.trim()}`,
+    `<b>Комментарий:</b> ${userComment}`,
+    `<b>URL страницы:</b> ${getPageUrl()}`,
+    `<b>Дата и время:</b> ${requestedAt}`,
+  ].join('\n')
+
+  const ok = await sendMessage(message)
+  isSending.value = false
+
+  if (ok) {
+    name.value = ''
+    phone.value = ''
+    comment.value = ''
+    closeModal()
+    showSuccessToast()
+  }
+  else {
+    showErrorToast()
+  }
 }
 </script>
 
 <template>
   <button
-    class="group text-white px-5 py-4 rounded-lg bg-[#0F66D6] flex gap-4 w-full shadow-[0_16px_36px_rgba(15,102,214,0.24)] transition-all duration-300 items-center justify-between hover:text-[#121826] hover:bg-[#F2B705] hover:shadow-[0_18px_40px_rgba(242,183,5,0.28)] active:translate-y-0.5"
+    class="group text-white px-5 py-4 rounded-xl bg-blue-600 flex gap-4 w-full shadow-[0_16px_36px_rgba(184,154,114,0.22)] transition-all duration-300 items-center justify-between hover:bg-blue-700 hover:shadow-[0_18px_40px_rgba(184,154,114,0.28)] active:translate-y-0.5"
     @click="openModal"
   >
     <span class="text-left min-w-0">
       <span class="font-semibold block truncate">{{ props.btnName }}</span>
-      <span class="text-sm text-white/75 block transition-colors group-hover:text-[#121826]/70">
-        расчет за {{ formattedArea }} м²
+      <span class="text-sm text-white/75 block transition-colors group-hover:text-white/80">
+        расчёт за {{ formattedArea }} м²
       </span>
     </span>
 
-    <span class="rounded-lg bg-white/15 flex shrink-0 h-11 w-11 transition-colors items-center justify-center group-hover:bg-[#121826]/10">
+    <span class="rounded-lg bg-white/15 flex shrink-0 h-11 w-11 transition-colors items-center justify-center group-hover:bg-white/20">
       <span class="i-mdi:arrow-right text-2xl" />
     </span>
   </button>
@@ -90,7 +164,7 @@ function handleSend() {
         @click.self="closeModal"
       >
         <div
-          class="rounded-lg bg-white max-h-[calc(100vh-2rem)] max-w-[520px] w-full shadow-[0_28px_80px_rgba(0,0,0,0.32)] relative overflow-hidden"
+          class="rounded-xl bg-white max-h-[calc(100vh-2rem)] max-w-[540px] w-full shadow-[0_28px_80px_rgba(0,0,0,0.32)] relative overflow-y-auto"
           role="document"
         >
           <button
@@ -101,30 +175,25 @@ function handleSend() {
             <span class="i-mdi:close text-2xl" />
           </button>
 
-          <div class="text-white px-5 pb-6 pt-14 bg-[#101828] relative overflow-hidden sm:px-7 sm:pt-8">
-            <div class="rounded-full bg-[#F2B705]/20 h-24 w-24 right-[-34px] top-[-34px] absolute" />
-            <div class="rounded-full bg-[#2EC4B6]/18 h-16 w-16 bottom-[-26px] left-[-24px] absolute" />
+          <div class="text-white px-5 pb-6 pt-14 bg-gray-900 relative overflow-hidden sm:px-7 sm:pt-8">
+            <p class="text-sm text-blue-200 tracking-wide font-semibold uppercase">
+              4. Оставить заявку
+            </p>
 
-            <div class="relative">
-              <p class="text-sm text-[#F2B705] tracking-wide font-semibold uppercase">
-                Финальный шаг
-              </p>
+            <h2 id="modal-title" class="text-2xl leading-tight font-bold mt-2 sm:text-3xl">
+              Отправим расчёт мастеру
+            </h2>
 
-              <h2 id="modal-title" class="text-2xl leading-tight font-bold mt-2 sm:text-3xl">
-                Зафиксируем расчет и свяжемся с вами
-              </h2>
-
-              <p class="text-white/70 mt-3">
-                Передадим мастеру площадь, ориентировочную сумму и ваши контакты.
-              </p>
-            </div>
+            <p class="text-white/70 mt-3">
+              Передадим размеры, ориентировочную стоимость и ваши контакты.
+            </p>
           </div>
 
           <div class="p-5 space-y-5 sm:p-7">
             <div class="gap-3 grid grid-cols-2">
               <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
                 <div class="text-sm text-slate-500 flex gap-2 items-center">
-                  <span class="i-mdi:ruler-square text-lg text-[#0F66D6]" />
+                  <span class="i-mdi:ruler-square text-lg text-blue-600" />
                   Площадь
                 </div>
 
@@ -133,13 +202,13 @@ function handleSend() {
                 </div>
               </div>
 
-              <div class="p-4 border border-slate-200 rounded-lg bg-[#FFF8DF]">
+              <div class="p-4 border border-slate-200 rounded-lg bg-gray-50">
                 <div class="text-sm text-slate-600 flex gap-2 items-center">
-                  <span class="i-mdi:cash text-lg text-[#B7791F]" />
+                  <span class="i-mdi:cash text-lg text-blue-600" />
                   Стоимость
                 </div>
 
-                <div class="text-2xl text-[#121826] font-bold mt-2">
+                <div class="text-2xl text-slate-950 font-bold mt-2">
                   ~{{ formattedPrice }} ₸
                 </div>
               </div>
@@ -148,25 +217,20 @@ function handleSend() {
             <div class="space-y-4">
               <UsernameInput v-model="name" />
               <PhoneInput v-model="phone" />
-            </div>
-
-            <div class="p-4 border border-slate-200 rounded-lg bg-white flex gap-3">
-              <div class="text-[#0E8F80] rounded-lg bg-[#E8F7F5] flex shrink-0 h-10 w-10 items-center justify-center">
-                <span class="i-mdi:shield-check text-xl" />
-              </div>
-
-              <p class="text-sm text-slate-500 leading-relaxed">
-                Заявка уйдет напрямую в Telegram. Точная цена подтверждается после замера.
-              </p>
+              <textarea
+                v-model="comment"
+                class="text-base text-gray-900 px-4 py-3 border border-gray-300 rounded-lg bg-white min-h-22 w-full resize-y transition focus:outline-none focus:border-blue-500 hover:border-blue-400 focus:ring-2 focus:ring-blue-200"
+                placeholder="Комментарий: адрес, удобное время, пожелания"
+              />
             </div>
 
             <button
-              class="text-white font-semibold py-4 rounded-lg bg-[#0F66D6] flex gap-2 w-full transition-all duration-300 items-center justify-center disabled:text-slate-500 disabled:bg-slate-300 hover:bg-[#0B55B5] disabled:cursor-not-allowed"
-              :disabled="!canSend"
+              class="text-white font-semibold py-4 rounded-lg bg-blue-600 flex gap-2 w-full transition-all duration-300 items-center justify-center disabled:text-slate-500 disabled:bg-slate-300 hover:bg-blue-700 disabled:cursor-not-allowed"
+              :disabled="!canSend || isSending"
               @click="handleSend"
             >
               <span class="i-mdi:send text-xl" />
-              Отправить заявку
+              {{ isSending ? 'Отправляем...' : 'Отправить заявку' }}
             </button>
           </div>
         </div>

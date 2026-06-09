@@ -23,6 +23,7 @@ declare module 'vue' {
     RequestModal: typeof import('./src/components/RequestModal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ToastHost: typeof import('./src/components/ToastHost.vue')['default']
     UsernameInput: typeof import('./src/components/Inputs/UsernameInput.vue')['default']
     Variant1: typeof import('./src/components/TabsVariants/Variant1.vue')['default']
     Variant2: typeof import('./src/components/TabsVariants/Variant2.vue')['default']

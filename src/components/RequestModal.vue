@@ -2,17 +2,21 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import PhoneInput from '~/components/Inputs/PhoneInput.vue'
 import UsernameInput from '~/components/Inputs/UsernameInput.vue'
+import { useAppToast } from '~/composables/useAppToast'
 import { useTelegram } from '~/composables/useTelegramApi'
 
 const { sendMessage } = useTelegram()
+const { showErrorToast, showSuccessToast } = useAppToast()
 
 const isOpen = ref(false)
 const name = ref('')
 const phone = ref('')
+const isSending = ref(false)
 
 function openModal() {
   isOpen.value = true
 }
+
 function closeModal() {
   isOpen.value = false
 }
@@ -25,33 +29,47 @@ function onEsc(e: KeyboardEvent) {
 onMounted(() => {
   window.addEventListener('keydown', onEsc)
 })
+
 onUnmounted(() => {
   window.removeEventListener('keydown', onEsc)
 })
 
-function handleSend() {
-  if (!name.value.trim() || !phone.value.trim())
+async function handleSend() {
+  if (!name.value.trim() || !phone.value.trim() || isSending.value)
     return
 
-  const message = `📝 Заявка\n👤 Имя: ${name.value}\n📞 Телефон: ${phone.value}`
-  sendMessage(message)
+  isSending.value = true
 
-  name.value = ''
-  phone.value = ''
-  closeModal()
+  const message = [
+    '<b>Заявка с сайта натяжных потолков</b>',
+    '',
+    `<b>Имя клиента:</b> ${name.value.trim()}`,
+    `<b>Телефон:</b> ${phone.value.trim()}`,
+  ].join('\n')
+
+  const ok = await sendMessage(message)
+  isSending.value = false
+
+  if (ok) {
+    name.value = ''
+    phone.value = ''
+    closeModal()
+    showSuccessToast()
+  }
+  else {
+    showErrorToast()
+  }
 }
 </script>
 
 <template>
-  <!-- Кнопка открытия -->
   <button
-    class="text-white px-6 py-3 rounded-lg bg-blue-600 shadow-md transition-500 hover:bg-yellow-500 hover:opacity-90"
+    class="text-white px-6 py-3 rounded-lg bg-blue-600 shadow-blue-900/15 shadow-md transition hover:bg-blue-700 hover:shadow-lg"
     @click="openModal"
   >
     Оставить заявку
   </button>
 
-  <!-- Teleport для модалки -->
   <Teleport to="body">
     <Transition
       enter-active-class="transition ease-out duration-200"
@@ -68,33 +86,30 @@ function handleSend() {
         aria-modal="true"
         aria-labelledby="modal-title"
       >
-        <div class="p-6 rounded-xl bg-white max-w-md w-full shadow-xl relative" role="document">
-          <!-- Закрыть -->
+        <div class="p-6 border border-gray-200 rounded-xl bg-white max-w-md w-full shadow-gray-900/15 shadow-xl relative" role="document">
           <button
-            class="text-2xl text-gray-400 transition right-3 top-3 absolute hover:text-red-500"
+            class="text-2xl text-gray-400 transition right-3 top-3 absolute hover:text-gray-900"
             aria-label="Закрыть окно"
             @click="closeModal"
           >
             &times;
           </button>
 
-          <!-- Заголовок -->
           <h2 id="modal-title" class="text-xl font-semibold mb-4 text-center">
             Оставьте заявку
           </h2>
 
-          <!-- Поля -->
           <div class="space-y-4">
             <UsernameInput v-model="name" />
             <PhoneInput v-model="phone" />
           </div>
 
-          <!-- Кнопка -->
           <button
-            class="text-white font-semibold mt-6 py-3 rounded-lg bg-blue-600 w-full transition-all hover:opacity-90"
+            class="text-white font-semibold mt-6 py-3 rounded-lg bg-blue-600 w-full transition-all disabled:bg-gray-400 hover:bg-blue-700 disabled:cursor-not-allowed"
+            :disabled="isSending"
             @click="handleSend"
           >
-            Отправить
+            {{ isSending ? 'Отправляем...' : 'Отправить' }}
           </button>
         </div>
       </div>
