@@ -59,15 +59,15 @@ onMounted(() => {
       <div class="w-[70%] block">
         <div class="border-concrete pb-2 border-b-2 border-gray-300 hidden md:block">
           <ul class="text-sm text-gray-600 flex justify-between space-x-4">
-            <li>РК, г. Алматы, Улица Казыбаева, 262</li>
+            <li>РК, г. Алматы</li>
             <li class="flex items-center">
               <div class="i-mdi-phone text-xs text-blue-600 mr-2" />
-              <a href="tel:+77074852328" class="transition hover:underline">
-                +7 (707) 485-23-28
+              <a href="tel:+77082043024" class="transition hover:underline">
+                +7 (708) 204-30-24
               </a>
             </li>
             <!-- почта -->
-            <li><a href="mailto:kontur.kz@mail.ru" class="hover:underline">kontur.kz@mail.ru</a></li>
+            <li><a href="mailto:konturpotolok@mail.ru" class="hover:underline">konturpotolok@mail.ru</a></li>
           </ul>
         </div>
         <!-- Десктоп-навигация -->
@@ -85,16 +85,16 @@ onMounted(() => {
 
       <!-- Десктоп-кнопка -->
       <!-- <div class="hidden md:block">
-        <a href="tel:+77074852328" class="text-gray-700 mt-2 flex items-center">
+        <a href="tel:+77082043024" class="text-gray-700 mt-2 flex items-center">
               <div class="i-mdi-phone text-xs text-blue-600 mr-2" />
-          <span class="text-sm">+7 (707) 485-23-28 </span>
+          <span class="text-sm">+7 (708) 204-30-24 </span>
         </a>
       </div> -->
 
       <!-- Мобильный блок -->
       <div class="flex items-center space-x-4 md:hidden">
         <a
-          href="tel:+7(707)485-23-28"
+          href="tel:+7(708)204-30-24"
           class="text-gray-700 font-semibold flex transition items-center hover:text-blue-600"
         >
           <div class="i-mdi-phone text-lg text-blue-600 mr-1" />

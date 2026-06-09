@@ -16,8 +16,8 @@
             <p class="text-2xl font-semibold">
               📞 Телефон:
             </p>
-            <a href="tel:+77074852328" class="text-2xl text-blue-600 font-medium hover:text-blue-700 hover:underline">
-              +7 (707) 485-23-28
+            <a href="tel:+77082043024" class="text-2xl text-blue-600 font-medium hover:text-blue-700 hover:underline">
+              +7 (708) 204-30-24
             </a>
           </div>
           <div>
@@ -25,7 +25,7 @@
               💬 WhatsApp:
             </p>
             <a
-              href="https://wa.me/77074852328"
+              href="https://wa.me/77082043024"
               target="_blank"
               class="text-2xl text-gray-800 font-medium hover:text-blue-700 hover:underline"
             >
@@ -37,7 +37,7 @@
               📍 Адрес:
             </p>
             <p class="text-xl text-gray-800">
-              Ул. Казыбаева 262
+              пока НЕТУ
             </p>
           </div>
         </div>
