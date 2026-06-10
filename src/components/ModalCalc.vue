@@ -132,12 +132,14 @@ async function handleSend() {
 <template>
   <button
     class="group text-white px-5 py-4 rounded-xl bg-blue-600 flex gap-4 w-full shadow-[0_16px_36px_rgba(184,154,114,0.22)] transition-all duration-300 items-center justify-between hover:bg-blue-700 hover:shadow-[0_18px_40px_rgba(184,154,114,0.28)] active:translate-y-0.5"
+    type="button"
+    aria-label="Оставить заявку по расчёту натяжного потолка"
     @click="openModal"
   >
     <span class="text-left min-w-0">
       <span class="font-semibold block truncate">{{ props.btnName }}</span>
       <span class="text-sm text-white/75 block transition-colors group-hover:text-white/80">
-        расчёт за {{ formattedArea }} м²
+        бесплатный замер после расчёта {{ formattedArea }} м²
       </span>
     </span>
 
@@ -185,7 +187,7 @@ async function handleSend() {
             </h2>
 
             <p class="text-white/70 mt-3">
-              Передадим размеры, ориентировочную стоимость и ваши контакты.
+              Передадим размеры, ориентировочную стоимость и ваши контакты мастеру KONTUR.
             </p>
           </div>
 
@@ -221,12 +223,15 @@ async function handleSend() {
                 v-model="comment"
                 class="text-base text-gray-900 px-4 py-3 border border-gray-300 rounded-lg bg-white min-h-22 w-full resize-y transition focus:outline-none focus:border-blue-500 hover:border-blue-400 focus:ring-2 focus:ring-blue-200"
                 placeholder="Комментарий: адрес, удобное время, пожелания"
+                aria-label="Комментарий к заявке"
               />
             </div>
 
             <button
               class="text-white font-semibold py-4 rounded-lg bg-blue-600 flex gap-2 w-full transition-all duration-300 items-center justify-center disabled:text-slate-500 disabled:bg-slate-300 hover:bg-blue-700 disabled:cursor-not-allowed"
               :disabled="!canSend || isSending"
+              type="button"
+              aria-label="Отправить заявку по расчёту"
               @click="handleSend"
             >
               <span class="i-mdi:send text-xl" />

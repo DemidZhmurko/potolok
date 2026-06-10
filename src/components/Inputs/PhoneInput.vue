@@ -31,6 +31,8 @@ onMounted(() => {
       v-model="phone"
       type="tel"
       placeholder="Номер телефона"
+      autocomplete="tel"
+      aria-label="Номер телефона"
       class="peer text-lg text-gray-900 py-3 pl-12 pr-4 border border-gray-300 rounded-lg bg-white w-full transition-all duration-300 focus:outline-none focus:border-blue-500 hover:border-blue-400 focus:ring-2 focus:ring-blue-200 hover:shadow-sm"
     >
   </div>

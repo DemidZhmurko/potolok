@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://taubeton.kz/sitemap.xml
+Sitemap: https://kontur.kz/sitemap.xml

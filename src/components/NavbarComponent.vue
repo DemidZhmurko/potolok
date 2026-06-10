@@ -8,8 +8,8 @@ interface NavItem {
 
 const navItems = ref<NavItem[]>([
   { name: 'Потолки', href: '#assortiment' },
-  { name: 'О нас', href: '#about' },
   { name: 'Калькулятор', href: '#calc' },
+  { name: 'О нас', href: '#about' },
   { name: 'Контакты', href: '#contacts' },
 ])
 
@@ -43,7 +43,6 @@ onMounted(() => {
     ]"
   >
     <div class="mx-auto px-4 py-3 flex items-center justify-between container">
-      <!-- Логотип -->
       <a href="/" class="group inline-flex shrink-0 items-center" aria-label="KONTUR — натяжные потолки">
         <div class="leading-none flex flex-col">
           <span class="mb-2 bg-[#B89A72] h-px w-12 transition-all duration-300 group-hover:w-16" aria-hidden="true" />
@@ -59,14 +58,13 @@ onMounted(() => {
       <div class="w-[70%] block">
         <div class="border-concrete pb-2 border-b-2 border-gray-300 hidden md:block">
           <ul class="text-sm text-gray-600 flex justify-between space-x-4">
-            <li>РК, г. Алматы</li>
+            <li>Алматы, бесплатный замер</li>
             <li class="flex items-center">
               <div class="i-mdi-phone text-xs text-blue-600 mr-2" />
               <a href="tel:+77082043024" class="transition hover:underline">
                 +7 (708) 204-30-24
               </a>
             </li>
-            <!-- почта -->
             <li><a href="mailto:konturpotolok@mail.ru" class="hover:underline">konturpotolok@mail.ru</a></li>
           </ul>
         </div>
@@ -83,14 +81,6 @@ onMounted(() => {
         </nav>
       </div>
 
-      <!-- Десктоп-кнопка -->
-      <!-- <div class="hidden md:block">
-        <a href="tel:+77082043024" class="text-gray-700 mt-2 flex items-center">
-              <div class="i-mdi-phone text-xs text-blue-600 mr-2" />
-          <span class="text-sm">+7 (708) 204-30-24 </span>
-        </a>
-      </div> -->
-
       <!-- Мобильный блок -->
       <div class="flex items-center space-x-4 md:hidden">
         <a
@@ -101,13 +91,15 @@ onMounted(() => {
           <span class="text-sm">Позвонить</span>
         </a>
 
-        <!-- Бургер -->
-        <div
+        <button
+          type="button"
           class="text-3xl text-gray-700 flex h-8 w-8 cursor-pointer transition-all duration-300 items-center justify-center"
+          :aria-label="isMobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'"
+          :aria-expanded="isMobileMenuOpen"
           @click="toggleMobileMenu"
         >
           <div :class="isMobileMenuOpen ? 'i-mdi-close' : 'i-mdi-menu'" />
-        </div>
+        </button>
       </div>
     </div>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const message = 'Здравствуйте! Я хочу заказать Бетон. Подскажите, пожалуйста, как оформить заказ?'
+const message = 'Здравствуйте! Хочу заказать бесплатный замер натяжного потолка в Алматы. Подскажите, пожалуйста, ближайшее время.'
 </script>
 
 <template>
@@ -8,9 +8,10 @@ const message = 'Здравствуйте! Я хочу заказать Бето
     <div class="p-4 rounded-full bg-[#25D366] shadow-[0_16px_36px_rgba(37,211,102,0.24)] transition-all duration-300 relative hover:bg-[#1EBE5D] hover:shadow-[0_18px_42px_rgba(37,211,102,0.32)]">
       <a
         target="_blank"
-        :href="`https://wa.me/77074852328?text=${encodeURIComponent(message)}`"
+        rel="noopener noreferrer"
+        :href="`https://wa.me/77082043024?text=${encodeURIComponent(message)}`"
 
-        aria-label="Открыть чат в WhatsApp"
+        aria-label="Написать в WhatsApp и заказать бесплатный замер"
       >
         <div class="i-mdi:whatsapp text-3xl text-white" />
       </a>

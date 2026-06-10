@@ -45,6 +45,7 @@ async function handleSend() {
     '',
     `<b>Имя клиента:</b> ${name.value.trim()}`,
     `<b>Телефон:</b> ${phone.value.trim()}`,
+    '<b>Интерес:</b> Бесплатный замер натяжного потолка в Алматы',
   ].join('\n')
 
   const ok = await sendMessage(message)
@@ -65,9 +66,11 @@ async function handleSend() {
 <template>
   <button
     class="text-white px-6 py-3 rounded-lg bg-blue-600 shadow-blue-900/15 shadow-md transition hover:bg-blue-700 hover:shadow-lg"
+    type="button"
+    aria-label="Оставить заявку на бесплатный замер"
     @click="openModal"
   >
-    Оставить заявку
+    Бесплатный замер
   </button>
 
   <Teleport to="body">
@@ -96,7 +99,7 @@ async function handleSend() {
           </button>
 
           <h2 id="modal-title" class="text-xl font-semibold mb-4 text-center">
-            Оставьте заявку
+            Оставьте заявку на бесплатный замер
           </h2>
 
           <div class="space-y-4">
@@ -107,6 +110,8 @@ async function handleSend() {
           <button
             class="text-white font-semibold mt-6 py-3 rounded-lg bg-blue-600 w-full transition-all disabled:bg-gray-400 hover:bg-blue-700 disabled:cursor-not-allowed"
             :disabled="isSending"
+            type="button"
+            aria-label="Отправить заявку на бесплатный замер"
             @click="handleSend"
           >
             {{ isSending ? 'Отправляем...' : 'Отправить' }}

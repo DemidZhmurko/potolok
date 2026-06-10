@@ -15,28 +15,47 @@ defineOptions({
 
 const faqItems = [
   {
-    question: 'Сколько примерно будет стоить мой потолок?',
-    answer: 'Стоимость зависит от площади помещения, освещения, выбранного полотна и дополнительных элементов. Для удобства на сайте доступен предварительный калькулятор расчёта стоимости.',
+    question: 'Сколько стоит натяжной потолок в Алматы?',
+    answer: 'Цена зависит от площади комнаты, типа полотна, количества углов, светильников, карнизов и профиля. Базовый расчёт можно сделать в калькуляторе, а точную стоимость фиксируем после бесплатного замера.',
+  },
+  {
+    question: 'Сколько длится монтаж натяжного потолка?',
+    answer: 'Обычную комнату чаще всего устанавливаем за несколько часов. Квартиру с несколькими помещениями часто можно закрыть за 1 день, а сложные решения с подсветкой, магнитными треками и теневым профилем согласуем по срокам отдельно.',
+  },
+  {
+    question: 'Какая гарантия на потолки и монтаж?',
+    answer: 'Даём гарантию до 15 лет на полотно и монтажные работы. Используем сертифицированные материалы и объясняем условия гарантии до начала работ.',
+  },
+  {
+    question: 'Можно ли установить натяжной потолок после ремонта?',
+    answer: 'Да, монтаж возможен после ремонта. Мастера работают аккуратно, закрывают чувствительные зоны и заранее предупреждают, что лучше убрать или защитить перед установкой.',
   },
   {
     question: 'Какие потолки лучше выбрать для квартиры?',
-    answer: 'Самыми популярными остаются матовые потолки — они выглядят аккуратно, подходят под любой интерьер и не создают лишних отражений. Для современных интерьеров также часто выбирают теневые потолки, скрытые гардины и магнитные треки.',
+    answer: 'Для спокойного интерьера чаще выбирают матовые потолки, для визуального расширения пространства — глянцевые, для мягкого премиального эффекта — сатиновые. На замере подскажем вариант под освещение, стены и бюджет.',
   },
   {
-    question: 'Сколько времени занимает установка?',
-    answer: 'В большинстве случаев монтаж одной комнаты занимает несколько часов. Более сложные проекты с подсветкой, треками или многоуровневыми конструкциями требуют дополнительного времени.',
+    question: 'Можно ли встроить подсветку в натяжной потолок?',
+    answer: 'Да. Делаем точечные светильники, световые линии, скрытую LED-подсветку, парящий контур и сценарии света под разные зоны комнаты.',
   },
   {
-    question: 'Какие гарантии вы предоставляете?',
-    answer: 'Мы используем сертифицированные материалы от проверенных поставщиков и предоставляем гарантию как на полотно, так и на выполненные монтажные работы.',
+    question: 'Что такое теневой профиль?',
+    answer: 'Теневой профиль создаёт аккуратный зазор между потолком и стеной без классического плинтуса. Решение подходит для современных интерьеров и чистой геометрии.',
   },
   {
-    question: 'Что входит в стоимость потолка под ключ?',
-    answer: 'В стоимость обычно входят материалы, комплектующие, монтажные работы и базовая установка потолка. Итоговая цена зависит от площади помещения, освещения и выбранных дополнительных решений.',
+    question: 'Можно ли установить магнитные треки?',
+    answer: 'Да, проектируем и монтируем магнитные трековые системы вместе с натяжным потолком. Важно заранее рассчитать расположение треков, питание и сценарии освещения.',
+  },
+  {
+    question: 'Делаете ли вы скрытые карнизы?',
+    answer: 'Да, устанавливаем скрытые карнизы и ниши под шторы. Такое решение визуально поднимает потолок и делает окно аккуратнее.',
+  },
+  {
+    question: 'Выезд замерщика по Алматы бесплатный?',
+    answer: 'Да, замер и консультация по Алматы бесплатные. На месте проверяем размеры, стены, электрику, обсуждаем материалы и называем понятную смету.',
   },
 ]
 
-// ✅ FAQ Schema (JSON-LD)
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -50,8 +69,47 @@ const faqSchema = {
   })),
 }
 
-// ✅ Head (GA + FAQ)
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  'name': 'KONTUR',
+  'url': 'https://kontur.kz/',
+  'image': 'https://kontur.kz/background.png',
+  'telephone': '+77082043024',
+  'email': 'konturpotolok@mail.ru',
+  'priceRange': '₸₸',
+  'address': {
+    '@type': 'PostalAddress',
+    'addressLocality': 'Алматы',
+    'addressCountry': 'KZ',
+  },
+  'areaServed': {
+    '@type': 'City',
+    'name': 'Алматы',
+  },
+  'makesOffer': {
+    '@type': 'Offer',
+    'itemOffered': {
+      '@type': 'Service',
+      'name': 'Монтаж натяжных потолков',
+      'areaServed': 'Алматы',
+    },
+  },
+}
+
 useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://kontur.kz/',
+    },
+  ],
+  meta: [
+    {
+      name: 'keywords',
+      content: 'натяжные потолки алматы, натяжной потолок алматы, потолки алматы цена, монтаж натяжных потолков, матовые потолки, глянцевые потолки, потолки с подсветкой',
+    },
+  ],
   script: [
     {
       async: true,
@@ -76,41 +134,46 @@ useHead({
       type: 'application/ld+json',
       innerHTML: JSON.stringify(faqSchema),
     },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(localBusinessSchema),
+    },
   ],
 })
 
-// ✅ SEO Meta
 useSeoMeta({
-  title: 'Натяжные потолки под ключ в Алматы — KONTUR',
-  description: 'KONTUR — современные потолочные решения для интерьера в Алматы: натяжные потолки, теневой профиль, скрытые гардины, магнитные треки и подсветка под ключ.',
-  ogTitle: 'Натяжные потолки под ключ в Алматы — KONTUR',
-  ogDescription: 'Современные потолочные решения для квартир, домов и коммерческих помещений: монтаж, материалы, освещение и гарантия.',
-  ogUrl: 'https://kontur.kz',
+  title: 'Натяжные потолки в Алматы — монтаж под ключ | KONTUR',
+  description: 'Натяжные потолки в Алматы под ключ. Матовые, глянцевые и сатиновые потолки. Бесплатный замер, монтаж за 1 день, гарантия до 15 лет.',
+  ogTitle: 'Натяжные потолки в Алматы — монтаж под ключ | KONTUR',
+  ogDescription: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, монтаж за 1 день, сертифицированные материалы и гарантия до 15 лет.',
+  ogType: 'website',
+  ogUrl: 'https://kontur.kz/',
+  ogImage: 'https://kontur.kz/background.png',
   ogSiteName: 'KONTUR',
-  twitterCard: 'summary',
-  twitterTitle: 'Натяжные потолки в Алматы — KONTUR',
-  twitterDescription: 'Тёплые интерьерные потолочные решения под ключ: теневые профили, скрытые гардины, магнитные треки и подсветка.',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Натяжные потолки в Алматы — монтаж под ключ | KONTUR',
+  twitterDescription: 'Матовые, глянцевые и сатиновые натяжные потолки в Алматы. Бесплатный замер, монтаж за 1 день, гарантия до 15 лет.',
 })
 
-// ✅ Schema.org
 useSchemaOrg([
   defineWebPage({
-    name: 'Натяжные потолки под ключ в Алматы | KONTUR',
-    description: 'Современные натяжные потолки и потолочные решения для интерьера: теневые профили, скрытые гардины, магнитные треки и подсветка.',
+    name: 'Натяжные потолки в Алматы — монтаж под ключ | KONTUR',
+    description: 'Натяжные потолки в Алматы под ключ: бесплатный замер, монтаж за 1 день, сертифицированные материалы и гарантия до 15 лет.',
   }),
 
   defineWebSite({
     name: 'KONTUR',
-    url: 'https://kontur.kz',
-    description: 'KONTUR — современные потолочные решения для интерьера в Алматы.',
+    url: 'https://kontur.kz/',
+    description: 'KONTUR — монтаж натяжных потолков в Алматы под ключ.',
   }),
 
   defineLocalBusiness({
     name: 'KONTUR',
-    url: 'https://kontur.kz',
-    image: 'https://kontur.kz/logo.png',
-    telephone: '+77074852328',
-    description: 'Натяжные потолки под ключ в Алматы: замер, подбор решений, материалы, монтаж и гарантия.',
+    url: 'https://kontur.kz/',
+    image: 'https://kontur.kz/background.png',
+    telephone: '+77082043024',
+    email: 'konturpotolok@mail.ru',
+    description: 'Монтаж натяжных потолков в Алматы: бесплатный замер, матовые, глянцевые и сатиновые полотна, подсветка, теневой профиль и гарантия.',
     address: {
       streetAddress: 'Алматы',
       addressLocality: 'Алматы',
@@ -138,14 +201,14 @@ useSchemaOrg([
             KONTUR — современные потолочные решения
           </div>
           <h1 class="text-4xl leading-tight font-bold lg:text-6xl sm:text-5xl">
-            Натяжные потолки под ключ в Алматы
+            Натяжные потолки в Алматы
           </h1>
           <p class="text-base text-gray-100 leading-relaxed mx-auto max-w-2xl sm:text-lg md:mx-0">
-            Устанавливаем современные натяжные потолки с теневым профилем, магнитными треками, скрытыми гардинами и подсветкой — с материалами, монтажом и гарантией.
+            Устанавливаем натяжные потолки под ключ: матовые, глянцевые и сатиновые полотна, подсветка, теневой профиль, магнитные треки и скрытые карнизы. Бесплатно замеряем, считаем понятную смету и даём гарантию до 15 лет.
           </p>
           <div class="text-sm text-gray-100 flex flex-wrap gap-2.5 justify-center md:justify-start">
             <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Бесплатный замер</span>
-            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Монтаж в ближайшее время</span>
+            <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Монтаж за 1 день</span>
             <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Работаем без выходных</span>
             <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Сертифицированные полотна</span>
           </div>
@@ -170,152 +233,73 @@ useSchemaOrg([
     </div>
   </section>
 
-  <!-- Калькулятор -->
-  <section id="calc" class="scroll-mt-16">
-    <CalcTabs />
-  </section>
-
   <!-- Ассортимент -->
   <section id="assortiment" class="scroll-mt-16">
     <ProductGrid />
   </section>
 
+  <!-- Дополнительные услуги -->
+  <section id="pumps" class="scroll-mt-16">
+    <Pumps />
+  </section>
+
   <!-- О компании -->
   <section id="about" class="scroll-mt-16">
+    <AboutUs />
+  </section>
+
+  <!-- Калькулятор -->
+  <section id="calc" class="scroll-mt-16">
+    <CalcTabs />
+  </section>
+
+  <!-- Преимущества -->
+  <section id="advantages" class="scroll-mt-16">
     <div class="py-14 bg-white lg:py-20 sm:py-16">
       <div class="mx-auto px-4 max-w-6xl container">
-        <div class="gap-8 grid lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
-          <div>
-            <p class="text-xs text-blue-600 tracking-wide font-semibold uppercase">
-              О нас
-            </p>
-            <h2 class="text-2xl text-gray-950 leading-tight font-bold mt-2 lg:text-4xl sm:text-3xl">
-              Делаем натяжные потолки под ключ — от бесплатного замера до аккуратного монтажа.
-            </h2>
-            <p class="text-base text-gray-600 leading-relaxed mt-4 max-w-3xl">
-              Мы занимаемся установкой натяжных потолков для квартир, домов, офисов и коммерческих помещений. Помогаем подобрать подходящее полотно, освещение, карнизы и дополнительные решения под интерьер и бюджет клиента.
-            </p>
-          </div>
-
-          <div class="p-5 border border-blue-100 rounded-2xl bg-blue-50/70 shadow-blue-950/5 shadow-sm">
-            <div class="flex gap-3 items-start">
-              <span class="text-blue-600 rounded-xl bg-white flex shrink-0 h-11 w-11 shadow-sm items-center justify-center">
-                <span class="text-lg font-bold">✓</span>
-              </span>
-              <div>
-                <h3 class="text-lg text-gray-950 font-semibold">
-                  Работаем аккуратно и прозрачно
-                </h3>
-                <p class="text-sm text-gray-600 leading-relaxed mt-1.5">
-                  Замеряем помещение, объясняем варианты, фиксируем стоимость и выполняем монтаж без лишней суеты.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div class="mx-auto text-center max-w-3xl">
+          <p class="text-xs text-blue-600 tracking-wide font-semibold uppercase">
+            Преимущества
+          </p>
+          <h2 class="text-2xl text-gray-950 leading-tight font-bold mt-2 lg:text-4xl sm:text-3xl">
+            Почему выбирают KONTUR
+          </h2>
         </div>
 
         <div class="mt-10 gap-5 grid lg:grid-cols-4 sm:grid-cols-2">
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
-            <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
-            <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
-              <span class="text-sm font-bold">01</span>
-            </span>
-            <h3 class="text-lg text-gray-950 leading-snug font-semibold mt-5">
+          <div class="p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)]">
+            <h3 class="text-lg text-gray-950 leading-snug font-semibold">
               Бесплатный замер и консультация
             </h3>
             <p class="text-sm text-gray-600 leading-relaxed mt-2.5">
-              Выезжаем на объект и помогаем подобрать лучшее решение под ваш интерьер.
+              Выезжаем на объект и помогаем подобрать решение под интерьер.
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
-            <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
-            <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
-              <span class="text-sm font-bold">02</span>
-            </span>
-            <h3 class="text-lg text-gray-950 leading-snug font-semibold mt-5">
-              Установка в ближайшее время
+          <div class="p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)]">
+            <h3 class="text-lg text-gray-950 leading-snug font-semibold">
+              Монтаж за 1 день
             </h3>
             <p class="text-sm text-gray-600 leading-relaxed mt-2.5">
-              Оперативно согласовываем дату и выполняем монтаж в удобный день.
+              Для большинства комнат выполняем монтаж в день установки.
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
-            <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
-            <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
-              <span class="text-sm font-bold">03</span>
-            </span>
-            <h3 class="text-lg text-gray-950 leading-snug font-semibold mt-5">
-              Работаем с физ. и юр. лицами
+          <div class="p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)]">
+            <h3 class="text-lg text-gray-950 leading-snug font-semibold">
+              Сертифицированные материалы
             </h3>
             <p class="text-sm text-gray-600 leading-relaxed mt-2.5">
-              Берём частные и коммерческие заказы, готовим необходимые документы.
+              Используем проверенные полотна, профили и комплектующие.
             </p>
           </div>
 
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
-            <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
-            <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
-              <span class="text-sm font-bold">04</span>
-            </span>
-            <h3 class="text-lg text-gray-950 leading-snug font-semibold mt-5">
-              Без выходных
+          <div class="p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)]">
+            <h3 class="text-lg text-gray-950 leading-snug font-semibold">
+              Гарантия до 15 лет
             </h3>
             <p class="text-sm text-gray-600 leading-relaxed mt-2.5">
-              Принимаем заявки ежедневно и остаёмся на связи на всех этапах работы.
-            </p>
-          </div>
-
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
-            <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
-            <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
-              <span class="text-sm font-bold">05</span>
-            </span>
-            <h3 class="text-lg text-gray-950 leading-snug font-semibold mt-5">
-              Опыт в потолках и строительстве
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed mt-2.5">
-              Многолетний опыт монтажа помогает учитывать нюансы ремонта и отделки.
-            </p>
-          </div>
-
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
-            <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
-            <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
-              <span class="text-sm font-bold">06</span>
-            </span>
-            <h3 class="text-lg text-gray-950 leading-snug font-semibold mt-5">
-              Надёжные партнёры
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed mt-2.5">
-              Используем проверенные полотна, профили и комплектующие для монтажа.
-            </p>
-          </div>
-
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
-            <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
-            <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
-              <span class="text-sm font-bold">07</span>
-            </span>
-            <h3 class="text-lg text-gray-950 leading-snug font-semibold mt-5">
-              Команда профессионалов
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed mt-2.5">
-              Монтаж выполняют опытные специалисты с аккуратным подходом.
-            </p>
-          </div>
-
-          <div class="group p-6 border border-gray-200 rounded-2xl bg-white min-h-[220px] shadow-[0_18px_45px_rgba(47,42,36,0.06)] transition-all duration-300 relative overflow-hidden hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(184,154,114,0.16)] hover:-translate-y-1">
-            <div class="bg-gradient-to-r h-1 inset-x-0 top-0 absolute from-blue-600 to-transparent via-blue-200" />
-            <span class="text-blue-700 rounded-xl bg-blue-50 flex h-12 w-12 ring-1 ring-blue-100 transition items-center justify-center group-hover:bg-blue-100">
-              <span class="text-sm font-bold">08</span>
-            </span>
-            <h3 class="text-lg text-gray-950 leading-snug font-semibold mt-5">
-              Сертификаты качества
-            </h3>
-            <p class="text-sm text-gray-600 leading-relaxed mt-2.5">
-              Используем сертифицированные материалы и предоставляем подтверждения.
+              Даём гарантию на полотно и выполненные монтажные работы.
             </p>
           </div>
         </div>
