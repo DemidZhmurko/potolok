@@ -21,6 +21,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kontur.kz/#ceiling-extras</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://kontur.kz/#about</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>

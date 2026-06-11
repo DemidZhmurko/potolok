@@ -56,7 +56,7 @@ onMounted(() => {
       </a>
 
       <div class="w-[70%] hidden md:block">
-        <div class="border-concrete pb-2 border-b-2 border-gray-300 hidden md:block">
+        <div class="pb-2 border-b-2 border-gray-300 hidden md:block">
           <ul class="text-sm text-gray-600 flex justify-between space-x-4">
             <li>Алматы, бесплатный замер</li>
             <li class="flex items-center">

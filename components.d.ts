@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AboutUs: typeof import('./src/components/AboutUs.vue')['default']
     CalcTabs: typeof import('./src/components/CalcTabs.vue')['default']
+    CeilingExtras: typeof import('./src/components/CeilingExtras.vue')['default']
     Contacs: typeof import('./src/components/Contacs.vue')['default']
     ModalCalc: typeof import('./src/components/ModalCalc.vue')['default']
     NavbarComponent: typeof import('./src/components/NavbarComponent.vue')['default']
@@ -17,7 +18,6 @@ declare module 'vue' {
     PhoneComponent: typeof import('./src/components/PhoneComponent.vue')['default']
     PhoneInput: typeof import('./src/components/Inputs/PhoneInput.vue')['default']
     ProductGrid: typeof import('./src/components/ProductGrid.vue')['default']
-    Pumps: typeof import('./src/components/Pumps.vue')['default']
     RequestModal: typeof import('./src/components/RequestModal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
