@@ -42,20 +42,20 @@ onMounted(() => {
       isScrolled ? 'shadow-lg shadow-gray-900/8' : 'shadow-sm shadow-gray-900/5',
     ]"
   >
-    <div class="mx-auto px-4 py-3 flex items-center justify-between container">
-      <a href="/" class="group inline-flex shrink-0 items-center" aria-label="KONTUR — натяжные потолки">
+    <div class="mx-auto px-4 py-2.5 flex gap-3 items-center justify-between md:py-3 container">
+      <a href="/" class="group inline-flex shrink-0 max-w-[48vw] items-center sm:max-w-none" aria-label="KONTUR — натяжные потолки">
         <div class="leading-none flex flex-col">
-          <span class="mb-2 bg-[#B89A72] h-px w-12 transition-all duration-300 group-hover:w-16" aria-hidden="true" />
-          <span class="text-[1.55rem] text-[#2F2A24] tracking-[0.22em] font-medium sm:text-[1.75rem]">
+          <span class="mb-1.5 bg-[#B89A72] h-px w-10 transition-all duration-300 sm:mb-2 group-hover:w-14 sm:w-12 sm:group-hover:w-16" aria-hidden="true" />
+          <span class="text-[1.35rem] text-[#2F2A24] tracking-[0.2em] font-medium lg:text-[1.75rem] sm:text-[1.65rem] sm:tracking-[0.22em]">
             KONTUR
           </span>
-          <span class="text-[0.62rem] text-[#8A8178] tracking-[0.24em] font-medium mt-1 uppercase sm:text-[0.68rem]">
+          <span class="text-[0.54rem] text-[#8A8178] tracking-[0.18em] font-medium mt-1 uppercase sm:text-[0.64rem] sm:tracking-[0.24em]">
             натяжные потолки
           </span>
         </div>
       </a>
 
-      <div class="w-[70%] block">
+      <div class="w-[70%] hidden md:block">
         <div class="border-concrete pb-2 border-b-2 border-gray-300 hidden md:block">
           <ul class="text-sm text-gray-600 flex justify-between space-x-4">
             <li>Алматы, бесплатный замер</li>
