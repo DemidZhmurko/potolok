@@ -27,6 +27,7 @@
             <a
               href="https://wa.me/77082043024"
               target="_blank"
+              rel="noopener noreferrer"
               class="text-2xl text-gray-800 font-medium hover:text-blue-700 hover:underline"
             >
               Написать в WhatsApp
@@ -37,7 +38,7 @@
               📍 Адрес:
             </p>
             <p class="text-xl text-gray-800">
-              пока НЕТУ
+              Алматы, выезд на замер по городу
             </p>
           </div>
         </div>
@@ -48,15 +49,15 @@
             О компании KONTUR
           </h3>
           <p class="text-lg text-gray-700 leading-relaxed">
-            KONTUR — это современные потолочные решения для интерьера: натяжные потолки, теневые профили,
-            скрытые гардины, магнитные треки и мягкая подсветка. Помогаем подобрать аккуратное решение под
-            квартиру, дом, офис или коммерческое помещение.
+            KONTUR — это монтаж натяжных потолков в Алматы под ключ: матовые, глянцевые и сатиновые полотна,
+            теневой профиль, скрытые карнизы, магнитные треки и мягкая подсветка. Помогаем подобрать аккуратное
+            решение под квартиру, дом, офис или коммерческое помещение.
           </p>
           <ul class="text-base text-gray-800 mt-4 pl-5 list-disc space-y-2">
-            <li><span class="text-gray-800 font-medium">Бесплатный замер и консультация</span></li>
+            <li><span class="text-gray-800 font-medium">Бесплатный замер и консультация по Алматы</span></li>
             <li><span class="text-gray-800 font-medium">Подбор полотна, освещения и профилей</span></li>
-            <li><span class="text-gray-800 font-medium">Аккуратный монтаж в согласованные сроки</span></li>
-            <li><span class="text-gray-800 font-medium">Сертифицированные материалы и гарантия</span></li>
+            <li><span class="text-gray-800 font-medium">Аккуратный монтаж за 1 день для большинства комнат</span></li>
+            <li><span class="text-gray-800 font-medium">Сертифицированные материалы и гарантия до 15 лет</span></li>
           </ul>
         </div>
       </div>

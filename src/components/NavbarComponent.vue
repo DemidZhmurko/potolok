@@ -8,8 +8,8 @@ interface NavItem {
 
 const navItems = ref<NavItem[]>([
   { name: 'Потолки', href: '#assortiment' },
-  { name: 'О нас', href: '#about' },
   { name: 'Калькулятор', href: '#calc' },
+  { name: 'О нас', href: '#about' },
   { name: 'Контакты', href: '#contacts' },
 ])
 
@@ -42,31 +42,29 @@ onMounted(() => {
       isScrolled ? 'shadow-lg shadow-gray-900/8' : 'shadow-sm shadow-gray-900/5',
     ]"
   >
-    <div class="mx-auto px-4 py-3 flex items-center justify-between container">
-      <!-- Логотип -->
-      <a href="/" class="group inline-flex shrink-0 items-center" aria-label="KONTUR — натяжные потолки">
+    <div class="mx-auto px-4 py-2.5 flex gap-3 items-center justify-between md:py-3 container">
+      <a href="/" class="group inline-flex shrink-0 max-w-[48vw] items-center sm:max-w-none" aria-label="KONTUR — натяжные потолки">
         <div class="leading-none flex flex-col">
-          <span class="mb-2 bg-[#B89A72] h-px w-12 transition-all duration-300 group-hover:w-16" aria-hidden="true" />
-          <span class="text-[1.55rem] text-[#2F2A24] tracking-[0.22em] font-medium sm:text-[1.75rem]">
+          <span class="mb-1.5 bg-[#B89A72] h-px w-10 transition-all duration-300 sm:mb-2 group-hover:w-14 sm:w-12 sm:group-hover:w-16" aria-hidden="true" />
+          <span class="text-[1.35rem] text-[#2F2A24] tracking-[0.2em] font-medium lg:text-[1.75rem] sm:text-[1.65rem] sm:tracking-[0.22em]">
             KONTUR
           </span>
-          <span class="text-[0.62rem] text-[#8A8178] tracking-[0.24em] font-medium mt-1 uppercase sm:text-[0.68rem]">
+          <span class="text-[0.54rem] text-[#8A8178] tracking-[0.18em] font-medium mt-1 uppercase sm:text-[0.64rem] sm:tracking-[0.24em]">
             натяжные потолки
           </span>
         </div>
       </a>
 
-      <div class="w-[70%] block">
+      <div class="w-[70%] hidden md:block">
         <div class="border-concrete pb-2 border-b-2 border-gray-300 hidden md:block">
           <ul class="text-sm text-gray-600 flex justify-between space-x-4">
-            <li>РК, г. Алматы</li>
+            <li>Алматы, бесплатный замер</li>
             <li class="flex items-center">
               <div class="i-mdi-phone text-xs text-blue-600 mr-2" />
               <a href="tel:+77082043024" class="transition hover:underline">
                 +7 (708) 204-30-24
               </a>
             </li>
-            <!-- почта -->
             <li><a href="mailto:konturpotolok@mail.ru" class="hover:underline">konturpotolok@mail.ru</a></li>
           </ul>
         </div>
@@ -83,14 +81,6 @@ onMounted(() => {
         </nav>
       </div>
 
-      <!-- Десктоп-кнопка -->
-      <!-- <div class="hidden md:block">
-        <a href="tel:+77082043024" class="text-gray-700 mt-2 flex items-center">
-              <div class="i-mdi-phone text-xs text-blue-600 mr-2" />
-          <span class="text-sm">+7 (708) 204-30-24 </span>
-        </a>
-      </div> -->
-
       <!-- Мобильный блок -->
       <div class="flex items-center space-x-4 md:hidden">
         <a
@@ -101,13 +91,15 @@ onMounted(() => {
           <span class="text-sm">Позвонить</span>
         </a>
 
-        <!-- Бургер -->
-        <div
+        <button
+          type="button"
           class="text-3xl text-gray-700 flex h-8 w-8 cursor-pointer transition-all duration-300 items-center justify-center"
+          :aria-label="isMobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'"
+          :aria-expanded="isMobileMenuOpen"
           @click="toggleMobileMenu"
         >
           <div :class="isMobileMenuOpen ? 'i-mdi-close' : 'i-mdi-menu'" />
-        </div>
+        </button>
       </div>
     </div>
 

@@ -218,11 +218,12 @@ function updateAdditionalElementWidth(event: Event) {
             Калькулятор стоимости натяжного потолка
           </h2>
           <p class="text-sm text-gray-600 leading-relaxed mx-auto mt-2 max-w-2xl">
-            Предварительно рассчитайте квадратуру комнаты и узнайте ориентировочную стоимость натяжного потолка под ключ — с материалами и работой по минимальной базовой цене.
+            Предварительно рассчитайте площадь комнаты и ориентировочную стоимость натяжного потолка под ключ. После расчёта оставьте заявку на бесплатный замер, чтобы мастер уточнил цену по вашему помещению.
           </p>
 
           <CollapsibleTrigger
             class="text-white font-semibold mt-5 px-5 py-3 rounded-xl bg-blue-600 inline-flex gap-2 min-h-12 shadow-blue-900/15 shadow-md transition items-center justify-center hover:bg-blue-700"
+            :aria-label="isOpen ? 'Скрыть калькулятор стоимости натяжного потолка' : 'Открыть калькулятор стоимости натяжного потолка'"
           >
             {{ isOpen ? 'Скрыть калькулятор' : 'Открыть калькулятор' }}
             <span class="text-lg transition" :class="isOpen ? 'rotate-180' : ''">⌄</span>
@@ -340,6 +341,7 @@ function updateAdditionalElementWidth(event: Event) {
                         <div class="p-1 rounded-lg bg-gray-100 gap-1.5 grid grid-cols-2 sm:w-[180px]">
                           <button
                             type="button"
+                            aria-label="Без дополнительных элементов"
                             class="text-sm font-semibold px-3 py-2 border rounded-md transition"
                             :class="!hasAdditionalElements ? 'text-white border-blue-600 bg-blue-600 shadow-blue-900/15 shadow-sm' : 'text-slate-600 border-transparent bg-transparent hover:bg-white'"
                             :aria-pressed="!hasAdditionalElements"
@@ -349,6 +351,7 @@ function updateAdditionalElementWidth(event: Event) {
                           </button>
                           <button
                             type="button"
+                            aria-label="Добавить дополнительные элементы"
                             class="text-sm font-semibold px-3 py-2 border rounded-md transition"
                             :class="hasAdditionalElements ? 'text-white border-blue-600 bg-blue-600 shadow-blue-900/15 shadow-sm' : 'text-slate-600 border-transparent bg-transparent hover:bg-white'"
                             :aria-pressed="hasAdditionalElements"
@@ -373,6 +376,7 @@ function updateAdditionalElementWidth(event: Event) {
                               <div class="p-1 rounded-lg bg-gray-100 gap-1.5 grid grid-cols-2">
                                 <button
                                   type="button"
+                                  aria-label="Выбрать вырез"
                                   class="text-sm font-semibold px-3 py-2 border rounded-md transition"
                                   :class="additionalElementType === 'cutout' ? 'text-blue-700 border-blue-200 bg-white shadow-sm' : 'text-slate-600 border-transparent bg-transparent hover:bg-white'"
                                   :aria-pressed="additionalElementType === 'cutout'"
@@ -382,6 +386,7 @@ function updateAdditionalElementWidth(event: Event) {
                                 </button>
                                 <button
                                   type="button"
+                                  aria-label="Выбрать выступ"
                                   class="text-sm font-semibold px-3 py-2 border rounded-md transition"
                                   :class="additionalElementType === 'projection' ? 'text-blue-700 border-blue-200 bg-white shadow-sm' : 'text-slate-600 border-transparent bg-transparent hover:bg-white'"
                                   :aria-pressed="additionalElementType === 'projection'"
@@ -497,10 +502,10 @@ function updateAdditionalElementWidth(event: Event) {
 
                 <div class="p-3 border border-blue-100 rounded-xl bg-blue-50/80">
                   <p class="text-sm text-blue-950 font-semibold">
-                    Все цены указаны с работой.
+                    Все цены указаны с базовыми материалами и монтажом.
                   </p>
                   <p class="text-xs text-blue-900/75 leading-relaxed mt-1.5">
-                    Расчёт является предварительным и показывает ориентировочную минимальную стоимость потолка под ключ с материалами и монтажом.
+                    Расчёт является предварительным и показывает ориентировочную минимальную стоимость потолка под ключ. Точную цену фиксируем после бесплатного замера.
                   </p>
                   <p class="text-xs text-blue-900/75 leading-relaxed mt-1">
                     Стоимость освещения рассчитана по минимальной цене {{ lightPointPrice.toLocaleString('ru-RU') }} ₸ за точку.

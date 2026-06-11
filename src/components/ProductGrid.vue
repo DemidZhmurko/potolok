@@ -20,6 +20,7 @@ interface CeilingItem {
   detail: string
   price: string
   image: string
+  alt: string
   benefits: string[]
   variants: string[]
 }
@@ -31,6 +32,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Матовые потолки дают ровную спокойную поверхность и не отвлекают внимание от интерьера. Хороший выбор, если нужен чистый визуал без отражений и лишнего блеска.',
     price: 'от 2 500 ₸/м²',
     image: '/images/ceilings/matte.webp',
+    alt: 'Матовый натяжной потолок в Алматы',
     benefits: ['Не бликуют', 'Подходят к большинству интерьеров', 'Визуально выравнивают потолок'],
     variants: ['Белое матовое полотно', 'Цветное матовое полотно', 'Матовый потолок со светильниками'],
   },
@@ -40,6 +42,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Глянец помогает сделать комнату визуально выше и светлее. Особенно хорошо работает в небольших помещениях, коридорах, кухнях и ванных комнатах.',
     price: 'от 2 800 ₸/м²',
     image: '/images/ceilings/glossy.webp',
+    alt: 'Глянцевый натяжной потолок с подсветкой',
     benefits: ['Расширяют пространство', 'Легко очищаются', 'Хорошо отражают свет'],
     variants: ['Белый глянец', 'Цветной глянец', 'Глянец с точечным освещением'],
   },
@@ -49,6 +52,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Сатиновое полотно выглядит мягче глянца, но живее матовой поверхности. Это универсальный вариант для спокойного современного ремонта.',
     price: 'от 2 700 ₸/м²',
     image: '/images/ceilings/satin.webp',
+    alt: 'Сатиновый натяжной потолок в Алматы',
     benefits: ['Деликатный блеск', 'Комфортны при вечернем освещении', 'Выглядят премиально'],
     variants: ['Сатин белый', 'Сатин цветной', 'Сатин с люстрой или треками'],
   },
@@ -58,6 +62,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Тканевые потолки выбирают за плотную фактуру и аккуратный внешний вид. Они хорошо подходят для жилых помещений и интерьеров, где важна благородная текстура.',
     price: 'от 4 500 ₸/м²',
     image: '/images/ceilings/fabric.webp',
+    alt: 'Тканевый натяжной потолок для квартиры',
     benefits: ['Благородная фактура', 'Не требуют нагрева при монтаже', 'Подходят для спокойных интерьеров'],
     variants: ['Классическое тканевое полотно', 'Фактурное полотно', 'Тканевый потолок со скрытым светом'],
   },
@@ -67,6 +72,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Парящий потолок создаёт лёгкий современный эффект за счёт подсветки по периметру. Комната выглядит технологично, но без визуального перегруза.',
     price: 'от 5 500 ₸/м²',
     image: '/images/ceilings/floating.webp',
+    alt: 'Парящий натяжной потолок с контурной подсветкой',
     benefits: ['Современный эффект', 'Мягкая вечерняя подсветка', 'Аккуратный стык со стенами'],
     variants: ['Парящий контур', 'Парящий потолок с RGB', 'Парящий потолок с матовым полотном'],
   },
@@ -76,6 +82,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Двухуровневые потолки помогают выделить зоны, скрыть коммуникации и сделать освещение более выразительным. Хорошо подходят для кухонь-гостиных и просторных комнат.',
     price: 'от 6 000 ₸/м²',
     image: '/images/ceilings/two-level.webp',
+    alt: 'Двухуровневый натяжной потолок в Алматы',
     benefits: ['Зонируют пространство', 'Скрывают коммуникации', 'Подчеркивают световые сценарии'],
     variants: ['Прямой второй уровень', 'Ниша под подсветку', 'Комбинация матового и глянцевого полотна'],
   },
@@ -85,6 +92,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Многоуровневые решения делают потолок самостоятельной частью дизайна. Их используют там, где нужна выразительная геометрия, сложный свет и заметный интерьерный акцент.',
     price: 'от 7 500 ₸/м²',
     image: '/images/ceilings/multi-level.webp',
+    alt: 'Многоуровневый натяжной потолок с подсветкой',
     benefits: ['Выразительный дизайн', 'Гибкая работа со светом', 'Подходит для сложных планировок'],
     variants: ['Несколько уровней', 'Комбинация форм', 'Многоуровневый потолок с подсветкой'],
   },
@@ -94,6 +102,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Теневой профиль создаёт чистое современное примыкание к стене без галтелей. Это решение часто выбирают для минималистичных квартир и дизайнерских ремонтов.',
     price: 'от 5 000 ₸/м²',
     image: '/images/ceilings/shadow.webp',
+    alt: 'Теневой натяжной потолок с аккуратным профилем',
     benefits: ['Без потолочного плинтуса', 'Чистая линия по периметру', 'Современный минимализм'],
     variants: ['Теневой профиль', 'Черный теневой зазор', 'Теневой потолок со скрытым светом'],
   },
@@ -103,6 +112,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Подсветка помогает создать несколько сценариев света: основной, вечерний, декоративный. Можно использовать световые линии, LED-ленты или скрытые ниши.',
     price: 'от 5 800 ₸/м²',
     image: '/images/ceilings/lighting.webp',
+    alt: 'Натяжной потолок с LED подсветкой',
     benefits: ['Комфортный сценарный свет', 'Можно выделить зоны', 'Сочетается с современным интерьером'],
     variants: ['Световые линии', 'Скрытая LED-подсветка', 'Подсветка по периметру'],
   },
@@ -112,6 +122,7 @@ const ceilings: CeilingItem[] = [
     detail: 'Фотопечать позволяет сделать потолок индивидуальным: от спокойного неба до декоративного изображения. Подходит для детских, тематических комнат и акцентных зон.',
     price: 'от 6 500 ₸/м²',
     image: '/images/ceilings/photo-print.webp',
+    alt: 'Натяжной потолок с фотопечатью',
     benefits: ['Индивидуальный дизайн', 'Можно подобрать любой сюжет', 'Подходит для акцентных зон'],
     variants: ['Небо', 'Абстракция', 'Индивидуальный макет'],
   },
@@ -215,7 +226,7 @@ async function sendCeilingRequest() {
           Каталог натяжных потолков
         </h2>
         <p class="text-gray-600 leading-relaxed">
-          Подберём полотно, профиль и освещение под интерьер, бюджет и особенности помещения.
+          Подберём матовое, глянцевое или сатиновое полотно, профиль и освещение под интерьер, бюджет и особенности помещения.
         </p>
       </div>
 
@@ -233,7 +244,7 @@ async function sendCeilingRequest() {
           <div class="bg-gray-200 shrink-0 aspect-[16/10] relative overflow-hidden">
             <img
               :src="item.image"
-              :alt="item.title"
+              :alt="item.alt"
               class="h-full w-full transition duration-500 object-cover group-hover:scale-105"
               loading="lazy"
             >
@@ -254,6 +265,7 @@ async function sendCeilingRequest() {
             <button
               class="text-sm text-white font-semibold mt-4 px-4 py-2.5 rounded-lg bg-blue-600 inline-flex shadow shadow-blue-900/15 transition justify-center sm:py-3 hover:bg-blue-700"
               type="button"
+              :aria-label="`Подробнее про ${item.title.toLowerCase()}`"
               @click.stop="openCeiling(index)"
             >
               Подробнее
@@ -280,7 +292,7 @@ async function sendCeilingRequest() {
                 <div class="border border-gray-200 rounded-xl bg-gray-100 max-h-[240px] aspect-[4/3] overflow-hidden md:max-h-[340px] sm:max-h-[300px]">
                   <img
                     :src="selectedCeiling.image"
-                    :alt="selectedCeiling.title"
+                    :alt="selectedCeiling.alt"
                     class="h-full w-full object-contain object-center"
                   >
                 </div>
@@ -306,9 +318,9 @@ async function sendCeilingRequest() {
 
                   <div class="gap-4 grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-2">
                     <div>
-                      <h4 class="text-xs text-gray-900 tracking-wide font-semibold mb-2 uppercase">
+                      <h3 class="text-xs text-gray-900 tracking-wide font-semibold mb-2 uppercase">
                         Преимущества
-                      </h4>
+                      </h3>
                       <ul class="space-y-1.5">
                         <li v-for="benefit in selectedCeiling.benefits" :key="benefit" class="text-sm text-gray-700 px-3 py-2 border border-gray-200 rounded-lg bg-gray-50 flex gap-2 items-center">
                           <span class="rounded-full bg-blue-600 shrink-0 h-1.5 w-1.5" />
@@ -318,9 +330,9 @@ async function sendCeilingRequest() {
                     </div>
 
                     <div>
-                      <h4 class="text-xs text-gray-900 tracking-wide font-semibold mb-2 uppercase">
+                      <h3 class="text-xs text-gray-900 tracking-wide font-semibold mb-2 uppercase">
                         Варианты
-                      </h4>
+                      </h3>
                       <ul class="space-y-1.5">
                         <li v-for="variant in selectedCeiling.variants" :key="variant" class="text-sm text-gray-700 px-3 py-2 border border-gray-200 rounded-lg bg-white flex gap-2 items-center">
                           <span class="rounded-full bg-gray-400 shrink-0 h-1.5 w-1.5" />
@@ -337,6 +349,7 @@ async function sendCeilingRequest() {
                   <button
                     class="text-sm text-gray-700 px-3 py-3 border border-gray-200 rounded-lg bg-white shadow-sm transition hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-md"
                     type="button"
+                    aria-label="Показать предыдущий вид потолка"
                     :disabled="!canGoPrev"
                     @click="goPrev"
                   >
@@ -345,6 +358,7 @@ async function sendCeilingRequest() {
                   <button
                     class="text-sm text-gray-700 px-3 py-3 border border-gray-200 rounded-lg bg-white shadow-sm transition hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-md"
                     type="button"
+                    aria-label="Показать следующий вид потолка"
                     :disabled="!canGoNext"
                     @click="goNext"
                   >
@@ -366,6 +380,7 @@ async function sendCeilingRequest() {
 
                   <button
                     type="submit"
+                    aria-label="Оставить заявку на выбранный натяжной потолок"
                     class="text-white font-semibold px-5 py-3.5 rounded-lg bg-blue-600 w-full transition disabled:bg-gray-400 hover:bg-blue-700 disabled:cursor-not-allowed"
                     :disabled="!canSend || isSending"
                   >

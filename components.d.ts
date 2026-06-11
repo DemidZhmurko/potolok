@@ -11,8 +11,6 @@ declare module 'vue' {
     AboutUs: typeof import('./src/components/AboutUs.vue')['default']
     CalcTabs: typeof import('./src/components/CalcTabs.vue')['default']
     Contacs: typeof import('./src/components/Contacs.vue')['default']
-    Floor: typeof import('./src/components/TabsVariants/Floor.vue')['default']
-    KeramzitCalc: typeof import('./src/components/TabsVariants/KeramzitCalc.vue')['default']
     ModalCalc: typeof import('./src/components/ModalCalc.vue')['default']
     NavbarComponent: typeof import('./src/components/NavbarComponent.vue')['default']
     OrderComponent: typeof import('./src/components/OrderComponent.vue')['default']
@@ -25,10 +23,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     ToastHost: typeof import('./src/components/ToastHost.vue')['default']
     UsernameInput: typeof import('./src/components/Inputs/UsernameInput.vue')['default']
-    Variant1: typeof import('./src/components/TabsVariants/Variant1.vue')['default']
-    Variant2: typeof import('./src/components/TabsVariants/Variant2.vue')['default']
-    Variant3: typeof import('./src/components/TabsVariants/Variant3.vue')['default']
-    Variant4: typeof import('./src/components/TabsVariants/Variant4.vue')['default']
     WhatsAppComponent: typeof import('./src/components/WhatsAppComponent.vue')['default']
   }
 }
