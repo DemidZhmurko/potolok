@@ -238,9 +238,9 @@ useSchemaOrg([
     <ProductGrid />
   </section>
 
-  <!-- Дополнительные услуги -->
-  <section id="pumps" class="scroll-mt-16">
-    <Pumps />
+  <!-- Дополнительные решения -->
+  <section id="ceiling-extras" class="scroll-mt-16">
+    <CeilingExtras />
   </section>
 
   <!-- О компании -->
