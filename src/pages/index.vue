@@ -73,9 +73,9 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   'name': 'Kontur',
-  'url': 'https://kontur.kz/',
-  'image': 'https://kontur.kz/background.png',
-  'logo': 'https://kontur.kz/favicon_io/web-app-manifest-512x512.png',
+  'url': 'https://kontur-v.kz/',
+  'image': 'https://kontur-v.kz/background.png',
+  'logo': 'https://kontur-v.kz/favicon_io/web-app-manifest-512x512.png',
   'telephone': '+77082043024',
   'email': 'konturpotolok@mail.ru',
   'priceRange': '₸₸',
@@ -104,7 +104,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: 'https://kontur.kz/',
+      href: 'https://kontur-v.kz/',
     },
   ],
   meta: [
@@ -166,14 +166,14 @@ useSeoMeta({
   ogTitle: 'Натяжные потолки в Алматы | Монтаж под ключ | Kontur',
   ogDescription: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, расчет стоимости, теневые, парящие потолки и потолки с подсветкой.',
   ogType: 'website',
-  ogUrl: 'https://kontur.kz/',
-  ogImage: 'https://kontur.kz/background.png',
+  ogUrl: 'https://kontur-v.kz/',
+  ogImage: 'https://kontur-v.kz/background.png',
   ogImageAlt: 'Натяжные потолки Kontur в Алматы',
   ogSiteName: 'Kontur',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Натяжные потолки в Алматы | Монтаж под ключ | Kontur',
   twitterDescription: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, расчет стоимости, теневые, парящие потолки и потолки с подсветкой.',
-  twitterImage: 'https://kontur.kz/background.png',
+  twitterImage: 'https://kontur-v.kz/background.png',
   twitterImageAlt: 'Натяжные потолки Kontur в Алматы',
 })
 
@@ -185,15 +185,15 @@ useSchemaOrg([
 
   defineWebSite({
     name: 'Kontur',
-    url: 'https://kontur.kz/',
+    url: 'https://kontur-v.kz/',
     description: 'KONTUR — монтаж натяжных потолков в Алматы под ключ.',
   }),
 
   defineLocalBusiness({
     name: 'Kontur',
-    url: 'https://kontur.kz/',
-    image: 'https://kontur.kz/background.png',
-    logo: 'https://kontur.kz/favicon_io/web-app-manifest-512x512.png',
+    url: 'https://kontur-v.kz/',
+    image: 'https://kontur-v.kz/background.png',
+    logo: 'https://kontur-v.kz/favicon_io/web-app-manifest-512x512.png',
     telephone: '+77082043024',
     email: 'konturpotolok@mail.ru',
     description: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, расчет стоимости, теневые, парящие потолки и потолки с подсветкой.',

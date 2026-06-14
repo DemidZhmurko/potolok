@@ -16,8 +16,8 @@ export const createApp = ViteSSG(
     head.use(
       SchemaOrgUnheadPlugin(
         {
-          host: 'https://kontur.kz',
-          canonicalHost: 'https://kontur.kz',
+          host: 'https://kontur-v.kz',
+          canonicalHost: 'https://kontur-v.kz',
         },
         () => ({
           title: 'Натяжные потолки в Алматы | Монтаж под ключ | Kontur',
