@@ -33,7 +33,7 @@ const isOpen = ref(false)
 const isMobile = ref(false)
 
 const basePricePerM2 = 2500
-const lightPointPrice = 1500
+const lightPointPrice = 2500
 
 function checkMobile() {
   isMobile.value = window.innerWidth < 768
