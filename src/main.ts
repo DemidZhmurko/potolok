@@ -16,12 +16,12 @@ export const createApp = ViteSSG(
     head.use(
       SchemaOrgUnheadPlugin(
         {
-          host: 'https://kontur.kz',
-          canonicalHost: 'https://kontur.kz',
+          host: 'https://kontur-v.kz',
+          canonicalHost: 'https://kontur-v.kz',
         },
         () => ({
-          title: 'Натяжные потолки в Алматы — монтаж под ключ | KONTUR',
-          description: 'Натяжные потолки в Алматы под ключ. Матовые, глянцевые и сатиновые потолки. Бесплатный замер, монтаж за 1 день, гарантия до 15 лет.',
+          title: 'Натяжные потолки в Алматы | Монтаж под ключ | Kontur',
+          description: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, расчет стоимости, теневые, парящие потолки и потолки с подсветкой.',
         }),
       ),
     )

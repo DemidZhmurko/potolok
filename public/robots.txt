@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kontur.kz/sitemap.xml
+Sitemap: https://kontur-v.kz/sitemap.xml

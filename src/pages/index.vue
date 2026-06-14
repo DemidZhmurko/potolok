@@ -72,15 +72,18 @@ const faqSchema = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  'name': 'KONTUR',
-  'url': 'https://kontur.kz/',
-  'image': 'https://kontur.kz/background.png',
+  'name': 'Kontur',
+  'url': 'https://kontur-v.kz/',
+  'image': 'https://kontur-v.kz/background.png',
+  'logo': 'https://kontur-v.kz/favicon_io/web-app-manifest-512x512.png',
   'telephone': '+77082043024',
   'email': 'konturpotolok@mail.ru',
   'priceRange': '₸₸',
   'address': {
     '@type': 'PostalAddress',
+    'streetAddress': 'Алматы',
     'addressLocality': 'Алматы',
+    'addressRegion': 'Алматы',
     'addressCountry': 'KZ',
   },
   'areaServed': {
@@ -101,13 +104,29 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: 'https://kontur.kz/',
+      href: 'https://kontur-v.kz/',
     },
   ],
   meta: [
     {
       name: 'keywords',
-      content: 'натяжные потолки алматы, натяжной потолок алматы, потолки алматы цена, монтаж натяжных потолков, матовые потолки, глянцевые потолки, потолки с подсветкой',
+      content: 'натяжные потолки алматы, натяжной потолок алматы, установка натяжных потолков, теневые потолки, парящие потолки, потолки с подсветкой',
+    },
+    {
+      property: 'og:image:width',
+      content: '1671',
+    },
+    {
+      property: 'og:image:height',
+      content: '941',
+    },
+    {
+      property: 'og:image:alt',
+      content: 'Натяжные потолки Kontur в Алматы',
+    },
+    {
+      name: 'twitter:image:alt',
+      content: 'Натяжные потолки Kontur в Алматы',
     },
   ],
   script: [
@@ -142,41 +161,46 @@ useHead({
 })
 
 useSeoMeta({
-  title: 'Натяжные потолки в Алматы — монтаж под ключ | KONTUR',
-  description: 'Натяжные потолки в Алматы под ключ. Матовые, глянцевые и сатиновые потолки. Бесплатный замер, монтаж за 1 день, гарантия до 15 лет.',
-  ogTitle: 'Натяжные потолки в Алматы — монтаж под ключ | KONTUR',
-  ogDescription: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, монтаж за 1 день, сертифицированные материалы и гарантия до 15 лет.',
+  title: 'Натяжные потолки в Алматы | Монтаж под ключ | Kontur',
+  description: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, расчет стоимости, теневые, парящие потолки и потолки с подсветкой.',
+  ogTitle: 'Натяжные потолки в Алматы | Монтаж под ключ | Kontur',
+  ogDescription: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, расчет стоимости, теневые, парящие потолки и потолки с подсветкой.',
   ogType: 'website',
-  ogUrl: 'https://kontur.kz/',
-  ogImage: 'https://kontur.kz/background.png',
-  ogSiteName: 'KONTUR',
+  ogUrl: 'https://kontur-v.kz/',
+  ogImage: 'https://kontur-v.kz/background.png',
+  ogImageAlt: 'Натяжные потолки Kontur в Алматы',
+  ogSiteName: 'Kontur',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Натяжные потолки в Алматы — монтаж под ключ | KONTUR',
-  twitterDescription: 'Матовые, глянцевые и сатиновые натяжные потолки в Алматы. Бесплатный замер, монтаж за 1 день, гарантия до 15 лет.',
+  twitterTitle: 'Натяжные потолки в Алматы | Монтаж под ключ | Kontur',
+  twitterDescription: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, расчет стоимости, теневые, парящие потолки и потолки с подсветкой.',
+  twitterImage: 'https://kontur-v.kz/background.png',
+  twitterImageAlt: 'Натяжные потолки Kontur в Алматы',
 })
 
 useSchemaOrg([
   defineWebPage({
-    name: 'Натяжные потолки в Алматы — монтаж под ключ | KONTUR',
-    description: 'Натяжные потолки в Алматы под ключ: бесплатный замер, монтаж за 1 день, сертифицированные материалы и гарантия до 15 лет.',
+    name: 'Натяжные потолки в Алматы | Монтаж под ключ | Kontur',
+    description: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, расчет стоимости, теневые, парящие потолки и потолки с подсветкой.',
   }),
 
   defineWebSite({
-    name: 'KONTUR',
-    url: 'https://kontur.kz/',
+    name: 'Kontur',
+    url: 'https://kontur-v.kz/',
     description: 'KONTUR — монтаж натяжных потолков в Алматы под ключ.',
   }),
 
   defineLocalBusiness({
-    name: 'KONTUR',
-    url: 'https://kontur.kz/',
-    image: 'https://kontur.kz/background.png',
+    name: 'Kontur',
+    url: 'https://kontur-v.kz/',
+    image: 'https://kontur-v.kz/background.png',
+    logo: 'https://kontur-v.kz/favicon_io/web-app-manifest-512x512.png',
     telephone: '+77082043024',
     email: 'konturpotolok@mail.ru',
-    description: 'Монтаж натяжных потолков в Алматы: бесплатный замер, матовые, глянцевые и сатиновые полотна, подсветка, теневой профиль и гарантия.',
+    description: 'Натяжные потолки в Алматы под ключ. Бесплатный замер, расчет стоимости, теневые, парящие потолки и потолки с подсветкой.',
     address: {
       streetAddress: 'Алматы',
       addressLocality: 'Алматы',
+      addressRegion: 'Алматы',
       addressCountry: 'KZ',
     },
     openingHours: ['Mo-Sa 08:00-20:00'],
