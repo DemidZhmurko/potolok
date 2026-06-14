@@ -247,6 +247,9 @@ async function sendCeilingRequest() {
               :alt="item.alt"
               class="h-full w-full transition duration-500 object-cover group-hover:scale-105"
               loading="lazy"
+              decoding="async"
+              width="1536"
+              height="1024"
             >
             <div class="bg-gradient-to-t inset-0 absolute from-gray-950/50 to-transparent via-gray-950/10" />
           </div>
@@ -294,6 +297,10 @@ async function sendCeilingRequest() {
                     :src="selectedCeiling.image"
                     :alt="selectedCeiling.alt"
                     class="h-full w-full object-contain object-center"
+                    loading="lazy"
+                    decoding="async"
+                    width="1536"
+                    height="1024"
                   >
                 </div>
 

@@ -78,6 +78,9 @@ const services: ServiceItem[] = [
               :alt="service.title"
               class="h-full w-full transition duration-500 inset-0 absolute object-cover group-hover:scale-105"
               loading="lazy"
+              decoding="async"
+              width="1536"
+              height="1024"
             >
             <div class="bg-gradient-to-t inset-0 absolute from-gray-950 to-gray-950/20 via-gray-950/72" />
             <div class="p-6 flex flex-col h-full min-h-[360px] justify-end relative z-10 sm:p-7">
@@ -115,6 +118,9 @@ const services: ServiceItem[] = [
                   :alt="service.title"
                   class="h-full w-full object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width="1536"
+                  height="1024"
                 >
                 <div class="bg-gradient-to-t inset-0 absolute from-gray-950/80 to-gray-950/10" />
                 <DialogClose
