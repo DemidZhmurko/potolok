@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import PhoneInput from '~/components/Inputs/PhoneInput.vue'
 import UsernameInput from '~/components/Inputs/UsernameInput.vue'
 import { useAppToast } from '~/composables/useAppToast'
+import { sendGoogleAdsLeadConversion } from '~/composables/useGoogleAdsConversion'
 import { useTelegram } from '~/composables/useTelegramApi'
 
 const { sendMessage } = useTelegram()
@@ -55,6 +56,7 @@ async function handleSend() {
     phone.value = ''
     closeModal()
     showSuccessToast()
+    sendGoogleAdsLeadConversion()
   }
   else {
     showErrorToast()

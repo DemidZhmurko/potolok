@@ -12,6 +12,7 @@ import { computed, ref } from 'vue'
 import PhoneInput from '~/components/Inputs/PhoneInput.vue'
 import UsernameInput from '~/components/Inputs/UsernameInput.vue'
 import { useAppToast } from '~/composables/useAppToast'
+import { sendGoogleAdsLeadConversion } from '~/composables/useGoogleAdsConversion'
 import { useTelegram } from '~/composables/useTelegramApi'
 
 interface CeilingItem {
@@ -211,6 +212,7 @@ async function sendCeilingRequest() {
   if (ok) {
     resetLeadForm()
     showSuccessToast()
+    sendGoogleAdsLeadConversion()
   }
   else {
     showErrorToast()
