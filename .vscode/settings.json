@@ -2,9 +2,23 @@
   "files.associations": {
     "*.css": "postcss"
   },
+  "files.exclude": {
+    "dist": true
+  },
+
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
 
   // Enable the ESlint flat config support
+  "eslint.useFlatConfig": true,
   "eslint.experimental.useFlatConfig": true,
+  "eslint.workingDirectories": [
+    { "mode": "auto" }
+  ],
+
+  // The project contains Russian content and generated marketing copy.
+  // Keep spellchecker diagnostics out of the Problems panel.
+  "cSpell.enabled": false,
 
   // Disable the default formatter
   "prettier.enable": false,

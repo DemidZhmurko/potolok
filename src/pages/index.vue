@@ -131,25 +131,6 @@ useHead({
   ],
   script: [
     {
-      async: true,
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-EK35CW4WFV',
-    },
-    {
-      innerHTML: `
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function(){ dataLayer.push(arguments); };
-
-        gtag('js', new Date());
-
-        gtag('config', 'G-EK35CW4WFV', {
-          page_path: window.location.pathname
-        });
-
-        gtag('config', 'AW-17169847962');
-      `,
-      type: 'text/javascript',
-    },
-    {
       type: 'application/ld+json',
       innerHTML: JSON.stringify(faqSchema),
     },
