@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { sendGoogleAdsWhatsAppConversion } from '~/composables/useGoogleAdsConversion'
+
 const message = 'Здравствуйте! Хочу заказать бесплатный замер натяжного потолка в Алматы. Подскажите, пожалуйста, ближайшее время.'
 </script>
 
@@ -10,8 +12,8 @@ const message = 'Здравствуйте! Хочу заказать беспл�
         target="_blank"
         rel="noopener noreferrer"
         :href="`https://wa.me/77082043024?text=${encodeURIComponent(message)}`"
-
         aria-label="Написать в WhatsApp и заказать бесплатный замер"
+        @click="sendGoogleAdsWhatsAppConversion"
       >
         <div class="i-mdi:whatsapp text-3xl text-white" />
       </a>

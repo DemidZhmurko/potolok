@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { sendGoogleAdsPhoneConversion, sendGoogleAdsWhatsAppConversion } from '~/composables/useGoogleAdsConversion'
 </script>
 
 <template>
@@ -16,7 +17,11 @@
             <p class="text-2xl font-semibold">
               📞 Телефон:
             </p>
-            <a href="tel:+77082043024" class="text-2xl text-blue-600 font-medium hover:text-blue-700 hover:underline">
+            <a
+              href="tel:+77082043024"
+              class="text-2xl text-blue-600 font-medium hover:text-blue-700 hover:underline"
+              @click="sendGoogleAdsPhoneConversion"
+            >
               +7 (708) 204-30-24
             </a>
           </div>
@@ -29,6 +34,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="text-2xl text-gray-800 font-medium hover:text-blue-700 hover:underline"
+              @click="sendGoogleAdsWhatsAppConversion"
             >
               Написать в WhatsApp
             </a>

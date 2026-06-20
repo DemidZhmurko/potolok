@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { sendGoogleAdsPhoneConversion } from '~/composables/useGoogleAdsConversion'
 
 interface NavItem {
   name: string
@@ -61,7 +62,11 @@ onMounted(() => {
             <li>Алматы, бесплатный замер</li>
             <li class="flex items-center">
               <div class="i-mdi-phone text-xs text-blue-600 mr-2" />
-              <a href="tel:+77082043024" class="transition hover:underline">
+              <a
+                href="tel:+77082043024"
+                class="transition hover:underline"
+                @click="sendGoogleAdsPhoneConversion"
+              >
                 +7 (708) 204-30-24
               </a>
             </li>
@@ -86,6 +91,7 @@ onMounted(() => {
         <a
           href="tel:+7(708)204-30-24"
           class="text-gray-700 font-semibold flex transition items-center hover:text-blue-600"
+          @click="sendGoogleAdsPhoneConversion"
         >
           <div class="i-mdi-phone text-lg text-blue-600 mr-1" />
           <span class="text-sm">Позвонить</span>
