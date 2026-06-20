@@ -184,7 +184,7 @@ const services: ServiceItem[] = [
                       Подберём решение под ваш интерьер
                     </div>
                   </div>
-                  <RequestModal />
+                  <RequestModal :interest="`Дополнительная услуга: ${service.title}`" />
                 </div>
               </div>
             </DialogContent>

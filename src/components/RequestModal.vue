@@ -1,10 +1,25 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import {
+  DialogClose,
+  DialogContent,
+  DialogOverlay,
+  DialogPortal,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+} from 'reka-ui'
+import { ref } from 'vue'
 import PhoneInput from '~/components/Inputs/PhoneInput.vue'
 import UsernameInput from '~/components/Inputs/UsernameInput.vue'
 import { useAppToast } from '~/composables/useAppToast'
 import { sendGoogleAdsLeadConversion } from '~/composables/useGoogleAdsConversion'
 import { useTelegram } from '~/composables/useTelegramApi'
+
+const props = withDefaults(defineProps<{
+  interest?: string
+}>(), {
+  interest: 'Бесплатный замер натяжного потолка в Алматы',
+})
 
 const { sendMessage } = useTelegram()
 const { showErrorToast, showSuccessToast } = useAppToast()
@@ -14,26 +29,14 @@ const name = ref('')
 const phone = ref('')
 const isSending = ref(false)
 
-function openModal() {
-  isOpen.value = true
+function escapeHtml(value: string) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll('\'', '&#039;')
 }
-
-function closeModal() {
-  isOpen.value = false
-}
-
-function onEsc(e: KeyboardEvent) {
-  if (e.key === 'Escape')
-    closeModal()
-}
-
-onMounted(() => {
-  window.addEventListener('keydown', onEsc)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('keydown', onEsc)
-})
 
 async function handleSend() {
   if (!name.value.trim() || !phone.value.trim() || isSending.value)
@@ -44,9 +47,9 @@ async function handleSend() {
   const message = [
     '<b>Заявка с сайта натяжных потолков</b>',
     '',
-    `<b>Имя клиента:</b> ${name.value.trim()}`,
-    `<b>Телефон:</b> ${phone.value.trim()}`,
-    '<b>Интерес:</b> Бесплатный замер натяжного потолка в Алматы',
+    `<b>Имя клиента:</b> ${escapeHtml(name.value.trim())}`,
+    `<b>Телефон:</b> ${escapeHtml(phone.value.trim())}`,
+    `<b>Интерес:</b> ${escapeHtml(props.interest)}`,
   ].join('\n')
 
   const ok = await sendMessage(message)
@@ -55,7 +58,7 @@ async function handleSend() {
   if (ok) {
     name.value = ''
     phone.value = ''
-    closeModal()
+    isOpen.value = false
     showSuccessToast()
     sendGoogleAdsLeadConversion()
   }
@@ -66,60 +69,54 @@ async function handleSend() {
 </script>
 
 <template>
-  <button
-    class="text-white px-6 py-3 rounded-lg bg-blue-600 shadow-blue-900/15 shadow-md transition hover:bg-blue-700 hover:shadow-lg"
-    type="button"
-    aria-label="Оставить заявку на бесплатный замер"
-    @click="openModal"
-  >
-    Бесплатный замер
-  </button>
-
-  <Teleport to="body">
-    <Transition
-      enter-active-class="transition ease-out duration-200"
-      enter-from-class="opacity-0 scale-95"
-      enter-to-class="opacity-100 scale-100"
-      leave-active-class="transition ease-in duration-150"
-      leave-from-class="opacity-100 scale-100"
-      leave-to-class="opacity-0 scale-95"
-    >
-      <div
-        v-if="isOpen"
-        class="bg-black/40 flex items-center inset-0 justify-center fixed z-[9999] backdrop-blur-sm"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-title"
+  <DialogRoot v-model:open="isOpen">
+    <DialogTrigger as-child>
+      <button
+        class="text-white px-6 py-3 rounded-lg bg-blue-600 shadow-blue-900/15 shadow-md transition hover:bg-blue-700 hover:shadow-lg"
+        type="button"
+        aria-label="Оставить заявку на бесплатный замер"
       >
-        <div class="p-6 border border-gray-200 rounded-xl bg-white max-w-md w-full shadow-gray-900/15 shadow-xl relative" role="document">
+        Бесплатный замер
+      </button>
+    </DialogTrigger>
+
+    <DialogPortal>
+      <DialogOverlay class="bg-black/40 inset-0 fixed z-[10000] backdrop-blur-sm" />
+      <DialogContent
+        class="p-6 border border-gray-200 rounded-xl bg-white max-w-md w-[calc(100%-2rem)] shadow-gray-900/15 shadow-xl left-1/2 top-1/2 fixed z-[10001] -translate-x-1/2 -translate-y-1/2"
+        aria-describedby="request-modal-description"
+      >
+        <DialogClose as-child>
           <button
             class="text-2xl text-gray-400 transition right-3 top-3 absolute hover:text-gray-900"
+            type="button"
             aria-label="Закрыть окно"
-            @click="closeModal"
           >
             &times;
           </button>
+        </DialogClose>
 
-          <h2 id="modal-title" class="text-xl font-semibold mb-4 text-center">
-            Оставьте заявку на бесплатный замер
-          </h2>
+        <DialogTitle class="text-xl font-semibold mb-4 text-center">
+          Оставьте заявку на бесплатный замер
+        </DialogTitle>
+        <p id="request-modal-description" class="sr-only">
+          Укажите имя и номер телефона для обратной связи.
+        </p>
 
-          <div class="space-y-4">
-            <UsernameInput v-model="name" />
-            <PhoneInput v-model="phone" />
-          </div>
+        <form class="space-y-4" @submit.prevent="handleSend">
+          <UsernameInput v-model="name" />
+          <PhoneInput v-model="phone" />
 
           <button
             class="text-white font-semibold mt-6 py-3 rounded-lg bg-blue-600 w-full transition-all disabled:bg-gray-400 hover:bg-blue-700 disabled:cursor-not-allowed"
-            :disabled="isSending"
-            type="button"
+            :disabled="!name.trim() || !phone.trim() || isSending"
+            type="submit"
             aria-label="Отправить заявку на бесплатный замер"
-            @click="handleSend"
           >
             {{ isSending ? 'Отправляем...' : 'Отправить' }}
           </button>
-        </div>
-      </div>
-    </Transition>
-  </Teleport>
+        </form>
+      </DialogContent>
+    </DialogPortal>
+  </DialogRoot>
 </template>
