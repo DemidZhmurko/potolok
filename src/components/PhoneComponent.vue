@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import { sendGoogleAdsPhoneConversion } from '~/composables/useGoogleAdsConversion'
 </script>
 
 <template>
@@ -9,6 +9,7 @@
       <a
         href="tel:+7(708)204-30-24"
         aria-label="Позвонить в KONTUR и заказать бесплатный замер"
+        @click="sendGoogleAdsPhoneConversion"
       >
         <div class="i-mdi:phone text-3xl text-white" />
       </a>
