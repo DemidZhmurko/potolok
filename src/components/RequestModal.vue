@@ -17,8 +17,10 @@ import { useTelegram } from '~/composables/useTelegramApi'
 
 const props = withDefaults(defineProps<{
   interest?: string
+  title?: string
 }>(), {
   interest: 'Бесплатный замер натяжного потолка в Алматы',
+  title: 'Оставьте заявку на бесплатный замер',
 })
 
 const { sendMessage } = useTelegram()
@@ -71,13 +73,15 @@ async function handleSend() {
 <template>
   <DialogRoot v-model:open="isOpen">
     <DialogTrigger as-child>
-      <button
-        class="text-white px-6 py-3 rounded-lg bg-blue-600 shadow-blue-900/15 shadow-md transition hover:bg-blue-700 hover:shadow-lg"
-        type="button"
-        aria-label="Оставить заявку на бесплатный замер"
-      >
-        Бесплатный замер
-      </button>
+      <slot name="trigger">
+        <button
+          class="text-white px-6 py-3 rounded-lg bg-blue-600 shadow-blue-900/15 shadow-md transition hover:bg-blue-700 hover:shadow-lg"
+          type="button"
+          aria-label="Оставить заявку на бесплатный замер"
+        >
+          Бесплатный замер
+        </button>
+      </slot>
     </DialogTrigger>
 
     <DialogPortal>
@@ -97,7 +101,7 @@ async function handleSend() {
         </DialogClose>
 
         <DialogTitle class="text-xl font-semibold mb-4 text-center">
-          Оставьте заявку на бесплатный замер
+          {{ props.title }}
         </DialogTitle>
         <p id="request-modal-description" class="sr-only">
           Укажите имя и номер телефона для обратной связи.
@@ -111,7 +115,7 @@ async function handleSend() {
             class="text-white font-semibold mt-6 py-3 rounded-lg bg-blue-600 w-full transition-all disabled:bg-gray-400 hover:bg-blue-700 disabled:cursor-not-allowed"
             :disabled="!name.trim() || !phone.trim() || isSending"
             type="submit"
-            aria-label="Отправить заявку на бесплатный замер"
+            aria-label="Отправить заявку"
           >
             {{ isSending ? 'Отправляем...' : 'Отправить' }}
           </button>

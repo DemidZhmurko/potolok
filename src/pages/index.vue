@@ -218,13 +218,17 @@ useSchemaOrg([
             <span class="px-3 py-2 border border-white/18 rounded-lg bg-gray-950/35 shadow-sm backdrop-blur-sm">Сертифицированные полотна</span>
           </div>
           <div class="pt-2 flex flex-col gap-3 justify-center sm:flex-row md:justify-start">
-            <a
-              href="#contacts"
-              aria-label="Получить консультацию по натяжным потолкам в Алматы"
-              class="text-white font-semibold px-6 py-3.5 rounded-xl bg-blue-600 inline-flex min-h-12 shadow-blue-900/15 shadow-md transition items-center justify-center hover:bg-blue-700 hover:shadow-lg"
-            >
-              Получить консультацию
-            </a>
+            <RequestModal interest="Консультация по натяжным потолкам в Алматы" title="Оставьте заявку на бесплатную консультацию">
+              <template #trigger>
+                <button
+                  type="button"
+                  aria-label="Получить консультацию по натяжным потолкам в Алматы"
+                  class="text-white font-semibold px-6 py-3.5 rounded-xl bg-blue-600 inline-flex min-h-12 shadow-blue-900/15 shadow-md transition items-center justify-center hover:bg-blue-700 hover:shadow-lg"
+                >
+                  Получить консультацию
+                </button>
+              </template>
+            </RequestModal>
             <a
               href="#calc"
               aria-label="Рассчитать стоимость натяжного потолка"
@@ -363,12 +367,16 @@ useSchemaOrg([
         <p class="text-sm text-gray-600 leading-relaxed sm:text-base">
           Не нашли ответ на свой вопрос? Оставьте заявку — бесплатно проконсультируем и подскажем оптимальное решение.
         </p>
-        <a
-          href="#contacts"
-          class="text-white font-semibold px-5 py-3 rounded-xl bg-blue-600 inline-flex shrink-0 shadow-blue-900/15 shadow-md transition hover:bg-blue-700 hover:shadow-lg"
-        >
-          Получить консультацию
-        </a>
+        <RequestModal interest="Консультация по натяжным потолкам в Алматы" title="Оставьте заявку на бесплатную консультацию">
+          <template #trigger>
+            <button
+              type="button"
+              class="text-white font-semibold px-5 py-3 rounded-xl bg-blue-600 inline-flex shrink-0 shadow-blue-900/15 shadow-md transition hover:bg-blue-700 hover:shadow-lg"
+            >
+              Получить консультацию
+            </button>
+          </template>
+        </RequestModal>
       </div>
     </div>
   </section>
